@@ -214,7 +214,7 @@ class _DailyPageState extends State<DailyPage> {
                       selectedTextColor: black,
 
                       onDateChange: (date) {
-                        // New date selected
+                        print(date);
                         setState(() {
                           _selectedValue = date;
                         });

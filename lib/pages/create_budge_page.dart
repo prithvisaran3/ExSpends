@@ -1,6 +1,7 @@
-import 'package:budget_tracker_ui/calculations/calculations.dart';
+import 'package:budget_tracker_ui/functions/function.dart';
 import 'package:budget_tracker_ui/json/create_budget_json.dart';
 import 'package:budget_tracker_ui/theme/colors.dart';
+import 'package:budget_tracker_ui/widget/common_alert.dart';
 import 'package:budget_tracker_ui/widget/common_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -15,14 +16,29 @@ class CreatBudgetPage extends StatefulWidget {
 class _CreatBudgetPageState extends State<CreatBudgetPage> {
   bool isExpense = true;
   int activeCategory = 0;
-  int c1index = 2;
-  int c2index = 1;
-  TextEditingController _budgetName =
-      TextEditingController(text: "Grocery Budget");
-  TextEditingController _budgetPrice = TextEditingController(text: "\$1500.00");
+  int activeBar = 0;
+  int expenseIndex = 2;
+  int incomeIndex = 1;
+  var ecategoryname;
+  dynamic data;
+  TextEditingController expenseName = TextEditingController();
+  TextEditingController expenseAmount = TextEditingController();
+  TextEditingController expenseDate = TextEditingController();
+  TextEditingController incomeName = TextEditingController();
+  TextEditingController incomeAmount = TextEditingController();
+  TextEditingController incomeDate = TextEditingController();
+  TextEditingController category = TextEditingController();
+  final key = GlobalKey<FormState>();
+
+  checkcategory() async {
+    data = await getCategory();
+    // print("Data is ${data}");
+  }
 
   @override
   Widget build(BuildContext context) {
+    checkcategory();
+
     return Scaffold(
       backgroundColor: grey.withOpacity(0.05),
       body: getBody(),
@@ -57,95 +73,32 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
   Column ExpensePage(Size size) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
+        chooseCategory(),
+        SizedBox(
+          height: 15,
+        ),
+        GestureDetector(
+          onTap: () {
+            addCategoryDialogue(context, content: "Add category",
+                confirmButtonPressed: () {
+              if (key.currentState!.validate()) {
+                addnewcategory(data: category.text);
+                // Navigator.pop(context);
+                // category.text="";
+              }
+            }, key: key, controller: category);
+          },
           child: Text(
-            "Choose category",
+            "Add Category",
+            textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: white,
+              color: Colors.red,
             ),
           ),
         ),
         SizedBox(
-          height: 20,
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-              children: List.generate(categories.length, (index) {
-            return GestureDetector(
-              onTap: () {
-                setState(() {
-                  activeCategory = index;
-                });
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 10,
-                ),
-                child: Container(
-                  margin: EdgeInsets.only(
-                    left: 10,
-                  ),
-                  width: 150,
-                  height: 170,
-                  decoration: BoxDecoration(
-                      color: black,
-                      border: Border.all(
-                          width: 2,
-                          color: activeCategory == index
-                              ? primary
-                              : Colors.transparent),
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: grey.withOpacity(0.01),
-                          spreadRadius: 10,
-                          blurRadius: 3,
-                          // changes position of shadow
-                        ),
-                      ]),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 25, right: 25, top: 20, bottom: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: grey.withOpacity(0.15)),
-                            child: Center(
-                              child: Image.asset(
-                                categories[index]['icon'],
-                                width: 30,
-                                height: 30,
-                                fit: BoxFit.contain,
-                              ),
-                            )),
-                        Text(
-                          categories[index]['name'],
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: white,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            );
-          })),
-        ),
-        SizedBox(
-          height: 50,
+          height: 15,
         ),
         Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
@@ -153,19 +106,37 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Budget name",
+                "Date",
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 13,
                     color: Color(0xff67727d)),
               ),
               TextField(
-                controller: _budgetName,
+                controller: expenseDate,
                 cursorColor: black,
                 style: TextStyle(
                     fontSize: 17, fontWeight: FontWeight.bold, color: white),
                 decoration: InputDecoration(
-                    hintText: "Enter Budget Name", border: InputBorder.none),
+                    hintText: "Enter Expense Date", border: InputBorder.none),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "Expense name",
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 13,
+                    color: Color(0xff67727d)),
+              ),
+              TextField(
+                controller: expenseName,
+                cursorColor: black,
+                style: TextStyle(
+                    fontSize: 17, fontWeight: FontWeight.bold, color: white),
+                decoration: InputDecoration(
+                    hintText: "Enter Expense Name", border: InputBorder.none),
               ),
               SizedBox(
                 height: 20,
@@ -179,21 +150,21 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Enter budget",
+                          "Enter Expense",
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 13,
                               color: Color(0xff67727d)),
                         ),
                         TextField(
-                          controller: _budgetPrice,
+                          controller: expenseAmount,
                           cursorColor: black,
                           style: TextStyle(
                               fontSize: 17,
                               fontWeight: FontWeight.bold,
-                              color: black),
+                              color: primary),
                           decoration: InputDecoration(
-                              hintText: "Enter Budget",
+                              hintText: "Enter Expense",
                               border: InputBorder.none),
                         ),
                       ],
@@ -202,21 +173,128 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                   SizedBox(
                     width: 20,
                   ),
-                  Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        color: primary,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Icon(
-                      Icons.arrow_forward,
-                      color: white,
+                  GestureDetector(
+                    onTap: () {
+                      sendexpense(
+                          ename: expenseName.text,
+                          ecategory: ecategoryname,
+                          eamount: expenseAmount.text,
+                          edate: expenseDate.text);
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: primary,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Icon(
+                        Icons.arrow_forward,
+                        color: black,
+                      ),
                     ),
                   ),
                 ],
               )
             ],
           ),
+        ),
+      ],
+    );
+  }
+
+  Column chooseCategory() {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+          child: Text(
+            "Choose Category",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: white,
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Container(
+          height: 150,
+          child: ListView.builder(
+              itemCount: data['data'].length,
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, int index) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      activeCategory = index;
+                      ecategoryname = data['data'][index]['category_name'];
+                      print("name is ${ecategoryname}");
+                    });
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10,
+                      right: 10,
+                    ),
+                    child: Container(
+                      width: 150,
+                      height: 170,
+                      decoration: BoxDecoration(
+                          color: black,
+                          border: Border.all(
+                              width: 2,
+                              color: activeCategory == index
+                                  ? primary
+                                  : Colors.transparent),
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: grey.withOpacity(0.01),
+                              spreadRadius: 10,
+                              blurRadius: 3,
+                              // changes position of shadow
+                            ),
+                          ]),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 25, right: 25, top: 20, bottom: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: grey.withOpacity(0.15)),
+                              child: Center(
+                                child: Image.asset(
+                                  categories[0]['icon'],
+                                  width: 30,
+                                  height: 30,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              data['data'][index]['category_name'],
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                color: white,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }),
         ),
       ],
     );
@@ -238,7 +316,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                   color: Color(0xff67727d)),
             ),
             TextField(
-              controller: _budgetName,
+              controller: incomeName,
               cursorColor: black,
               style: TextStyle(
                   fontSize: 17, fontWeight: FontWeight.bold, color: white),
@@ -246,7 +324,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                   hintText: "Enter Budget Name", border: InputBorder.none),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -265,7 +343,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                       ),
                       TextField(
                         keyboardType: TextInputType.number,
-                        controller: _budgetPrice,
+                        controller: incomeAmount,
                         cursorColor: black,
                         style: TextStyle(
                             fontSize: 17,
@@ -274,38 +352,74 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                         decoration: InputDecoration(
                             hintText: "Enter Income", border: InputBorder.none),
                       ),
-                      CommonButton(
-                          text: "Add",
-                          onPressed: () {
-                            var amount = addAmount(amount: _budgetPrice.text);
-                            _budgetPrice.text = "";
-                            print("amount is $amount");
-                          })
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "Enter Date",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 13,
+                            color: Color(0xff67727d)),
+                      ),
+                      TextField(
+                        keyboardType: TextInputType.number,
+                        controller: incomeDate,
+                        cursorColor: black,
+                        style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color: white),
+                        decoration: InputDecoration(
+                            hintText: "Enter Date", border: InputBorder.none),
+                      ),
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(
-              width: size.width / 1.2,
-              child: SlideAction(
-                borderRadius: 12,
-                elevation: 0,
-                innerColor: primary,
-                outerColor: primary.withOpacity(0.7),
-                sliderButtonIcon: Icon(
-                  Icons.lock_open,
-                  size: 19,
+            Align(
+              alignment: Alignment.bottomRight,
+              child: GestureDetector(
+                onTap: () {
+                  sendincome(
+                      context: context,
+                      iname: incomeName.text,
+                      iamount: incomeAmount.text,
+                      idate: incomeDate.text);
+                },
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: primary, borderRadius: BorderRadius.circular(15)),
+                  child: Icon(
+                    Icons.arrow_forward,
+                    color: black,
+                  ),
                 ),
-                text: 'Swipe to Add',
-                textStyle: TextStyle(
-                  fontSize: 18,
-                  color: black,
-                ),
-                onSubmit: () {},
               ),
             ),
-            SizedBox(height: 40),
+            // SizedBox(
+            //   width: size.width / 1.2,
+            //   child: SlideAction(
+            //     borderRadius: 12,
+            //     elevation: 0,
+            //     innerColor: primary,
+            //     outerColor: primary.withOpacity(0.7),
+            //     sliderButtonIcon: Icon(
+            //       Icons.lock_open,
+            //       size: 19,
+            //     ),
+            //     text: 'Swipe to Add',
+            //     textStyle: TextStyle(
+            //       fontSize: 18,
+            //       color: black,
+            //     ),
+            //     onSubmit: () {},
+            //   ),
+            // ),
+            // SizedBox(height: 40),
           ],
         ),
       ),
@@ -371,7 +485,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          activeCategory = c2index;
+          activeBar = incomeIndex;
           isExpense = false;
         });
       },
@@ -385,7 +499,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
           color: black,
           border: Border.all(
               width: 2,
-              color: activeCategory == c2index ? primary : Colors.transparent),
+              color: activeBar == incomeIndex ? primary : Colors.transparent),
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
@@ -400,7 +514,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
           child: Text(
             "Income",
             style: TextStyle(
-              color: activeCategory == c2index ? primary : white,
+              color: activeBar == incomeIndex ? primary : white,
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
@@ -418,7 +532,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
       child: GestureDetector(
         onTap: () {
           setState(() {
-            activeCategory = c1index;
+            activeBar = expenseIndex;
             isExpense = true;
           });
         },
@@ -433,7 +547,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
             border: Border.all(
                 width: 2,
                 color:
-                    activeCategory == c1index ? primary : Colors.transparent),
+                    activeBar == expenseIndex ? primary : Colors.transparent),
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
@@ -448,7 +562,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
             child: Text(
               "Expense",
               style: TextStyle(
-                color: activeCategory == c1index ? primary : white,
+                color: activeBar == expenseIndex ? primary : white,
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),

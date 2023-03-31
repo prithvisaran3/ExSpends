@@ -11,7 +11,9 @@ class CommonTextFormField extends StatefulWidget {
       this.obscureText,
       this.maxLength,
         this.prefixIcon,
-      this.errorText})
+      this.errorText,
+      this.inputType})
+
       : super(key: key);
   final String hintText;
   final String? errorText;
@@ -20,6 +22,7 @@ class CommonTextFormField extends StatefulWidget {
   final String? Function(String?)? validator;
   final bool? obscureText;
   final int? maxLength;
+  final TextInputType? inputType;
 
   @override
   State<CommonTextFormField> createState() => _CommonTextFormFieldState();
@@ -32,11 +35,15 @@ class _CommonTextFormFieldState extends State<CommonTextFormField> {
       padding: const EdgeInsets.all(10.0),
       child: TextFormField(
         style: const TextStyle(
+          color: white,
+          fontWeight: FontWeight.bold,
           fontSize: 14,
         ),
         validator: widget.validator,
+
         cursorColor: primary,
         controller: widget.controller,
+        keyboardType: widget.inputType,
         maxLength: widget.maxLength,
         maxLines: 1,
         obscuringCharacter: "*",
@@ -55,7 +62,7 @@ class _CommonTextFormFieldState extends State<CommonTextFormField> {
               ),
               borderRadius: BorderRadius.circular(8.0),
             ),
-            
+
 
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(

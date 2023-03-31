@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:budget_tracker_ui/functions/function.dart';
 import 'package:budget_tracker_ui/pages/root_app.dart';
 import 'package:budget_tracker_ui/pages/signup_page.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,11 @@ import '../widget/common_text.dart';
 import '../widget/common_textform_field.dart';
 // import 'package:slide_to_act/slide_to_act.dart';
 
-class login extends StatelessWidget {
-  login({Key ? key}) : super(key: key);
+class Login extends StatelessWidget {
+  Login({Key? key}) : super(key: key);
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
+  final loginkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -54,62 +58,16 @@ class login extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 10),
-                  CommonTextFormField(
-
-
-                      prefixIcon: Icon(Icons.email, color: primary),
-                      hintText: "Enter your email",
-                      // controller: AuthController.to.lEmail,
-                      validator: (data) {
-                        if (data!.isEmpty || data == "") {
-                          return "Email field required";
-                        }
-                        return null;
-                      }),
-                  CommonTextFormField(
-                      prefixIcon: Icon(Icons.lock_open, color: primary),
-                      hintText: "Enter your password",
-                      obscureText: true,
-                      // controller: AuthController.to.lPassword,
-                      validator: (data) {
-                        if (data!.isEmpty || data == "") {
-                          return "Password field required";
-                        } else if (data.length < 2) {
-                          return "Password atleast 6 character";
-                        }
-                        return null;
-                      }),
+                  Form(
+                      key: loginkey,
+                      child: Column(
+                        children: [
+                          enterEmail(),
+                          enterPassword(),
+                        ],
+                      )),
                   SizedBox(height: 15),
-                  // SlideAction(
-                  //   borderRadius: 12,
-                  //   elevation: 0,
-                  //   innerColor: ePrimaryColor,
-                  //   outerColor: Colors.eblack12,
-                  //   sliderButtonIcon: Icon(
-                  //     Icons.lock_open,
-                  //     size: 15,
-                  //   ),
-                  //   text: 'Swipe to Login',
-                  //   textStyle: TextStyle(
-                  //     fontSize: 18,
-                  //   ),
-                  //   onSubmit: () {
-                  //     Navigator.push(context,
-                  //         MaterialPageRoute(builder: (context) {
-                  //       return login();
-                  //     }));
-                  //   },
-                  // ),
-                  CommonButton(
-                    text: "Login",
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                            return RootApp();
-                          }));
-                    },
-                  ),
-
+                  loginButton(context),
                   SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -123,8 +81,8 @@ class login extends StatelessWidget {
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                                return esignup();
-                              }));
+                            return esignup();
+                          }));
                         },
                         child: CommonText(
                           text: "Sign up",
@@ -141,6 +99,38 @@ class login extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  CommonButton loginButton(BuildContext context) {
+    return CommonButton(
+      text: "Login",
+      onPressed: () {
+        // Navigator.push(context, MaterialPageRoute(builder: (context) {
+        //   return RootApp();
+        //
+        if (loginkey.currentState!.validate()) {
+          login(context: context,email: "prithvi@gmail.com", password: "prithvi3");
+        }
+      },
+    );
+  }
+
+  CommonTextFormField enterPassword() {
+    return CommonTextFormField(
+      controller: password,
+      prefixIcon: Icon(Icons.lock_open, color: primary),
+      hintText: "Enter your password",
+      obscureText: true,
+    );
+  }
+
+  CommonTextFormField enterEmail() {
+    return CommonTextFormField(
+      controller: email,
+      prefixIcon: Icon(Icons.email, color: primary),
+      hintText: "Enter your email",
+      // controller: AuthController.to.lEmail,
     );
   }
 }
