@@ -82,9 +82,10 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
             addCategoryDialogue(context, content: "Add category",
                 confirmButtonPressed: () {
               if (key.currentState!.validate()) {
-                addnewcategory(data: category.text);
-                // Navigator.pop(context);
-                // category.text="";
+                // addnewcategory(data: category.text);
+                sendexpensecategory(context: context, categoryname: category.text);
+                Navigator.pop(context);
+                category.text="";
               }
             }, key: key, controller: category);
           },

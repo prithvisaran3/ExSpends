@@ -27,7 +27,9 @@ class _StatsPageState extends State<StatsPage> {
   }
 
   Widget getBody() {
-    var size = MediaQuery.of(context).size;
+    var size = MediaQuery
+        .of(context)
+        .size;
 
     List expenses = [
       {
@@ -120,7 +122,7 @@ class _StatsPageState extends State<StatsPage> {
                   spacing: 20,
                   children: List.generate(
                     expenses.length,
-                    (index) {
+                        (index) {
                       return Container(
                         width: (size.width - 60) / 2,
                         height: 170,
@@ -150,9 +152,9 @@ class _StatsPageState extends State<StatsPage> {
                                     color: expenses[index]['color']),
                                 child: Center(
                                     child: Icon(
-                                  expenses[index]['icon'],
-                                  color: white,
-                                )),
+                                      expenses[index]['icon'],
+                                      color: white,
+                                    )),
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,9 +175,9 @@ class _StatsPageState extends State<StatsPage> {
                                         fontWeight: FontWeight.bold,
                                         fontSize: 20,
                                         color: white),
-                                  )
+                                  ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -207,9 +209,9 @@ class _StatsPageState extends State<StatsPage> {
                     Text(
                       "STATISTICS",
                       style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: primary,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: primary,
                       ),
                     ),
                     SizedBox(
@@ -231,7 +233,10 @@ class _StatsPageState extends State<StatsPage> {
                             },
                             child: Container(
                               width:
-                                  (MediaQuery.of(context).size.width - 40) / 6,
+                              (MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width - 40) / 6,
                               child: Column(
                                 children: [
                                   GestureDetector(
@@ -247,7 +252,7 @@ class _StatsPageState extends State<StatsPage> {
                                       style: TextStyle(
                                           fontSize: 10,
                                           color: isSelectYear ==
-                                                  months[index]['label']
+                                              months[index]['label']
                                               ? primary
                                               : white),
                                     ),

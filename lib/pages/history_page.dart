@@ -67,7 +67,6 @@ class _HistoryState extends State<History> {
   //   return result;
   // }
 
-
   // void initState() {
   //   getexpense();
   //   super.initState();
@@ -145,22 +144,25 @@ class _HistoryState extends State<History> {
   }
 
   Padding expenselist() {
-    return (isLoading==true)?Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text("....."),
-    ):Padding(
-      padding: const EdgeInsets.only(top: 170.0),
-      child: ListView.builder(
-        itemCount: edata['data'].length,
-        shrinkWrap: true,
-        physics: ScrollPhysics(),
-        itemBuilder: (context, int index) {
-          return Ecard(date: edata['data'][index]['date'],
-              ename: edata['data'][index]['expense_name'],
-              eamount: edata['data'][index]['amount']);
-        },
-      ),
-    );
+    return (isLoading == true)
+        ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("....."),
+          )
+        : Padding(
+            padding: const EdgeInsets.only(top: 170.0),
+            child: ListView.builder(
+              itemCount: edata['data'].length,
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              itemBuilder: (context, int index) {
+                return Ecard(
+                    date: edata['data'][index]['date'],
+                    ename: edata['data'][index]['expense_name'],
+                    eamount: edata['data'][index]['amount']);
+              },
+            ),
+          );
   }
 
   GestureDetector Incomebar() {
@@ -209,12 +211,14 @@ class _HistoryState extends State<History> {
 
   GestureDetector Expensebar() {
     return GestureDetector(
-      onTap: () {
-        activeCategory = h1index;
-        isExpense = true;
-        isLoading = true;
-        edata = getexpense();
+      onTap: () async {
+        setState(() {
+          activeCategory = h1index;
+          isExpense = true;
+          isLoading = true;
+        });
 
+        edata = await getexpense();
       },
       child: Padding(
         padding: const EdgeInsets.only(
@@ -238,7 +242,7 @@ class _HistoryState extends State<History> {
               border: Border.all(
                   width: 2,
                   color:
-                  activeCategory == h1index ? primary : Colors.transparent),
+                      activeCategory == h1index ? primary : Colors.transparent),
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
                 BoxShadow(
@@ -264,5 +268,4 @@ class _HistoryState extends State<History> {
       ),
     );
   }
-
 }

@@ -106,11 +106,12 @@ class Login extends StatelessWidget {
     return CommonButton(
       text: "Login",
       onPressed: () {
-        // Navigator.push(context, MaterialPageRoute(builder: (context) {
-        //   return RootApp();
-        //
+        // Navigator.push(context,
+        //     MaterialPageRoute(builder: (context) {
+        //       return RootApp();
+        //     }));
         if (loginkey.currentState!.validate()) {
-          login(context: context,email: "prithvi@gmail.com", password: "prithvi3");
+          login(context: context,email: "testing@gmail.com", password: "12345678");
         }
       },
     );
