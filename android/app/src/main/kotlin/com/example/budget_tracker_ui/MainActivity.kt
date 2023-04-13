@@ -1,4 +1,4 @@
-package com.example.budget_tracker_ui
+package limitless.expense
 
 import io.flutter.embedding.android.FlutterActivity
 

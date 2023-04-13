@@ -1,6 +1,6 @@
 {
-    "name": "budget_tracker_ui",
-    "short_name": "budget_tracker_ui",
+    "name": "expense",
+    "short_name": "expense",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

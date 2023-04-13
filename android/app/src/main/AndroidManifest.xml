@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.budget_tracker_ui">
+    package="limitless.expense">
    <application
-        android:label="budget_tracker_ui"
+        android:label="Expense 360"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
