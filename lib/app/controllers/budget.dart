@@ -8,11 +8,18 @@ import '../ui/widget/common_toast.dart';
 class BudgetController extends GetxController {
   static BudgetController get to => Get.put(BudgetController());
 
+  //expense textControllers
   final TextEditingController expenseDate = TextEditingController();
   final TextEditingController expenseName = TextEditingController();
   final TextEditingController expenseAmount = TextEditingController();
 
+  //income textControllers
+  final TextEditingController incomeCategory = TextEditingController();
+  final TextEditingController incomeDate = TextEditingController();
+  final TextEditingController incomeAmount = TextEditingController();
+
   final expenseKey = GlobalKey<FormState>();
+  final incomeKey = GlobalKey<FormState>();
 
   final repository = BudgetRepository();
 
@@ -72,12 +79,26 @@ class BudgetController extends GetxController {
     _addExpenseLoading.value = value;
   }
 
+  var _addIncomeLoading = false.obs;
+
+  get addIncomeLoading => _addIncomeLoading.value;
+
+  set addIncomeLoading(value) {
+    _addIncomeLoading.value = value;
+  }
+
   expenseFieldsEmpty() {
     expenseName.text = "";
     expenseDate.text = "";
     expenseAmount.text = "";
     selectedCategory = "";
     categoryIndex = 30;
+  }
+
+  incomeFieldsEmpty() {
+    incomeCategory.text = "";
+    incomeDate.text = "";
+    incomeAmount.text = "";
   }
 
   getCategories() async {
@@ -124,6 +145,7 @@ class BudgetController extends GetxController {
         commonPrint(status: res.status, msg: res.message);
         commonToast(msg: res.message);
       } else {
+        addExpenseLoading = false;
         commonPrint(
             status: res.status, msg: "Add expense failed, try again later");
         commonToast(msg: "Add expense failed, try again later");
@@ -131,6 +153,33 @@ class BudgetController extends GetxController {
     } catch (e) {
       addExpenseLoading = false;
       commonPrint(status: "500", msg: "Error from server on add expense $e");
+    }
+  }
+
+  addIncome() async {
+    addIncomeLoading = true;
+    var body = {
+      "income_name": incomeCategory.text,
+      "amount": incomeAmount.text,
+      "date": incomeDate.text,
+      "is_income": "true",
+    };
+    try {
+      var res = await repository.addIncome(body: body);
+      if (res.status == 200) {
+        addIncomeLoading = false;
+        incomeFieldsEmpty();
+        commonPrint(status: res.status, msg: res.message);
+        commonToast(msg: res.message);
+      } else {
+        addIncomeLoading = false;
+        commonPrint(
+            status: res.status, msg: "Add income failed, try again later");
+        commonToast(msg: "Add income failed, try again later");
+      }
+    } catch (e) {
+      addIncomeLoading = false;
+      commonPrint(status: "500", msg: "Error from server on add income $e");
     }
   }
 }

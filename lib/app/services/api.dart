@@ -1,6 +1,3 @@
-
-
-
 import '../config/app-config.dart';
 
 class ApiService {
@@ -24,4 +21,6 @@ class ApiService {
   //expense
   static const addExpense = "${AppConfig.baseUrl}/api/expense/add";
 
+  //income
+  static const addIncome = "${AppConfig.baseUrl}/api/income/add";
 }
