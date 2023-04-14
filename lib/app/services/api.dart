@@ -9,8 +9,8 @@ class ApiService {
   static const register = "${AppConfig.baseUrl}/api/register";
 
   //profile
-  static const getProfile = "${AppConfig.baseUrl}/profile/get";
-  static const updateProfile = "${AppConfig.baseUrl}action=updateprofile";
+  static const getProfile = "${AppConfig.baseUrl}/api/profile/get";
+  // static const updateProfile = "${AppConfig.baseUrl}action=updateprofile";
 
   //forgot password
   static const validateEmail = "${AppConfig.baseUrl}action=validateEmail";
@@ -23,5 +23,6 @@ class ApiService {
 
   //expense
   static const addExpense = "${AppConfig.baseUrl}/api/expense/add";
+  //profile
 
 }
