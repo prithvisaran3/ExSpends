@@ -7,7 +7,7 @@ import '../budget.dart';
 import '../daily_transaction.dart';
 import '../history.dart';
 import '../profile/profile.dart';
-import '../stactics.dart';
+import '../statistics.dart';
 
 class HomeMain extends StatelessWidget {
   HomeMain({Key? key}) : super(key: key);

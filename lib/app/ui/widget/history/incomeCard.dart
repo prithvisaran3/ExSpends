@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../utility/utility.dart';
 import '../../theme/colors.dart';
 
-class Icard extends StatefulWidget {
+class Icard extends StatelessWidget {
   const Icard(
       {Key? key,
       required this.iname,
@@ -13,11 +14,6 @@ class Icard extends StatefulWidget {
   final String iname;
   final String iamount;
 
-  @override
-  State<Icard> createState() => _IcardState();
-}
-
-class _IcardState extends State<Icard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,7 +36,7 @@ class _IcardState extends State<Icard> {
         child: Row(
           children: [
             Text(
-              "${widget.date}",
+              "$date",
               style: TextStyle(
                 color: AppColors.white,
                 fontWeight: FontWeight.w800,
@@ -49,7 +45,7 @@ class _IcardState extends State<Icard> {
             ),
             Spacer(),
             Text(
-              "${widget.iname.toString().length > 12 ? "${widget.iname.substring(0, 10)}..." : widget.iname}",
+              "${iname.toString().length > 12 ? "${iname.substring(0, 10)}..." : iname}",
               style: TextStyle(
                 color: AppColors.white,
                 fontWeight: FontWeight.bold,
@@ -57,7 +53,7 @@ class _IcardState extends State<Icard> {
             ),
             Spacer(),
             Text(
-              "\u20B9 ${widget.iamount}",
+              "$rupee $iamount",
               style: TextStyle(
                 color: AppColors.primary,
                 fontWeight: FontWeight.w800,

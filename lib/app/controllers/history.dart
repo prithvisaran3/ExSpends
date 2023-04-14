@@ -1,7 +1,13 @@
+import 'package:expense/app/data/repository/history.dart';
+import 'package:expense/app/ui/widget/common_print.dart';
 import 'package:get/get.dart';
+
+import '../data/models/income/getincome.dart';
+import '../data/models/expense/getexpense.dart' as expense;
 
 class HistoryController extends GetxController {
   static HistoryController get to => Get.put(HistoryController());
+  var repository = HistoryRepository();
 
   var _isExpense = true.obs;
 
@@ -33,5 +39,63 @@ class HistoryController extends GetxController {
 
   set h2index(value) {
     _h2index.value = value;
+  }
+
+
+
+  var _getIncomeDetails = <Datum>[].obs;
+
+  get getIncomeDetails => _getIncomeDetails.value;
+
+  set getIncomeDetails(value) {
+    _getIncomeDetails.value = value;
+  }
+  var _getExpenseDetails=<expense.Datum>[].obs;
+
+  get getExpenseDetails => _getExpenseDetails.value;
+
+  set getExpenseDetails(value) {
+    _getExpenseDetails.value = value;
+  }
+
+  getIncome() async {
+    try {
+      var res = await repository.getIncome();
+      if (res.status == 200) {
+        commonPrint(status: res.status, msg: "Income got successfully");
+        if (res.data == null) {
+          commonPrint(
+              status: res.status,
+              msg: "Income got successfully but data is null");
+        } else {
+          commonPrint(
+              status: res.status,
+              msg: "Income got successfully and data is stored");
+          getIncomeDetails = res.data!.data;
+        }
+      }
+    } catch (e) {
+      commonPrint(status: "500", msg: "Exception hit at get income");
+    }
+  }
+  getExpense() async {
+    try {
+      var res = await repository.getExpense();
+      if (res.status == 200) {
+        commonPrint(status: res.status, msg: "Expense got successfully");
+        if (res.data == null) {
+          commonPrint(
+              status: res.status,
+              msg: "Expense got successfully but data is null");
+        } else {
+          commonPrint(
+              status: res.status,
+              msg: "Expense got successfully and data is stored");
+          getExpenseDetails = res.data!.data;
+        }
+      }
+    } catch (e) {
+      commonPrint(status: "500", msg: "Exception hit at get expense");
+    }
   }
 }

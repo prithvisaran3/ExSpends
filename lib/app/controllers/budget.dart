@@ -124,7 +124,7 @@ class BudgetController extends GetxController {
       }
     } catch (e) {
       categoryLoading = false;
-      commonPrint(status: "500", msg: "Error from sever on get categories $e");
+      commonPrint(status: "500", msg: "Error from server on get categories $e");
     }
   }
 

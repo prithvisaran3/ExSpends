@@ -1,6 +1,7 @@
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../controllers/history.dart';
+import '../../utility/utility.dart';
 import '../theme/colors.dart';
 import '../widget/history/expenseCard.dart';
 import '../widget/history/incomeCard.dart';
@@ -10,70 +11,88 @@ class History extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: Stack(
-        children: [
-          Container(
-            height: 180,
-            decoration: BoxDecoration(color: AppColors.black, boxShadow: [
-              BoxShadow(
-                color: AppColors.grey.withOpacity(0.01),
-                spreadRadius: 10,
-                blurRadius: 3,
-                // changes position of shadow
-              ),
-            ]),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 60, bottom: 25),
-              child: Column(
+    return GetBuilder(
+        init: HistoryController(),
+        initState: (_) {
+          HistoryController.to.isExpense = true;
+          HistoryController.to.activeCategory = HistoryController.to.h1index;
+
+          HistoryController.to.getIncome();
+          HistoryController.to.getExpense();
+        },
+        builder: (_) {
+          return Scaffold(
+            backgroundColor: AppColors.background,
+            body: Obx(
+              () => Stack(
                 children: [
-                  Text(
-                    "HISTORY",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.primary,
+                  Container(
+                    height: 180,
+                    decoration:
+                        BoxDecoration(color: AppColors.black, boxShadow: [
+                      BoxShadow(
+                        color: AppColors.grey.withOpacity(0.01),
+                        spreadRadius: 10,
+                        blurRadius: 3,
+                        // changes position of shadow
+                      ),
+                    ]),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 60, bottom: 25),
+                      child: Column(
+                        children: [
+                          Text(
+                            "HISTORY",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primary,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 20),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expensebar(),
+                                    Incomebar(),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Expensebar(),
-                            Incomebar(),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                  HistoryController.to.isExpense == true
+                      ? expenselist()
+                      : incomelist(),
                 ],
               ),
             ),
-          ),
-          HistoryController.to.isExpense == true ? expenselist() : incomelist(),
-        ],
-      ),
-    );
+          );
+        });
   }
 
   Padding incomelist() {
     return Padding(
       padding: const EdgeInsets.only(top: 170.0),
       child: ListView.builder(
-        itemCount: 2,
+        itemCount: HistoryController.to.getIncomeDetails.length,
         shrinkWrap: true,
         physics: ScrollPhysics(),
         itemBuilder: (context, int index) {
           return Icard(
-              date: "date",
-              iname: "idata['data'][index]['income_name']",
-              iamount: "idata['data'][index]['amount']");
+              date: getIsoToLocalDate(
+                  date: HistoryController.to.getIncomeDetails[index].date
+                      .toString()),
+              iname: HistoryController.to.getIncomeDetails[index].incomeName,
+              iamount: HistoryController.to.getIncomeDetails[index].amount);
         },
       ),
     );
@@ -83,14 +102,16 @@ class History extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 170.0),
       child: ListView.builder(
-        itemCount: 2,
+        itemCount: HistoryController.to.getExpenseDetails.length,
         shrinkWrap: true,
         physics: ScrollPhysics(),
         itemBuilder: (context, int index) {
           return Ecard(
-              date: "edata['data'][index]['date'],",
-              ename: "edata['data'][index]['expense_name']",
-              eamount: "edata['data'][index]['amount']");
+              date: getIsoToLocalDate(
+                  date: HistoryController.to.getExpenseDetails[index].date
+                      .toString()),
+              ename: HistoryController.to.getExpenseDetails[index].expenseName,
+              eamount: HistoryController.to.getExpenseDetails[index].amount);
         },
       ),
     );

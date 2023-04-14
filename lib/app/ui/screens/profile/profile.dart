@@ -1,4 +1,8 @@
 import 'package:expense/app/controllers/profile.dart';
+import 'package:expense/app/ui/widget/common_alert.dart';
+import 'package:expense/app/ui/widget/common_text.dart';
+import 'package:expense/app/ui/widget/profile/totalcard.dart';
+import 'package:expense/app/utility/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -15,6 +19,7 @@ class Profile extends StatelessWidget {
         init: ProfileController(),
         initState:(_){
           ProfileController.to.getProfile();
+          ProfileController.to.getTotal();
 
         },
         builder: (_){
@@ -89,7 +94,10 @@ class Profile extends StatelessWidget {
                                 child: CommonButton(
                                   text: "Logout",
                                   onPressed: () {
-                                    // logout(context: context);
+                                    commonAlertDialog(context, content: "Are you sure to logout?", confirmButtonPressed: (){
+                                      ProfileController.to.logout();
+                                      Get.back();
+                                    });
                                   },
                                 ),
                               ),
@@ -191,14 +199,7 @@ class Profile extends StatelessWidget {
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        Text(
-                                          "Credit score: 73.50",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              color: AppColors.white
-                                                  .withOpacity(0.4)),
-                                        ),
+
                                       ],
                                     ),
                                   )
@@ -207,71 +208,7 @@ class Profile extends StatelessWidget {
                               SizedBox(
                                 height: 25,
                               ),
-                              Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    color: AppColors.primary,
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        AppColors.primary,
-                                        AppColors.secondary,
-                                      ],
-                                    ),
-                                    borderRadius: BorderRadius.circular(12),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color:
-                                        AppColors.primary.withOpacity(0.01),
-                                        spreadRadius: 10,
-                                        blurRadius: 3,
-                                        // changes position of shadow
-                                      ),
-                                    ]),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 20, right: 20, top: 25, bottom: 25),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        children: [
-                                          Text(
-                                            "Canara Bank",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 12,
-                                                color: AppColors.black),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            "\u20B92446.90",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 20,
-                                                color: AppColors.black),
-                                          ),
-                                        ],
-                                      ),
-
-                                      // Container(
-                                      //   decoration: BoxDecoration(
-                                      //       borderRadius: BorderRadius.circular(10),
-                                      //       border: Border.all(color: AppColors.black)),
-                                      //   child: Padding(
-                                      //     padding: const EdgeInsets.all(13.0),
-                                      //     child: Text(
-                                      //       "Update",
-                                      //       style: TextStyle(color: AppColors.black),
-                                      //     ),
-                                      //   ),
-                                      // )
-                                    ],
-                                  ),
-                                ),
-                              )
+                              TotalCard(),
                             ],
                           ),
                         ),
