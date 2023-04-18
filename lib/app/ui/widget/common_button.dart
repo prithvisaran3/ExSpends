@@ -30,7 +30,7 @@ class CommonButton extends StatelessWidget {
             child: CommonText(
               text: text,
               fontColor: AppColors.black,
-              fontSize: AppFontSize.eighteen,
+              fontSize: 15,
               fontWeight: FontWeight.bold,
             ),
           ),

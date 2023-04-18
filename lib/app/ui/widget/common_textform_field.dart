@@ -57,6 +57,18 @@ class _CommonTextFormFieldState extends State<CommonTextFormField> {
                 color:AppColors.white.withOpacity(.3),fontFamily: "Oswald"),
             counterText: "",
             contentPadding: const EdgeInsets.only(left: 15),
+            disabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: AppColors.primary,
+              ),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: AppColors.primary,
+              ),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
             enabledBorder:OutlineInputBorder(
               borderSide: BorderSide(
                 color: AppColors.primary,

@@ -1,15 +1,21 @@
+import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme/colors.dart';
 
 class IncomeExpenseCard extends StatelessWidget {
   const IncomeExpenseCard(
-      {Key? key, required this.icon, required this.name, required this.amount, this.iconColor=AppColors.black})
+      {Key? key,
+      required this.icon,
+      required this.name,
+      required this.amount,
+      this.iconColor = AppColors.black})
       : super(key: key);
   final IconData icon;
   final String name;
   final String amount;
   final Color iconColor;
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -47,25 +53,20 @@ class IncomeExpenseCard extends StatelessWidget {
               )),
             ),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  name,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 13,
-                      color: Color(0xff67727d)),
-                ),
+                CommonText(
+                    text: name,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
+                    fontColor: Color(0xff67727d)),
                 SizedBox(
                   height: 8,
                 ),
-                Text(
-                  amount,
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: AppColors.white),
-                ),
+                CommonText(
+                    text: amount,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    fontColor: AppColors.white),
               ],
             ),
           ],

@@ -1,5 +1,6 @@
 import 'package:expense/app/controllers/statistics.dart';
 import 'package:expense/app/ui/widget/common_loading.dart';
+import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:expense/app/ui/widget/statistics/monthly_incomeexpensecard.dart';
 import 'package:expense/app/ui/widget/statistics/piechart/pie.dart';
 import 'package:flutter/material.dart';
@@ -130,6 +131,7 @@ class Statistics extends StatelessWidget {
                   Column(
                     children: [
                       Container(
+                        // height: Get.height*0.32,
                         decoration:
                             BoxDecoration(color: AppColors.black, boxShadow: [
                           BoxShadow(
@@ -141,22 +143,25 @@ class Statistics extends StatelessWidget {
                         ]),
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              top: 60, right: 20, left: 20, bottom: 25),
+                              top: 40, right: 20, left: 20, bottom: 25),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "STATISTICS",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.primary,
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: CommonText(
+                                  text: "Statistics",
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    fontColor: AppColors.primary,
+
                                 ),
                               ),
                               SizedBox(
-                                height: 25,
+                                height: 20,
                               ),
                               Container(
-                                height: size.height * 0.1,
+                                height: size.height * 0.12,
                                 child: ListView.builder(
                                   itemCount: 12,
                                   shrinkWrap: true,
@@ -189,18 +194,18 @@ class Statistics extends StatelessWidget {
                                                     StatisticsController.to
                                                         .getStatistics();
                                                   },
-                                                  child: Text(
-                                                    yearAndMonth[index]['year'],
-                                                    style: TextStyle(
+                                                  child: CommonText(
+                                                    text:yearAndMonth[index]['year'],
+
                                                         fontSize: 15,
-                                                        color: StatisticsController
+                                                        fontColor: StatisticsController
                                                                     .to
                                                                     .isSelectYear ==
                                                                 yearAndMonth[
                                                                         index]
                                                                     ['year']
                                                             ? AppColors.primary
-                                                            : AppColors.white),
+                                                            : AppColors.white
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -250,21 +255,21 @@ class Statistics extends StatelessWidget {
                                                               right: 12,
                                                               top: 7,
                                                               bottom: 7),
-                                                      child: Text(
-                                                        yearAndMonth[index]
+                                                      child: CommonText(
+                                                        text:yearAndMonth[index]
                                                             ['month'],
-                                                        style: TextStyle(
+
                                                             fontSize: 10,
                                                             fontWeight:
                                                                 FontWeight.w600,
-                                                            color: StatisticsController
+                                                            fontColor: StatisticsController
                                                                         .to
                                                                         .activeDay ==
                                                                     index
                                                                 ? AppColors
                                                                     .black
                                                                 : AppColors
-                                                                    .white),
+                                                                    .white
                                                       ),
                                                     ),
                                                   ),
@@ -281,7 +286,7 @@ class Statistics extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 2,
                       ),
                     ],
                   ),

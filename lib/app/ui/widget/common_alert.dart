@@ -1,3 +1,4 @@
+import 'package:expense/app/ui/theme/app_font.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,12 +13,9 @@ commonAlertDialog(BuildContext context,
       height: 30,
       width: 60,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8), color: Colors.red),
+          borderRadius: BorderRadius.circular(8), color: AppColors.red),
       child: const Center(
-        child: Text(
-          "Cancel",
-          style: TextStyle(color: AppColors.white),
-        ),
+        child: CommonText(text: "Cancel", fontColor: AppColors.white),
       ),
     ),
     onPressed: () {
@@ -33,45 +31,51 @@ commonAlertDialog(BuildContext context,
       height: 30,
       width: 60,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8), color: Colors.green),
+          borderRadius: BorderRadius.circular(8),
+          color: AppColors.primary.withOpacity(0.7)),
       child: const Center(
-        child: Text(
-          "Confirm",
-          style: TextStyle(color: AppColors.white),
+        child: CommonText(
+          text: "Confirm",
+         fontColor: AppColors.white),
         ),
       ),
-    ),
+
   );
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
+    actionsAlignment: MainAxisAlignment.center,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(
         Radius.circular(15.0),
       ),
     ),
-    backgroundColor: Colors.grey.shade300,
+    backgroundColor: Colors.black54,
     title: Row(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: const [
         Icon(
           Icons.warning_amber_rounded,
           color: Colors.red,
-          size: 25,
+          size: 30,
         ),
         SizedBox(
           width: 10,
         ),
-        CommonText(text: "Alert")
+        CommonText(
+          text: "Alert",
+          fontColor: Colors.white,
+          fontSize: AppFontSize.twentyFour,
+        )
       ],
     ),
     content: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          content,
-          style: const TextStyle(fontSize: 16, color: AppColors.black),
-        )
+        CommonText(
+          text: content,
+          fontSize: 16, fontColor: AppColors.white),
       ],
     ),
     actions: [

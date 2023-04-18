@@ -1,3 +1,4 @@
+import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/history.dart';
@@ -27,7 +28,7 @@ class History extends StatelessWidget {
               () => Stack(
                 children: [
                   Container(
-                    height: 180,
+                    height: Get.height * 0.32,
                     decoration:
                         BoxDecoration(color: AppColors.black, boxShadow: [
                       BoxShadow(
@@ -41,13 +42,13 @@ class History extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 60, bottom: 25),
                       child: Column(
                         children: [
-                          Text(
-                            "HISTORY",
-                            style: TextStyle(
+                          CommonText(
+                            text: "HISTORY",
+
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: AppColors.primary,
-                            ),
+                              fontColor: AppColors.primary,
+
                           ),
                           SizedBox(
                             height: 10,
@@ -148,17 +149,17 @@ class History extends StatelessWidget {
           ],
         ),
         child: Center(
-          child: Text(
-            "Income",
-            style: TextStyle(
-              color: HistoryController.to.activeCategory ==
+          child: CommonText(
+            text: "Income",
+
+              fontColor: HistoryController.to.activeCategory ==
                       HistoryController.to.h2index
                   ? AppColors.primary
                   : AppColors.white,
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
-          ),
+
         ),
       ),
     );
@@ -204,16 +205,16 @@ class History extends StatelessWidget {
               ],
             ),
             child: Center(
-              child: Text(
-                "Expense",
-                style: TextStyle(
-                  color: HistoryController.to.activeCategory ==
+              child: CommonText(
+                text: "Expense",
+
+                  fontColor: HistoryController.to.activeCategory ==
                           HistoryController.to.h1index
                       ? AppColors.primary
                       : AppColors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
-                ),
+
               ),
             ),
           ),

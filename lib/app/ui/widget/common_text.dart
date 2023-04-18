@@ -9,16 +9,17 @@ class CommonText extends StatelessWidget {
   const CommonText(
       {Key? key,
       required this.text,
-      this.fontSize = AppFontSize.sixteen,
+      this.fontSize = 14,
       this.fontColor = AppColors.black,
       this.fontWeight,
       this.letterSpacing,
-      this.textAlign})
+      this.textAlign, this.fontFamily})
       : super(key: key);
   final String text;
   final double fontSize;
   final double? letterSpacing;
   final Color? fontColor;
+  final String? fontFamily;
   final FontWeight? fontWeight;
   final TextAlign? textAlign;
 
@@ -30,9 +31,10 @@ class CommonText extends StatelessWidget {
       text,
       textAlign: textAlign,
       style: TextStyle(
-          fontSize: media.width * fontSize,
+          fontSize: fontSize,
           fontWeight: fontWeight,
           color: fontColor,
+          fontFamily: fontFamily??"Poppins",
           letterSpacing: letterSpacing),
     );
   }

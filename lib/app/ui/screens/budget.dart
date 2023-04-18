@@ -1,6 +1,8 @@
+import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/budget.dart';
+import '../../utility/utility.dart';
 import '../theme/colors.dart';
 import '../widget/budget/expense_category.dart';
 import '../widget/budget/income_or_expense.dart';
@@ -64,13 +66,13 @@ class AddBudget extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-              child: Text(
-                "Choose Category",
-                style: TextStyle(
+              child: CommonText(
+                text: "Choose Category",
+
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: AppColors.white,
-                ),
+                  fontColor: AppColors.white,
+
               ),
             ),
             SizedBox(
@@ -79,7 +81,7 @@ class AddBudget extends StatelessWidget {
             Obx(() => BudgetController.to.categoryLoading == true
                 ? CommonNormalLoading()
                 : BudgetController.to.isCategoryEmpty == true
-                    ? Text("empty")
+                    ? CommonText(text: "empty")
                     : Container(
                         height: 150,
                         child: ListView.builder(
@@ -114,35 +116,92 @@ class AddBudget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Date",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 13,
-                      color: Color(0xff67727d)),
+                Center(
+                  child: CommonText(
+                    text: "DATE",
+
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13,
+                        fontColor: AppColors.white.withOpacity(0.7)
+                  ),
                 ),
-                CommonNormalTextFormField(
-                  hintText: "Enter Expense Date",
-                  controller: BudgetController.to.expenseDate,
-                  validator: (data) {
-                    if (data == null || data == "" || data.isEmpty) {
-                      return 'Please enter date';
-                    }
-                    return null;
-                  },
+                SizedBox(height: 10),
+                Container(
+                  padding: EdgeInsets.only(left: 120, right: 20, top: 5),
+                  height: 40,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          color: AppColors.black.withOpacity(0.3),
+                          spreadRadius: 1,
+                          blurRadius: 1,
+                          offset: Offset(0.2, 0.6)),
+                    ],
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.black,
+                  ),
+                  child: TextFormField(
+                    onTap: () async {
+                      DateTime? pickedDate = await showDatePicker(
+                        context: Get.context!,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2015, 01, 01),
+                        lastDate: DateTime(2029),
+                      );
+                      BudgetController.to.expenseDate.text =
+                          SendIsoToLocalDate(date: pickedDate.toString());
+                    },
+                    controller: BudgetController.to.expenseDate,
+                    validator: (data) {
+                      if (data == null || data == "" || data.isEmpty) {
+                        return 'Please enter date';
+                      }
+                      return null;
+                    },
+                    cursorColor: AppColors.black,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 17,
+                      color: AppColors.white.withOpacity(0.4),
+                    ),
+                    decoration: InputDecoration(
+                        hintText:
+                            "${SendIsoToLocalDate(date: DateTime.now().toString())}",
+                        hintStyle: TextStyle(
+                          color: AppColors.white.withOpacity(0.4),
+                          fontWeight: FontWeight.w700,
+                        ),
+                        border: InputBorder.none),
+                  ),
                 ),
+                // CommonNormalTextFormField(
+                //   hintText: "${SendIsoToLocalDate(date: DateTime.now().toString(),)}",
+                //   controller: BudgetController.to.expenseDate,
+                //   validator: (data) {
+                //     if (data == null || data == "" || data.isEmpty) {
+                //       return 'Please enter date';
+                //     }
+                //     return null;
+                //   },
+                // ),
                 SizedBox(
                   height: 20,
                 ),
-                Text(
-                  "Expense name",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 13,
-                      color: Color(0xff67727d)),
+                Center(
+                  child: CommonText(
+                   text: "EXPENSE NAME",
+
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13,
+                        fontColor: AppColors.white.withOpacity(0.7)
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 CommonNormalTextFormField(
-                  hintText: "Enter Expense Name",
+                  hintText: "Enter expense name",
                   controller: BudgetController.to.expenseName,
                   validator: (data) {
                     if (data == null || data == "" || data.isEmpty) {
@@ -154,32 +213,30 @@ class AddBudget extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Container(
-                  width: (size.width - 140),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Enter Expense",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 13,
-                            color: Color(0xff67727d)),
-                      ),
-                      CommonNormalTextFormField(
-                        hintText: "Enter Expense",
-                        controller: BudgetController.to.expenseAmount,
-                        keyboardType: TextInputType.number,
-                        validator: (data) {
-                          if (data == null || data == "" || data.isEmpty) {
-                            return 'Please enter amount';
-                          }
-                          return null;
-                        },
-                      ),
-                    ],
+                Center(
+                  child: CommonText(
+                    text: "AMOUNT",
+
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13,
+                        fontColor: AppColors.white.withOpacity(0.7)
                   ),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
+                CommonNormalTextFormField(
+                  hintText: "Enter amount",
+                  controller: BudgetController.to.expenseAmount,
+                  keyboardType: TextInputType.number,
+                  validator: (data) {
+                    if (data == null || data == "" || data.isEmpty) {
+                      return 'Please enter amount';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 30),
                 Obx(() => BudgetController.to.addExpenseLoading == true
                     ? CommonNormalLoading()
                     : Center(
@@ -203,6 +260,7 @@ class AddBudget extends StatelessWidget {
                           ),
                         ),
                       )),
+                SizedBox(height: 50),
               ],
             ),
           ),
@@ -221,100 +279,161 @@ class AddBudget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Income Category",
-                style: TextStyle(
-                    fontWeight: FontWeight.w500,
+              Center(
+                child: CommonText(
+                  text: "DATE",
+
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13,
+                      fontColor: AppColors.white.withOpacity(0.7)
+                ),
+              ),
+              SizedBox(height: 10),
+              Container(
+                padding: EdgeInsets.only(left: 100, right: 20, top: 5),
+                height: 40,
+                width: Get.width,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        color: AppColors.black.withOpacity(0.3),
+                        spreadRadius: 1,
+                        blurRadius: 1,
+                        offset: Offset(0.2, 0.6)),
+                  ],
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.black,
+                ),
+                child: TextFormField(
+                  onTap: () async {
+                    DateTime? pickedDate = await showDatePicker(
+                      context: Get.context!,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2015, 01, 01),
+                      lastDate: DateTime(2029),
+                    );
+                    BudgetController.to.incomeDate.text =
+                        SendIsoToLocalDate(date: pickedDate.toString());
+                  },
+                  controller: BudgetController.to.incomeDate,
+                  validator: (data) {
+                    if (data == null || data == "" || data.isEmpty) {
+                      return 'Please enter date';
+                    }
+                    return null;
+                  },
+                  cursorColor: AppColors.black,
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: AppColors.white.withOpacity(0.7),
+                  ),
+                  decoration: InputDecoration(
+                      hintText:
+                          "${SendIsoToLocalDate(date: DateTime.now().toString())}",
+                      hintStyle: TextStyle(
+                        color: AppColors.white.withOpacity(0.4),
+                        fontWeight: FontWeight.w700,
+                      ),
+                      border: InputBorder.none),
+                ),
+              ),
+              SizedBox(height: 20),
+              Center(
+                child: CommonText(
+                  text: "INCOME NAME",
+
+                    fontWeight: FontWeight.bold,
                     fontSize: 13,
-                    color: Color(0xff67727d)),
+                    fontColor: AppColors.white.withOpacity(0.7),
+
+                ),
+              ),
+              SizedBox(
+                height: 10,
               ),
               CommonNormalTextFormField(
-                hintText: "Enter Income Category",
+                hintText: "Enter Income name",
                 controller: BudgetController.to.incomeCategory,
                 validator: (data) {
                   if (data == null || data == "" || data.isEmpty) {
-                    return 'Please enter category';
+                    return 'Please enter income name';
                   }
                   return null;
                 },
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: (size.width - 140),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Enter Income",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
-                              color: Color(0xff67727d)),
-                        ),
-                        CommonNormalTextFormField(
-                          hintText: "Enter Amount",
-                          controller: BudgetController.to.incomeAmount,
-                          keyboardType: TextInputType.number,
-                          validator: (data) {
-                            if (data == null || data == "" || data.isEmpty) {
-                              return 'Please enter amount';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Enter Date",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
-                              color: Color(0xff67727d)),
-                        ),
-                        CommonNormalTextFormField(
-                          hintText: "Enter Income Date",
-                          controller: BudgetController.to.incomeDate,
-                          validator: (data) {
-                            if (data == null || data == "" || data.isEmpty) {
-                              return 'Please enter date';
-                            }
-                            return null;
-                          },
-                        ),
-                      ],
+                  Center(
+                    child: CommonText(
+                      text: "AMOUNT",
+
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13,
+                        fontColor: AppColors.white.withOpacity(0.7),
+
                     ),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  CommonNormalTextFormField(
+                    hintText: "Enter amount",
+                    controller: BudgetController.to.incomeAmount,
+                    keyboardType: TextInputType.number,
+                    validator: (data) {
+                      if (data == null || data == "" || data.isEmpty) {
+                        return 'Please enter amount';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+
+                  // CommonNormalTextFormField(
+                  //   hintText: "${SendIsoToLocalDate(date: DateTime.now().toString(),)}",
+                  //   controller: BudgetController.to.expenseDate,
+                  //   validator: (data) {
+                  //     if (data == null || data == "" || data.isEmpty) {
+                  //       return 'Please enter date';
+                  //     }
+                  //     return null;
+                  //   },
+                  // ),
                 ],
               ),
-              Obx(() => BudgetController.to.addIncomeLoading == true
-                  ? CommonNormalLoading()
-                  : Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          if (BudgetController.to.incomeKey.currentState!
-                              .validate()) {
-                            BudgetController.to.addIncome();
-                          }
-                        },
-                        child: Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              color: AppColors.primary,
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Icon(
-                            Icons.arrow_forward,
-                            color: AppColors.black,
+              SizedBox(height: 40),
+              Obx(
+                () => BudgetController.to.addIncomeLoading == true
+                    ? CommonNormalLoading()
+                    : Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            if (BudgetController.to.incomeKey.currentState!
+                                .validate()) {
+                              BudgetController.to.addIncome();
+                            }
+                          },
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                color: AppColors.primary,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Icon(
+                              Icons.arrow_forward,
+                              color: AppColors.black,
+                            ),
                           ),
                         ),
                       ),
-                    ))
+              ),
+              SizedBox(height: 50),
             ],
           ),
         ),
@@ -349,21 +468,11 @@ class AddBudget extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "CREATE BUDGET",
-                          style: TextStyle(
+                        CommonText(
+                          text: "CREATE BUDGET",
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: AppColors.primary),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Icon(
-                          Icons.search,
-                          color: AppColors.primary,
+                              fontColor: AppColors.primary
                         ),
                       ],
                     ),

@@ -16,12 +16,7 @@ class TotalCard extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             color: AppColors.primary,
-            gradient: LinearGradient(
-              colors: [
-                AppColors.primary,
-                AppColors.secondary,
-              ],
-            ),
+
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(

@@ -1,3 +1,4 @@
+import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utility/utility.dart';
@@ -35,29 +36,23 @@ class Icard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Text(
-              "$date",
-              style: TextStyle(
-                color: AppColors.white,
-                fontWeight: FontWeight.w800,
-                fontStyle: FontStyle.italic,
-              ),
+            CommonText(
+              text: "$date",
+              fontColor: AppColors.white,
+              fontWeight: FontWeight.w800,
             ),
             Spacer(),
-            Text(
-              "${iname.toString().length > 12 ? "${iname.substring(0, 10)}..." : iname}",
-              style: TextStyle(
-                color: AppColors.white,
-                fontWeight: FontWeight.bold,
-              ),
+            CommonText(
+              text:
+                  "${iname.toString().length > 12 ? "${iname.substring(0, 10)}..." : iname}",
+              fontColor: AppColors.white,
+              fontWeight: FontWeight.bold,
             ),
             Spacer(),
-            Text(
-              "$rupee $iamount",
-              style: TextStyle(
-                color: AppColors.primary,
-                fontWeight: FontWeight.w800,
-              ),
+            CommonText(
+              text: "$rupee $iamount",
+              fontColor: AppColors.primary,
+              fontWeight: FontWeight.w800,
             ),
             SizedBox(width: 20),
           ],

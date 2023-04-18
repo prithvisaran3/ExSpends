@@ -1,3 +1,4 @@
+import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/auth.dart';
@@ -134,10 +135,7 @@ class Register extends StatelessWidget {
                       SizedBox(
                         width: 5,
                       ),
-                      Text(
-                        "or",
-                        style: TextStyle(color: AppColors.white),
-                      ),
+                      CommonText(text: "or", fontColor: AppColors.white),
                       SizedBox(
                         width: 10,
                       ),
@@ -155,22 +153,18 @@ class Register extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Already a Member?  ",
-                        style: TextStyle(
-                          color: AppColors.white,
-                        ),
+                      CommonText(
+                        text: "Already a Member?  ",
+                        fontColor: AppColors.white,
                       ),
                       InkWell(
                         onTap: () {
                           Get.back();
                         },
-                        child: Text(
-                          "Log In",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.primary,
-                          ),
+                        child: CommonText(
+                          text: "Log In",
+                          fontWeight: FontWeight.bold,
+                          fontColor: AppColors.primary,
                         ),
                       ),
                     ],

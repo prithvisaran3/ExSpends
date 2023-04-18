@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../utility/utility.dart';
 import '../../theme/colors.dart';
+import '../common_text.dart';
 
 class Ecard extends StatefulWidget {
   const Ecard(
@@ -41,35 +43,28 @@ class _EcardState extends State<Ecard> {
             ),
             child: Row(
               children: [
-                Text(
-                  "${widget.date}",
-                  style: TextStyle(
-                    color: AppColors.white,
-                    fontWeight: FontWeight.w800,
-                    fontStyle: FontStyle.italic,
-                  ),
+                CommonText(
+                  text: "${widget.date}",
+                  fontColor: AppColors.white,
+                  fontWeight: FontWeight.w800,
                 ),
                 Spacer(),
-                Text(
-                  "${widget.ename.toString().length > 12 ? "${widget.ename.substring(0, 10)}..." : widget.ename}",
-                  style: TextStyle(
-                    color: AppColors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                CommonText(
+                  text:
+                      "${widget.ename.toString().length > 12 ? "${widget.ename.substring(0, 10)}..." : widget.ename}",
+                  fontColor: AppColors.white,
+                  fontWeight: FontWeight.bold,
                 ),
                 Spacer(),
-                Text(
-                  "\u20B9 ${widget.eamount}",
-                  style: TextStyle(
-                    color: AppColors.secondary,
-                    fontWeight: FontWeight.w800,
-                  ),
+                CommonText(
+                  text: "$rupee ${widget.eamount}",
+                  fontColor: AppColors.secondary,
+                  fontWeight: FontWeight.w800,
                 ),
                 SizedBox(width: 20),
               ],
             ),
           ),
-
         ],
       ),
     );

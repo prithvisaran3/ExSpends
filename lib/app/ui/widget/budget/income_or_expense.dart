@@ -1,3 +1,4 @@
+import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -47,15 +48,13 @@ class IncomeExpenseCard extends StatelessWidget {
                 ],
               ),
               child: Center(
-                child: Text(
-                  cardName,
-                  style: TextStyle(
-                    color: BudgetController.to.selectedIndex == index
-                        ? AppColors.primary
-                        : AppColors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+                child: CommonText(
+                  text: cardName,
+                  fontColor: BudgetController.to.selectedIndex == index
+                      ? AppColors.primary
+                      : AppColors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
                 ),
               ),
             ),

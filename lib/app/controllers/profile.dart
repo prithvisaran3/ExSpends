@@ -71,7 +71,6 @@ class ProfileController extends GetxController {
       var res = await repository.logout();
       if (res.status == 200) {
         commonPrint(status: res.status, msg: res.message);
-        totalDetails = res;
         print("Logout Successfully");
         commonSnackBar(title: "LOGOUT", msg: "Logged out Successfully");
         pref.remove('token');

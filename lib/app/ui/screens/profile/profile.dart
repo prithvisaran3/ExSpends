@@ -1,5 +1,7 @@
 import 'package:expense/app/controllers/profile.dart';
+import 'package:expense/app/ui/screens/profile/settings.dart';
 import 'package:expense/app/ui/widget/common_alert.dart';
+import 'package:expense/app/ui/widget/common_snackbar.dart';
 import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:expense/app/ui/widget/profile/totalcard.dart';
 import 'package:expense/app/utility/utility.dart';
@@ -17,214 +19,209 @@ class Profile extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return GetBuilder(
         init: ProfileController(),
-        initState:(_){
+        initState: (_) {
           ProfileController.to.getProfile();
           ProfileController.to.getTotal();
-
         },
-        builder: (_){
-      return Scaffold(
-          backgroundColor: AppColors.background,
-          body: SingleChildScrollView(
-            child: Container(
-              height: size.height,
-              child:
-
-              Obx(()=>Stack(
-                children: [
-                  SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 380, left: 20, right: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Name",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13,
-                                    color: Color(0xff67727d)),
-                              ),
-                              Text(
-                                "${ProfileController.to.profileDetails.name}",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13,
-                                    color: Color(0xff67727d)),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Text(
-                                "Phone Number",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13,
-                                    color: Color(0xff67727d)),
-                              ),
-                              Text(
-                                "${ProfileController.to.profileDetails.phone}",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13,
-                                    color: Color(0xff67727d)),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Text(
-                                "Email",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13,
-                                    color: Color(0xff67727d)),
-                              ),
-                              Text(
-                                "${ProfileController.to.profileDetails.email}",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13,
-                                    color: Color(0xff67727d)),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 20.0, left: 200),
-                                child: CommonButton(
-                                  text: "Logout",
-                                  onPressed: () {
-                                    commonAlertDialog(context, content: "Are you sure to logout?", confirmButtonPressed: (){
-                                      ProfileController.to.logout();
-                                      Get.back();
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+        builder: (_) {
+          return Scaffold(
+              backgroundColor: AppColors.background,
+              body: Container(
+                height: size.height,
+                child: Obx(
+                  () => Stack(
                     children: [
-                      Container(
-                        decoration:
-                        BoxDecoration(color: AppColors.black, boxShadow: [
-                          BoxShadow(
-                            color: AppColors.grey.withOpacity(0.02),
-                            spreadRadius: 10,
-                            blurRadius: 3,
-                            // changes position of shadow
-                          ),
-                        ]),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              top: 45, right: 20, left: 20, bottom: 25),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 380, left: 20, right: 20),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text(
-                                    "Profile",
-                                    style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.primary,
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.settings,
-                                    color: AppColors.primary,
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: 25,
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    width: (size.width - 40) * 0.4,
-                                    child: Container(
-                                      child: Stack(
-                                        children: [
-                                          Positioned(
-                                            top: 8,
-                                            left: 8,
-                                            child: Container(
-                                              width: 85,
-                                              height: 85,
-                                              decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  image: DecorationImage(
-                                                      image: NetworkImage(
-                                                          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"),
-                                                      fit: BoxFit.cover)),
-                                            ),
-                                          ),
-
-                                          RotatedBox(
-                                            quarterTurns: -2,
-                                            child: CircularPercentIndicator(
-                                                circularStrokeCap:
-                                                CircularStrokeCap.round,
-                                                backgroundColor: AppColors.grey
-                                                    .withOpacity(0.3),
-                                                radius: 50.0,
-                                                lineWidth: 6.0,
-                                                percent: 0.53,
-                                                progressColor: AppColors.primary),
-                                          ),
-                                        ],
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      CommonText(
+                                          text: "Name",
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13,
+                                          fontColor: AppColors.white),
+                                      SizedBox(
+                                        height: 20,
                                       ),
-                                    ),
+                                      CommonText(
+                                          text: "Phone Number",
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13,
+                                          fontColor: AppColors.white),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      CommonText(
+                                          text: "Email",
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13,
+                                          fontColor: AppColors.white),
+                                    ],
                                   ),
-                                  Container(
-                                    width: (size.width - 40) * 0.6,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "${ProfileController.to.profileDetails.name}",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColors.white),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-
-                                      ],
-                                    ),
-                                  )
+                                  Column(
+                                    children: [
+                                      CommonText(
+                                          text:
+                                              "${ProfileController.to.profileDetails.name}",
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13,
+                                          fontColor: Color(0xff67727d)),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      CommonText(
+                                          text:
+                                              "${ProfileController.to.profileDetails.phone}",
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13,
+                                          fontColor: Color(0xff67727d)),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      CommonText(
+                                          text:
+                                              "${ProfileController.to.profileDetails.email}",
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13,
+                                          fontColor: Color(0xff67727d)),
+                                    ],
+                                  ),
                                 ],
                               ),
-                              SizedBox(
-                                height: 25,
-                              ),
-                              TotalCard(),
-                            ],
-                          ),
+                            ),
+
+                          ],
                         ),
                       ),
-                      SizedBox(
-                        height: 30,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: AppColors.black,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.grey.withOpacity(0.02),
+                                    spreadRadius: 10,
+                                    blurRadius: 3,
+                                    // changes position of shadow
+                                  ),
+                                ]),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 40, right: 20, left: 20, bottom: 25),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      CommonText(
+                                        text: "Profile",
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold,
+                                        fontColor: AppColors.primary,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Get.to(() => Settings());
+                                        },
+                                        child: Icon(
+                                          Icons.settings,
+                                          color: AppColors.primary,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 25,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        width: (size.width - 40) * 0.4,
+                                        child: Container(
+                                          child: Stack(
+                                            children: [
+                                              Positioned(
+                                                top: 8,
+                                                left: 8,
+                                                child: Container(
+                                                  width: 85,
+                                                  height: 85,
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                          image: NetworkImage(
+                                                              "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"),
+                                                          fit: BoxFit.cover)),
+                                                ),
+                                              ),
+                                              RotatedBox(
+                                                quarterTurns: -2,
+                                                child: CircularPercentIndicator(
+                                                    circularStrokeCap:
+                                                        CircularStrokeCap.round,
+                                                    backgroundColor: AppColors
+                                                        .grey
+                                                        .withOpacity(0.3),
+                                                    radius: 50.0,
+                                                    lineWidth: 6.0,
+                                                    percent: 0.53,
+                                                    progressColor:
+                                                        AppColors.primary),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: (size.width - 40) * 0.6,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            CommonText(
+                                                text:
+                                                    "${ProfileController.to.profileDetails.name}",
+                                                fontSize: 30,
+                                                fontWeight: FontWeight.bold,
+                                                fontColor: AppColors.white),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 25,
+                                  ),
+                                  TotalCard(),
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),),
-            ),
-          ));
-
-    });
-
-
+                ),
+              ));
+        });
   }
 }

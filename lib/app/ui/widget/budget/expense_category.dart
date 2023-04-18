@@ -1,3 +1,4 @@
+import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controllers/budget.dart';
@@ -64,13 +65,11 @@ class ExpenseCategoryCard extends StatelessWidget {
                     //     ),
                     //   ),
                     // ),
-                    Text(
-                      categoryName,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: AppColors.white,
-                      ),
+                    CommonText(
+                      text: categoryName,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      fontColor: AppColors.white,
                     )
                   ],
                 ),

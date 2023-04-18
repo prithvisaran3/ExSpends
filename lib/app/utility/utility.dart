@@ -74,10 +74,17 @@ String normalDateToIndividualYear({required String date}) {
   return outputDate;
 }
 
-String getIsoToLocalTime({required date}) {
+String getIsoToLocalTime({required String date}) {
   var dateTime = DateFormat("yyyy-MM-dd HH:mm:ss").parse(date, true);
   // var localTime = dateTime.toLocal();
   var outputFormat = DateFormat('hh:mm a');
+  var outputDate = outputFormat.format(dateTime);
+  return outputDate;
+}
+String SendIsoToLocalDate({required String date}) {
+  var dateTime = DateFormat("yyyy-MM-dd HH:mm:ss").parse(date, true);
+  // var localTime = dateTime.toLocal();
+  var outputFormat = DateFormat('yyyy-MM-dd');
   var outputDate = outputFormat.format(dateTime);
   return outputDate;
 }
