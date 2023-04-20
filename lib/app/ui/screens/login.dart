@@ -1,3 +1,5 @@
+import 'package:expense/app/ui/screens/forgot_password.dart';
+import 'package:expense/app/ui/screens/otp_verify.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/auth.dart';
@@ -52,68 +54,84 @@ class Login extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Form(
-                      key: AuthController.to.loginKey,
-                      child: Column(
-                        children: [
-                          CommonTextFormField(
-                            controller: AuthController.to.lEmail,
-                            prefixIcon:
-                                Icon(Icons.email, color: AppColors.primary),
-                            hintText: "Enter your email",
-                            validator: (data) {
-                              if (data == null || data == "" || data.isEmpty) {
-                                return 'Please enter email';
+                    key: AuthController.to.loginKey,
+                    child: Column(
+                      children: [
+                        CommonTextFormField(
+                          controller: AuthController.to.lEmail,
+                          prefixIcon:
+                              Icon(Icons.email, color: AppColors.primary),
+                          hintText: "Enter your email",
+                          validator: (data) {
+                            if (data == null || data == "" || data.isEmpty) {
+                              return 'Please enter email';
+                            }
+                            return null;
+                          },
+                        ),
+                        CommonTextFormField(
+                          controller: AuthController.to.lPassword,
+                          prefixIcon:
+                              Icon(Icons.lock_open, color: AppColors.primary),
+                          hintText: "Enter your password",
+                          obscureText: true,
+                          validator: (data) {
+                            if (data == null || data == "" || data.isEmpty) {
+                              return 'Please enter password';
+                            } else if (data.length < 6) {
+                              return 'Password minimum 6 character';
+                            }
+                            return null;
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 200.0),
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(() => ForgotPassword());
+                      },
+                      child: CommonText(
+                        text: "Forgot Password?",
+                        fontColor: AppColors.white.withOpacity(0.8),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  Obx(
+                    () => AuthController.to.loginLoading == true
+                        ? CommonNormalLoading()
+                        : CommonButton(
+                            text: "Login",
+                            onPressed: () {
+                              if (AuthController.to.loginKey.currentState!
+                                  .validate()) {
+                                AuthController.to.login();
                               }
-                              return null;
                             },
                           ),
-                          CommonTextFormField(
-                            controller: AuthController.to.lPassword,
-                            prefixIcon:
-                                Icon(Icons.lock_open, color: AppColors.primary),
-                            hintText: "Enter your password",
-                            obscureText: true,
-                            validator: (data) {
-                              if (data == null || data == "" || data.isEmpty) {
-                                return 'Please enter password';
-                              } else if (data.length < 6) {
-                                return 'Password minimum 6 character';
-                              }
-                              return null;
-                            },
-                          )
-                        ],
-                      )),
-                  SizedBox(height: 15),
-                  Obx(() => AuthController.to.loginLoading == true
-                      ? CommonNormalLoading()
-                      : CommonButton(
-                          text: "Login",
-                          onPressed: () {
-                            if (AuthController.to.loginKey.currentState!
-                                .validate()) {
-                              AuthController.to.login();
-                            }
-                          },
-                        )),
+                  ),
                   SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CommonText(
                         text: "Don't have an account? ",
-                        fontColor: AppColors.white,
+                        fontColor: AppColors.white.withOpacity(0.8),
                         fontWeight: FontWeight.bold,
                       ),
                       InkWell(
                         onTap: () {
-                          Get.to(()=>Register());
+                          Get.to(() => Register());
                         },
                         child: CommonText(
                           text: "Sign up",
-                          fontColor: AppColors.primary,
+                          fontColor: AppColors.primary.withOpacity(0.8),
                           fontWeight: FontWeight.bold,
-                          fontSize: AppFontSize.sixteen,
+                          fontSize: 16,
                         ),
                       ),
                     ],

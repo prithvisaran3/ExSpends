@@ -14,6 +14,8 @@ class DailyTransactions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final today = DateTime.now();
+    final fiftyDaysAgo = today.subtract(Duration(days: 29));
     var size = MediaQuery.of(context).size;
     return GetBuilder(
       init: DailyController(),
@@ -38,8 +40,7 @@ class DailyTransactions extends StatelessWidget {
                             : DailyController.to.dailyEmpty == true
                                 ? CommonText(
                                     text: "DATA EMPTY",
-                                      fontColor: AppColors.white,
-
+                                    fontColor: AppColors.white,
                                   )
                                 : Column(
                                     children: List.generate(
@@ -105,60 +106,46 @@ class DailyTransactions extends StatelessWidget {
                                                             Row(
                                                               children: [
                                                                 CommonText(
-                                                                  text:DailyController
-                                                                              .to
-                                                                              .dailydetails[
-                                                                                  index]
-                                                                              .isIncome ==
-                                                                          "true"
-                                                                      ? "${DailyController.to.dailydetails[index].incomeName}"
-                                                                      : "${DailyController.to.dailydetails[index].expenseName}",
-
-                                                                      fontSize: 15,
-                                                                      fontColor:
-                                                                          AppColors
-                                                                              .white,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500
-
-                                                                ),
+                                                                    text: DailyController.to.dailydetails[index].isIncome ==
+                                                                            "true"
+                                                                        ? "${DailyController.to.dailydetails[index].incomeName}"
+                                                                        : "${DailyController.to.dailydetails[index].expenseName}",
+                                                                    fontSize:
+                                                                        15,
+                                                                    fontColor:
+                                                                        AppColors
+                                                                            .white,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500),
                                                                 CommonText(
-                                                                  text:DailyController
-                                                                      .to
-                                                                      .dailydetails[
-                                                                  index]
-                                                                      .isIncome ==
-                                                                      "true"
-                                                                      ? ""
-                                                                      : "  (${DailyController.to.dailydetails[index].expenseCategory})",
-
-                                                                      fontSize: 12,
-                                                                      fontColor: AppColors
-                                                                          .white
-                                                                          .withOpacity(
-                                                                          0.5),
-                                                                      fontWeight:
-                                                                      FontWeight
-                                                                          .w400
-
-                                                                ),
+                                                                    text: DailyController.to.dailydetails[index].isIncome ==
+                                                                            "true"
+                                                                        ? ""
+                                                                        : "  (${DailyController.to.dailydetails[index].expenseCategory})",
+                                                                    fontSize:
+                                                                        12,
+                                                                    fontColor: AppColors
+                                                                        .white
+                                                                        .withOpacity(
+                                                                            0.5),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400),
                                                               ],
                                                             ),
                                                             SizedBox(height: 5),
                                                             CommonText(
-                                                              text:"${getIsoToLocalTime(date: DailyController.to.dailydetails[index].createdAt.toString())}",
-
-                                                                  fontSize: 12,
-                                                                  fontColor: AppColors
-                                                                      .white
-                                                                      .withOpacity(
-                                                                          0.5),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400
-
-                                                            ),
+                                                                text:
+                                                                    "${getIsoToLocalTime(date: DailyController.to.dailydetails[index].createdAt.toString())}",
+                                                                fontSize: 12,
+                                                                fontColor: AppColors
+                                                                    .white
+                                                                    .withOpacity(
+                                                                        0.5),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400),
                                                           ],
                                                         ),
                                                       )
@@ -173,22 +160,20 @@ class DailyTransactions extends StatelessWidget {
                                                         MainAxisAlignment.end,
                                                     children: [
                                                       CommonText(
-                                                        text:"$rupee ${DailyController.to.dailydetails[index].amount}",
-
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize: 15,
-                                                          fontColor: DailyController
-                                                                      .to
-                                                                      .dailydetails[
-                                                                          index]
-                                                                      .isIncome ==
-                                                                  "true"
-                                                              ? AppColors
-                                                                  .primary
-                                                              : AppColors
-                                                                  .secondary,
-
+                                                        text:
+                                                            "$rupee ${DailyController.to.dailydetails[index].amount}",
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 15,
+                                                        fontColor: DailyController
+                                                                    .to
+                                                                    .dailydetails[
+                                                                        index]
+                                                                    .isIncome ==
+                                                                "true"
+                                                            ? AppColors.primary
+                                                            : AppColors
+                                                                .secondary,
                                                       ),
                                                     ],
                                                   ),
@@ -210,9 +195,8 @@ class DailyTransactions extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: Get.height*0.1,
+                      height: Get.height * 0.1,
                     ),
-
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: Row(
@@ -222,11 +206,9 @@ class DailyTransactions extends StatelessWidget {
                             padding: const EdgeInsets.only(right: 80),
                             child: CommonText(
                               text: "Total",
-
-                                  fontSize: 16,
-                                  fontColor: AppColors.white.withOpacity(0.4),
-                                  fontWeight: FontWeight.w600,
-
+                              fontSize: 16,
+                              fontColor: AppColors.white.withOpacity(0.4),
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           Spacer(),
@@ -235,13 +217,10 @@ class DailyTransactions extends StatelessWidget {
                             child: Column(
                               children: [
                                 CommonText(
-                                  text: "$rupee 1780.00",
-
-                                      fontSize: 20,
-                                      fontColor: AppColors.white,
-                                      fontWeight: FontWeight.bold
-
-                                ),
+                                    text: "$rupee 1780.00",
+                                    fontSize: 20,
+                                    fontColor: AppColors.white,
+                                    fontWeight: FontWeight.bold),
                               ],
                             ),
                           ),
@@ -276,17 +255,16 @@ class DailyTransactions extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0),
                             child: CommonText(
-                              text: "Daily Transaction",
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  fontColor: AppColors.primary
-                            ),
+                                text: "Daily Transaction",
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                fontColor: AppColors.primary),
                           ),
                           SizedBox(
                             height: 20,
                           ),
                           DatePicker(
-                            DateTime.now(),
+                            fiftyDaysAgo,
                             width: 60,
                             height: 76,
                             daysCount: 30,

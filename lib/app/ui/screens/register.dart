@@ -111,7 +111,7 @@ class Register extends StatelessWidget {
                   Obx(() => AuthController.to.registerLoading == true
                       ? CommonNormalLoading()
                       : CommonButton(
-                          text: "SignUp",
+                          text: "Sign Up",
                           onPressed: () async {
                             if (AuthController.to.registerKey.currentState!
                                 .validate()) {
