@@ -1,3 +1,4 @@
+import 'package:expense/app/config/app-config.dart';
 import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,10 +10,12 @@ class ExpenseCategoryCard extends StatelessWidget {
       {Key? key,
       required this.index,
       required this.categoryName,
-      required this.onPressed})
+      required this.onPressed,
+      this.image})
       : super(key: key);
   final int index;
   final String categoryName;
+  final String? image;
   final Function() onPressed;
 
   @override
@@ -50,21 +53,21 @@ class ExpenseCategoryCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Container(
-                    //   width: 40,
-                    //   height: 40,
-                    //   decoration: BoxDecoration(
-                    //       shape: BoxShape.circle,
-                    //       color: AppColors.grey.withOpacity(0.15)),
-                    //   child: Center(
-                    //     child: Image.asset(
-                    //       categories[0]['icon'],
-                    //       width: 30,
-                    //       height: 30,
-                    //       fit: BoxFit.contain,
-                    //     ),
-                    //   ),
-                    // ),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.grey.withOpacity(0.15)),
+                      child: Center(
+                        child: Image.network(
+                          image == null ? AppConfig.noImage : image!,
+                          width: 30,
+                          height: 30,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
                     CommonText(
                       text: categoryName,
                       fontWeight: FontWeight.bold,

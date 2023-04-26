@@ -1,3 +1,5 @@
+import 'package:expense/app/ui/screens/login.dart';
+import 'package:expense/app/ui/screens/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -64,6 +66,23 @@ class AuthController extends GetxController {
     _updatePasswordLoading.value = value;
   }
 
+  final _loginErrorAnimation=false.obs;
+
+  get loginErrorAnimation => _loginErrorAnimation.value;
+
+  set loginErrorAnimation(value) {
+    _loginErrorAnimation.value = value;
+  }
+
+  setOnBoardDataAfterScreenCompleted() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString("on_boarding", "onBoarding");
+    var onBoard = preferences.getString('on_boarding');
+    debugPrint("on boarding data $onBoard");
+    await Get.off(() =>  Profile());
+    return onBoard;
+  }
+
 
   storeLocalDevice({required Map body}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -111,6 +130,7 @@ class AuthController extends GetxController {
         loginFieldsEmpty();
       } else if (res['status'] == 422) {
         loginLoading = false;
+        loginErrorAnimation=true;
         commonPrint(status: res['status'], msg: "${res['message']}");
         errorAlert(Get.context!, content: "${res['message']}",
             confirmButtonPressed: () {
@@ -118,6 +138,7 @@ class AuthController extends GetxController {
         });
       } else if (res['status'] == 404) {
         loginLoading = false;
+        loginErrorAnimation=true;
         commonPrint(status: res['status'], msg: "${res['message']}");
         errorAlert(Get.context!, content: "${res['message']}",
             confirmButtonPressed: () {
@@ -125,11 +146,13 @@ class AuthController extends GetxController {
         });
       } else {
         loginLoading = false;
+        loginErrorAnimation=true;
         commonPrint(
             status: res['status'], msg: "Error from server or No Internet");
       }
     } catch (e) {
       loginLoading = false;
+      loginErrorAnimation=true;
       commonPrint(
           status: "$statusCode",
           msg: "Error from login due to data mismatch or format $e");
@@ -152,8 +175,8 @@ class AuthController extends GetxController {
         commonPrint(status: res['status'], msg: res['message']);
         Map storedData = {"token": "${res['token']}"};
         storeLocalDevice(body: storedData);
-        Get.off(() => HomeMain());
-        commonSnackBar(title: "Success", msg: "Register Successfully");
+        Get.off(() => Login());
+        commonSnackBar(title: "Register", msg: "Registered Successfully");
         loginFieldsEmpty();
       } else if (res['status'] == 422) {
         registerLoading = false;

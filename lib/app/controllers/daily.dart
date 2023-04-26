@@ -43,7 +43,22 @@ class DailyController extends GetxController {
   set dailydetails(value) {
     _dailydetails.value = value;
   }
-var _dailyEmpty=false.obs;
+  var _dailytotal=DailyRes().obs;
+
+  get dailytotal => _dailytotal.value;
+
+  set dailytotal(value) {
+    _dailytotal.value = value;
+  }
+  var _grandtotaldaily = 0.obs;
+
+  get grandtotaldaily => _grandtotaldaily.value;
+
+  set grandtotaldaily(value) {
+    _grandtotaldaily.value = value;
+  }
+
+  var _dailyEmpty=false.obs;
 
   get dailyEmpty => _dailyEmpty.value;
 
@@ -74,6 +89,8 @@ var _dailyEmpty=false.obs;
           commonPrint(
               status: res.status, msg: "Daily Transactions got successfully with data");
           dailydetails = res.data;
+          dailytotal=res;
+          grandtotaldaily=dailytotal.dailyTotalIncome-dailytotal.dailyTotalExpense;
         }
       }
     } catch (e) {

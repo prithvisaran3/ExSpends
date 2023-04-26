@@ -1,7 +1,9 @@
 import 'package:expense/app/ui/screens/forgot_password.dart';
 import 'package:expense/app/ui/screens/otp_verify.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:rive/rive.dart';
 import '../../controllers/auth.dart';
 import '../theme/app_font.dart';
 import '../theme/colors.dart';
@@ -11,8 +13,26 @@ import '../widget/common_text.dart';
 import '../widget/common_textform_field.dart';
 import 'register.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   Login({Key? key}) : super(key: key);
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  late StateMachineController _controller;
+
+  void _onInit(Artboard art) {
+    var ctrl = StateMachineController.fromArtboard(art, 'Login')
+        as StateMachineController;
+    ctrl.isActive = true;
+    art.addController(ctrl);
+
+    setState(() {
+      _controller = ctrl;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,32 +47,39 @@ class Login extends StatelessWidget {
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 80),
-                      child: RichText(
-                        text: TextSpan(
-                          style: TextStyle(
-                            color: AppColors.white,
-                            fontSize: 48,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          text: "Hey,  \nLogin",
-                          children: [
-                            TextSpan(
-                              style: TextStyle(
-                                color: AppColors.primary,
-                              ),
-                              text: " "
-                                  "Now.",
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.only(right: 80),
+                  //     child: RichText(
+                  //       text: TextSpan(
+                  //         style: TextStyle(
+                  //           color: AppColors.white,
+                  //           fontSize: 48,
+                  //           fontWeight: FontWeight.bold,
+                  //         ),
+                  //         text: "Hey,  \nLogin",
+                  //         children: [
+                  //           TextSpan(
+                  //             style: TextStyle(
+                  //               color: AppColors.primary,
+                  //             ),
+                  //             text: " "
+                  //                 "Now.",
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+
+                  Container(
+                      height: Get.height * 0.4,
+                      child: RiveAnimation.asset('assets/rive/login_bear.riv',
+                          onInit: _onInit)),
                   SizedBox(height: 10),
+
+
                   Form(
                     key: AuthController.to.loginKey,
                     child: Column(
@@ -70,6 +97,20 @@ class Login extends StatelessWidget {
                           },
                         ),
                         CommonTextFormField(
+                          onChanged: (data) {
+                            if (data!.isNotEmpty || data != "") {
+                              setState(() {
+                                var typing = _controller.findSMI('hands_up');
+                                typing.value = true;
+                              });
+                            }
+                          },
+                          onComplete: () {
+                            setState(() {
+                              var typing = _controller.findSMI('hands_up');
+                              typing.value = false;
+                            });
+                          },
                           controller: AuthController.to.lPassword,
                           prefixIcon:
                               Icon(Icons.lock_open, color: AppColors.primary),
@@ -110,11 +151,28 @@ class Login extends StatelessWidget {
                               if (AuthController.to.loginKey.currentState!
                                   .validate()) {
                                 AuthController.to.login();
+                                if(AuthController.to.loginErrorAnimation==true)
+                                  {
+                                    setState(() {
+                                      var error=_controller.findSMI('fail');
+                                      error.fire();
+                                    });
+                                  }
                               }
                             },
                           ),
                   ),
                   SizedBox(height: 20),
+                  // CommonButton(
+                  //     text: "RIVE",
+                  //     onPressed: () {
+                  //       print("Rive active ${_controller.isActive}");
+                  //       setState(() {
+                  //         var example = _controller.findSMI('success');
+                  //         print("SMI $example");
+                  //         example.fire();
+                  //       });
+                  //     }),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

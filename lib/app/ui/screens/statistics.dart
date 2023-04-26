@@ -41,7 +41,7 @@ class Statistics extends StatelessWidget {
                                     padding: const EdgeInsets.only(
                                         left: 20, right: 20),
                                     child: Container(
-                                      // width: double.infinity,
+                                      width: double.infinity,
                                       // height: 250,
                                       decoration: BoxDecoration(
                                           color: AppColors.black,
@@ -61,44 +61,7 @@ class Statistics extends StatelessWidget {
                                         children: [
                                           SizedBox(height: 20),
                                           PieChartSample3(),
-                                          Padding(
-                                            padding: const EdgeInsets.all(12.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                // Column(
-                                                //   mainAxisAlignment:
-                                                //       MainAxisAlignment.end,
-                                                //   crossAxisAlignment:
-                                                //       CrossAxisAlignment.start,
-                                                //   children: <Widget>[
-                                                //     Indicator(
-                                                //       color: AppColors.red,
-                                                //       text: 'Investment',
-                                                //       isSquare: false,
-                                                //     ),
-                                                //     SizedBox(
-                                                //       height: 4,
-                                                //     ),
-                                                //     Indicator(
-                                                //       color: AppColors.primary,
-                                                //       text: 'Profit',
-                                                //       isSquare: false,
-                                                //     ),
-                                                //     SizedBox(
-                                                //       height: 4,
-                                                //     ),
-                                                //     Indicator(
-                                                //       color: AppColors.secondary,
-                                                //       text: 'Withdrawal',
-                                                //       isSquare: false,
-                                                //     ),
-                                                //   ],
-                                                // ),
-                                              ],
-                                            ),
-                                          ),
+                                          pieIndicator(),
                                         ],
                                       ),
                                     ),
@@ -110,16 +73,26 @@ class Statistics extends StatelessWidget {
                                     IncomeExpenseCard(
                                       icon: Icons.arrow_downward_rounded,
                                       name: "INCOME",
-                                      amount:
-                                          "$rupee ${formatAmount(amount: StatisticsController.to.statisticsDetails.monthlyIncome)}",
+                                      amount: StatisticsController
+                                                  .to
+                                                  .statisticsDetails
+                                                  .monthlyIncome !=
+                                              null
+                                          ? "$rupee ${StatisticsController.to.statisticsDetails.monthlyIncome}"
+                                          : "$rupee 0",
                                       iconColor: AppColors.green,
                                     ),
                                     IncomeExpenseCard(
                                       icon: Icons.arrow_upward_rounded,
                                       name: "EXPENSE",
                                       iconColor: AppColors.red,
-                                      amount:
-                                          "$rupee ${formatAmount(amount: StatisticsController.to.statisticsDetails.monthlyExpense)}",
+                                      amount: StatisticsController
+                                                  .to
+                                                  .statisticsDetails
+                                                  .monthlyExpense !=
+                                              null
+                                          ? "$rupee ${StatisticsController.to.statisticsDetails.monthlyExpense}"
+                                          : "$rupee 0",
                                     ),
                                   ]),
                                   SizedBox(height: 20),
@@ -131,7 +104,7 @@ class Statistics extends StatelessWidget {
                   Column(
                     children: [
                       Container(
-                        // height: Get.height*0.32,
+                        height: Get.height * 0.35,
                         decoration:
                             BoxDecoration(color: AppColors.black, boxShadow: [
                           BoxShadow(
@@ -151,10 +124,9 @@ class Statistics extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: CommonText(
                                   text: "Statistics",
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold,
-                                    fontColor: AppColors.primary,
-
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                  fontColor: AppColors.primary,
                                 ),
                               ),
                               SizedBox(
@@ -167,117 +139,116 @@ class Statistics extends StatelessWidget {
                                   shrinkWrap: true,
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, int index) {
-                                    return Obx(() => GestureDetector(
-                                          onTap: () {
-                                            StatisticsController.to.activeDay =
-                                                index;
-                                            StatisticsController
-                                                    .to.isSelectMonth =
-                                                yearAndMonth[index]['month'];
-                                          },
-                                          child: Container(
-                                            width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    40) /
-                                                6,
-                                            child: Column(
-                                              children: [
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    StatisticsController
-                                                            .to.isSelectYear =
-                                                        yearAndMonth[index]
-                                                            ['year'];
-                                                    print(
-                                                        "Selected Year is : ${StatisticsController.to.isSelectYear} Selected Month is : ${StatisticsController.to.isSelectMonth}");
-                                                    StatisticsController.to
-                                                        .getStatistics();
-                                                  },
-                                                  child: CommonText(
-                                                    text:yearAndMonth[index]['year'],
+                                    return Obx(
+                                      () => GestureDetector(
+                                        onTap: () {
+                                          StatisticsController.to.activeDay =
+                                              index;
+                                          StatisticsController
+                                                  .to.isSelectMonth =
+                                              yearAndMonth[index]['month'];
+                                        },
+                                        child: Container(
+                                          width: (MediaQuery.of(context)
+                                                      .size
+                                                      .width -
+                                                  40) /
+                                              6,
+                                          child: Column(
+                                            children: [
+                                              GestureDetector(
+                                                onTap: () {
+                                                  StatisticsController
+                                                          .to.isSelectYear =
+                                                      yearAndMonth[index]
+                                                          ['year'];
+                                                  print(
+                                                      "Selected Year is : ${StatisticsController.to.isSelectYear} Selected Month is : ${StatisticsController.to.isSelectMonth}");
+                                                  StatisticsController.to
+                                                      .getStatistics();
+                                                },
+                                                child: CommonText(
+                                                    text: yearAndMonth[index]
+                                                        ['year'],
+                                                    fontSize: 15,
+                                                    fontColor: StatisticsController
+                                                                .to
+                                                                .isSelectYear ==
+                                                            yearAndMonth[index]
+                                                                ['year']
+                                                        ? AppColors.primary
+                                                        : AppColors.white),
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  StatisticsController
+                                                      .to.activeDay = index;
 
-                                                        fontSize: 15,
-                                                        fontColor: StatisticsController
-                                                                    .to
-                                                                    .isSelectYear ==
-                                                                yearAndMonth[
-                                                                        index]
-                                                                    ['year']
-                                                            ? AppColors.primary
-                                                            : AppColors.white
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: 10,
-                                                ),
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    StatisticsController
-                                                        .to.activeDay = index;
-
-                                                    StatisticsController
-                                                            .to.isSelectMonth =
-                                                        yearAndMonth[index]
-                                                            ['month'];
-                                                    print(
-                                                        "Selected Year is : ${StatisticsController.to.isSelectYear} Selected Month is : ${StatisticsController.to.isSelectMonth}");
-                                                    StatisticsController.to
-                                                        .getStatistics();
-                                                  },
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                        color: StatisticsController
-                                                                    .to
-                                                                    .activeDay ==
-                                                                index
-                                                            ? AppColors.primary
-                                                            : AppColors.white
-                                                                .withOpacity(
-                                                                    0.05),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5),
-                                                        border: Border.all(
-                                                            color: StatisticsController
-                                                                        .to
-                                                                        .activeDay ==
-                                                                    index
-                                                                ? AppColors
-                                                                    .primary
-                                                                : AppColors.white
-                                                                    .withOpacity(
-                                                                        0.3))),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 12,
-                                                              right: 12,
-                                                              top: 7,
-                                                              bottom: 7),
-                                                      child: CommonText(
-                                                        text:yearAndMonth[index]
-                                                            ['month'],
-
-                                                            fontSize: 10,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontColor: StatisticsController
+                                                  StatisticsController
+                                                          .to.isSelectMonth =
+                                                      yearAndMonth[index]
+                                                          ['month'];
+                                                  print(
+                                                      "Selected Year is : ${StatisticsController.to.isSelectYear} Selected Month is : ${StatisticsController.to.isSelectMonth}");
+                                                  StatisticsController.to
+                                                      .getStatistics();
+                                                },
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                      color: StatisticsController
+                                                                  .to
+                                                                  .activeDay ==
+                                                              index
+                                                          ? AppColors.primary
+                                                          : AppColors.white
+                                                              .withOpacity(
+                                                                  0.05),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      border: Border.all(
+                                                          color: StatisticsController
+                                                                      .to
+                                                                      .activeDay ==
+                                                                  index
+                                                              ? AppColors
+                                                                  .primary
+                                                              : AppColors.white
+                                                                  .withOpacity(
+                                                                      0.3))),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 12,
+                                                            right: 12,
+                                                            top: 7,
+                                                            bottom: 7),
+                                                    child: CommonText(
+                                                        text: yearAndMonth[
+                                                            index]['month'],
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontColor:
+                                                            StatisticsController
                                                                         .to
                                                                         .activeDay ==
                                                                     index
                                                                 ? AppColors
                                                                     .black
                                                                 : AppColors
-                                                                    .white
-                                                      ),
-                                                    ),
+                                                                    .white),
                                                   ),
-                                                )
-                                              ],
-                                            ),
+                                                ),
+                                              )
+                                            ],
                                           ),
-                                        ));
+                                        ),
+                                      ),
+                                    );
                                   },
                                 ),
                               ),
@@ -293,5 +264,57 @@ class Statistics extends StatelessWidget {
                 ],
               ));
         });
+  }
+
+  Padding pieIndicator() {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: ListView.builder(
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: StatisticsController
+              .to.totalStatistics.categoryExpenseAmount.length,
+          shrinkWrap: true,
+          itemBuilder: (context, int index) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Indicator(
+                      color: index == 0
+                          ? AppColors.category1
+                          : index == 1
+                              ? AppColors.category2
+                              : index == 2
+                                  ? AppColors.category3
+                                  : index == 3
+                                      ? AppColors.category4
+                                      : index == 4
+                                          ? AppColors.category5
+                                          : index == 5
+                                              ? AppColors.category6
+                                              : index == 6
+                                                  ? AppColors.category7
+                                                  : index == 7
+                                                      ? AppColors.category8
+                                                      : AppColors.category9,
+                      text: StatisticsController.to.totalStatistics
+                                  .categoryExpenseAmount.length <=
+                              index
+                          ? ""
+                          : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[index].expenseCategory}",
+                      isSquare: false,
+                    ),
+                    SizedBox(
+                      height: 4,
+                    )
+                  ],
+                ),
+              ],
+            );
+          }),
+    );
   }
 }

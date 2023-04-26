@@ -1,10 +1,9 @@
-
+import 'package:expense/app/controllers/statistics.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../theme/colors.dart';
-
 
 class PieChartSample3 extends StatefulWidget {
   const PieChartSample3({super.key});
@@ -24,7 +23,6 @@ class PieChartSample3State extends State {
         aspectRatio: 1,
         child: PieChart(
           PieChartData(
-
             pieTouchData: PieTouchData(
               touchCallback: (FlTouchEvent event, pieTouchResponse) {
                 setState(() {
@@ -58,13 +56,27 @@ class PieChartSample3State extends State {
       final radius = isTouched ? 135.0 : 110.0;
       final widgetSize = isTouched ? 55.0 : 40.0;
       const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
-
+      print(
+          "MONTHLY INCOME : ${StatisticsController.to.totalStatistics.monthlyIncome}");
+      print(
+          "Check : ${StatisticsController.to.totalStatistics.categoryExpenseAmount.length}");
       switch (i) {
         case 0:
           return PieChartSectionData(
             color: AppColors.category1,
-            value: 10,
-            title: '1',
+            value: StatisticsController
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
+                ? 0
+                : (StatisticsController
+                        .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                    100 /
+                    (StatisticsController.to.totalStatistics.monthlyExpense),
+            title: StatisticsController
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
+                ? "0"
+                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -82,8 +94,20 @@ class PieChartSample3State extends State {
         case 1:
           return PieChartSectionData(
             color: AppColors.category2,
-            value: 10,
-            title: '2',
+            value:
+            StatisticsController
+                .to.totalStatistics.categoryExpenseAmount.length <=
+                i
+                ? 0
+                : (StatisticsController
+                .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                100 /
+                (StatisticsController.to.totalStatistics.monthlyExpense),
+            title: StatisticsController
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
+                ? "0"
+                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -101,8 +125,19 @@ class PieChartSample3State extends State {
         case 2:
           return PieChartSectionData(
             color: AppColors.category3,
-            value: 10,
-            title: '3',
+            value:StatisticsController
+                .to.totalStatistics.categoryExpenseAmount.length <=
+                i
+                ? 0
+                : (StatisticsController
+                .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                100 /
+                (StatisticsController.to.totalStatistics.monthlyExpense),
+            title: StatisticsController
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
+                ? "0"
+                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -120,8 +155,19 @@ class PieChartSample3State extends State {
         case 3:
           return PieChartSectionData(
             color: AppColors.category4,
-            value: 10,
-            title: '4',
+            value: StatisticsController
+                .to.totalStatistics.categoryExpenseAmount.length <=
+                i
+                ? 0
+                : (StatisticsController
+                .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                100 /
+                (StatisticsController.to.totalStatistics.monthlyExpense),
+            title: StatisticsController
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
+                ? "0"
+                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -139,8 +185,19 @@ class PieChartSample3State extends State {
         case 4:
           return PieChartSectionData(
             color: AppColors.category5,
-            value: 10,
-            title: '5',
+            value: StatisticsController
+                .to.totalStatistics.categoryExpenseAmount.length <=
+                i
+                ? 0
+                : (StatisticsController
+                .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                100 /
+                (StatisticsController.to.totalStatistics.monthlyExpense),
+            title: StatisticsController
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
+                ? "0"
+                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -158,8 +215,19 @@ class PieChartSample3State extends State {
         case 5:
           return PieChartSectionData(
             color: AppColors.category6,
-            value: 10,
-            title: '6',
+            value: StatisticsController
+                .to.totalStatistics.categoryExpenseAmount.length <=
+                i
+                ? 0
+                : (StatisticsController
+                .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                100 /
+                (StatisticsController.to.totalStatistics.monthlyExpense),
+            title: StatisticsController
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
+                ? "0"
+                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -177,8 +245,19 @@ class PieChartSample3State extends State {
         case 6:
           return PieChartSectionData(
             color: AppColors.category7,
-            value: 10,
-            title: '7',
+            value:StatisticsController
+                .to.totalStatistics.categoryExpenseAmount.length <=
+                i
+                ? 0
+                : (StatisticsController
+                .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                100 /
+                (StatisticsController.to.totalStatistics.monthlyExpense),
+            title: StatisticsController
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
+                ? "0"
+                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -196,8 +275,19 @@ class PieChartSample3State extends State {
         case 7:
           return PieChartSectionData(
             color: AppColors.category8,
-            value: 10,
-            title: '8',
+            value: StatisticsController
+                .to.totalStatistics.categoryExpenseAmount.length <=
+                i
+                ? 0
+                : (StatisticsController
+                .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                100 /
+                (StatisticsController.to.totalStatistics.monthlyExpense),
+            title: StatisticsController
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
+                ? "0"
+                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -215,8 +305,19 @@ class PieChartSample3State extends State {
         case 8:
           return PieChartSectionData(
             color: AppColors.category9,
-            value: 20,
-            title: '9',
+            value: StatisticsController
+                .to.totalStatistics.categoryExpenseAmount.length <=
+                i
+                ? 0
+                : (StatisticsController
+                .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                100 /
+                (StatisticsController.to.totalStatistics.monthlyExpense),
+            title: StatisticsController
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
+                ? "0"
+                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -232,7 +333,6 @@ class PieChartSample3State extends State {
             // badgePositionPercentageOffset: .98,
           );
 
-
         default:
           throw Exception('Oh no');
       }
@@ -242,10 +342,11 @@ class PieChartSample3State extends State {
 
 class _Badge extends StatelessWidget {
   const _Badge(
-      this.svgAsset, {
-        required this.size,
-        required this.borderColor,
-      });
+    this.svgAsset, {
+    required this.size,
+    required this.borderColor,
+  });
+
   final String svgAsset;
   final double size;
   final Color borderColor;

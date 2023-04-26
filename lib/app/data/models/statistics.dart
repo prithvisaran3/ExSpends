@@ -1,4 +1,5 @@
 
+
 class StatisticsRes {
   StatisticsRes({
     this.status,
@@ -14,7 +15,7 @@ class StatisticsRes {
   dynamic monthlyIncome;
   dynamic monthlyExpense;
   List<CategoryExpenseAmount>? categoryExpenseAmount;
-  Data? data;
+  dynamic data;
 
   factory StatisticsRes.fromMap(Map<String, dynamic> json) => StatisticsRes(
     status: json["status"],
@@ -31,7 +32,7 @@ class StatisticsRes {
     "monthly_income": monthlyIncome,
     "monthly_expense": monthlyExpense,
     "category_expense_amount": List<dynamic>.from(categoryExpenseAmount!.map((x) => x.toMap())),
-    "data": data!.toMap(),
+    "data": data.toMap(),
   };
 }
 

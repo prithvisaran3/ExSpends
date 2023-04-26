@@ -47,7 +47,7 @@ class Settings extends StatelessWidget {
                     children: [
                       SettingsMenuCard(
                           icon: Icons.currency_rupee_rounded,
-                          name: "Currency",
+                          name: "Currency Change",
                           onPressed: () {
                             successAlert(context, content: "Coming soon...",
                                 confirmButtonPressed: () {

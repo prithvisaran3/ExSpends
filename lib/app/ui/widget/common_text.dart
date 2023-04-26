@@ -9,7 +9,7 @@ class CommonText extends StatelessWidget {
   const CommonText(
       {Key? key,
       required this.text,
-      this.fontSize = 14,
+      this.fontSize = 16,
       this.fontColor = AppColors.black,
       this.fontWeight,
       this.letterSpacing,

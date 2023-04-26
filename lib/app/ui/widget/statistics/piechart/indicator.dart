@@ -10,9 +10,10 @@ class Indicator extends StatelessWidget {
     required this.color,
     required this.text,
     required this.isSquare,
-    this.size = 16,
-    this.textColor=AppColors.white,
+    this.size = 15,
+    this.textColor = AppColors.white,
   });
+
   final Color color;
   final String text;
   final bool isSquare;
@@ -32,15 +33,14 @@ class Indicator extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          width: 4,
+          width: 6,
         ),
         CommonText(
           text: text,
-          fontSize: AppFontSize.ten,
+          fontSize: 10,
           fontWeight: FontWeight.w400,
           fontColor: textColor,
         ),
-
       ],
     );
   }

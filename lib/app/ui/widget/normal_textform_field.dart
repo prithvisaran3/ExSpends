@@ -19,23 +19,22 @@ class CommonNormalTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 100,right: 20,top: 5,bottom: 5),
+      padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
       height: 40,
       width: Get.width,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: AppColors.black.withOpacity(0.3),
-            spreadRadius: 1,
-            blurRadius: 1,
-            offset: Offset(0.2,0.6)
-
-          ),
+              color: AppColors.black.withOpacity(0.3),
+              spreadRadius: 1,
+              blurRadius: 1,
+              offset: Offset(0.2, 0.6)),
         ],
         borderRadius: BorderRadius.circular(12),
         color: Colors.black,
       ),
       child: TextFormField(
+        textAlign: TextAlign.center,
         controller: controller,
         keyboardType: keyboardType,
         validator: validator,

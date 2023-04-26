@@ -1,24 +1,33 @@
 
+
 class DailyRes {
   DailyRes({
     this.status,
     this.message,
+    this.dailyTotalIncome,
+    this.dailyTotalExpense,
     this.data,
   });
 
   dynamic status;
   dynamic message;
+  dynamic dailyTotalIncome;
+  dynamic dailyTotalExpense;
   List<Datum>? data;
 
   factory DailyRes.fromMap(Map<String, dynamic> json) => DailyRes(
     status: json["status"],
     message: json["message"],
+    dailyTotalIncome: json["daily_total_income"],
+    dailyTotalExpense: json["daily_total_expense"],
     data: List<Datum>.from(json["data"].map((x) => Datum.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
     "status": status,
     "message": message,
+    "daily_total_income": dailyTotalIncome,
+    "daily_total_expense": dailyTotalExpense,
     "data": List<dynamic>.from(data!.map((x) => x.toMap())),
   };
 }

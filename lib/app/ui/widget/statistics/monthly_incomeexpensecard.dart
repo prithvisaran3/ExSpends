@@ -23,21 +23,21 @@ class IncomeExpenseCard extends StatelessWidget {
       width: (size.width - 60) / 2,
       height: 170,
       decoration: BoxDecoration(
-          color: AppColors.black,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.grey.withOpacity(0.01),
-              spreadRadius: 10,
-              blurRadius: 3,
-              // changes position of shadow
-            ),
-          ]),
+        color: AppColors.black,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.grey.withOpacity(0.01),
+            spreadRadius: 10,
+            blurRadius: 3,
+          ),
+        ],
+      ),
       child: Padding(
         padding:
             const EdgeInsets.only(left: 25, right: 25, top: 20, bottom: 20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(

@@ -13,7 +13,7 @@ class CommonTextFormField extends StatefulWidget {
       this.maxLength,
         this.prefixIcon,
       this.errorText,
-      this.inputType})
+      this.inputType, this.onChanged, this.onComplete})
 
       : super(key: key);
   final String hintText;
@@ -24,7 +24,8 @@ class CommonTextFormField extends StatefulWidget {
   final bool? obscureText;
   final int? maxLength;
   final TextInputType? inputType;
-
+  final Function(String?)? onChanged;
+  final Function()? onComplete;
   @override
   State<CommonTextFormField> createState() => _CommonTextFormFieldState();
 }
@@ -41,6 +42,8 @@ class _CommonTextFormFieldState extends State<CommonTextFormField> {
           fontSize: 14,
         ),
         validator: widget.validator,
+        onChanged: widget.onChanged,
+        onEditingComplete: widget.onComplete,
 
         cursorColor: AppColors.primary,
         controller: widget.controller,

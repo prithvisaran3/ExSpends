@@ -15,7 +15,8 @@ class DailyTransactions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final today = DateTime.now();
-    final fiftyDaysAgo = today.subtract(Duration(days: 29));
+
+    final fiftyDaysAgo = today.subtract(Duration(days: 27));
     var size = MediaQuery.of(context).size;
     return GetBuilder(
       init: DailyController(),
@@ -33,15 +34,20 @@ class DailyTransactions extends StatelessWidget {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsets.only(top: 200, left: 20, right: 20),
+                          const EdgeInsets.only(top: 240, left: 20, right: 20),
                       child: Obx(
                         () => DailyController.to.dailyloading == true
                             ? CommonNormalLoading()
                             : DailyController.to.dailyEmpty == true
-                                ? CommonText(
-                                    text: "DATA EMPTY",
-                                    fontColor: AppColors.white,
-                                  )
+                                ? Column(
+                                  children: [
+
+                                    CommonText(
+                                        text: "DATA EMPTY",
+                                        fontColor: AppColors.white,
+                                      ),
+                                  ],
+                                )
                                 : Column(
                                     children: List.generate(
                                       DailyController.to.dailydetails.length,
@@ -122,7 +128,8 @@ class DailyTransactions extends StatelessWidget {
                                                                     text: DailyController.to.dailydetails[index].isIncome ==
                                                                             "true"
                                                                         ? ""
-                                                                        : "  (${DailyController.to.dailydetails[index].expenseCategory})",
+                                                                        : "  (${DailyController.to.dailydetails[index].expenseCategory})"
+                                                                            .toUpperCase(),
                                                                     fontSize:
                                                                         12,
                                                                     fontColor: AppColors
@@ -199,32 +206,117 @@ class DailyTransactions extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: Row(
-                        children: [
-                          Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 80),
-                            child: CommonText(
-                              text: "Total",
-                              fontSize: 16,
-                              fontColor: AppColors.white.withOpacity(0.4),
-                              fontWeight: FontWeight.w600,
+                      child: Container(
+                        padding: EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: AppColors.black,
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.black,
+                              blurRadius: 1,
+                              spreadRadius: 2,
+                            )
+                          ],
+                        ),
+                        child: Row(
+                          children: [
+                            Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 80),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(bottom: 8.0),
+                                    child: CommonText(
+                                      text: "\nTotal\n",
+                                      fontSize: 16,
+                                      fontColor:
+                                          AppColors.white.withOpacity(0.6),
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10.0),
+                                    child: CommonText(
+                                      text: "Grand Total",
+                                      fontSize: 18,
+                                      fontColor: AppColors.white,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5),
-                            child: Column(
-                              children: [
-                                CommonText(
-                                    text: "$rupee 1780.00",
-                                    fontSize: 20,
-                                    fontColor: AppColors.white,
-                                    fontWeight: FontWeight.bold),
-                              ],
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Obx(
+                                () => Column(
+                                  children: [
+                                    CommonText(
+                                        text: DailyController.to.dailytotal
+                                                    .dailyTotalIncome !=
+                                                null
+                                            ? "+ $rupee ${DailyController.to.dailytotal.dailyTotalIncome.toString()}"
+                                            : "$rupee 0",
+                                        fontSize: 18,
+                                        fontColor: AppColors.primary,
+                                        fontWeight: FontWeight.bold),
+                                    CommonText(
+                                        text: DailyController.to.dailytotal
+                                                    .dailyTotalExpense !=
+                                                null
+                                            ? "- $rupee ${DailyController.to.dailytotal.dailyTotalExpense.toString()}"
+                                            : "$rupee 0",
+                                        fontSize: 18,
+                                        fontColor: AppColors.secondary,
+                                        fontWeight: FontWeight.bold),
+                                    Divider(
+                                      thickness: 2,
+                                      color: AppColors.white,
+                                      height: 20,
+                                    ),
+                                    CommonText(
+                                        text: DailyController
+                                                        .to.dailytotal.dailyTotalIncome !=
+                                                    null &&
+                                                DailyController
+                                                        .to.dailytotal.dailyTotalExpense !=
+                                                    null
+                                            ? DailyController
+                                                        .to.dailytotal.dailyTotalIncome >
+                                                    DailyController.to
+                                                        .dailytotal.dailyTotalExpense
+                                                ? "+ $rupee ${DailyController.to.grandtotaldaily.toString()}"
+                                                : "- $rupee ${DailyController.to.grandtotaldaily.abs().toString()}"
+                                            : "$rupee 0",
+                                        fontSize: 20,
+                                        fontColor:
+                                            DailyController.to.dailytotal
+                                                            .dailyTotalIncome !=
+                                                        null &&
+                                                    DailyController
+                                                            .to
+                                                            .dailytotal
+                                                            .dailyTotalExpense !=
+                                                        null
+                                                ? DailyController.to.dailytotal
+                                                            .dailyTotalIncome >
+                                                        DailyController
+                                                            .to
+                                                            .dailytotal
+                                                            .dailyTotalExpense
+                                                    ? AppColors.primary
+                                                    : AppColors.secondary
+                                                : AppColors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
+                            Spacer(),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(height: 20),
@@ -234,7 +326,7 @@ class DailyTransactions extends StatelessWidget {
               Column(
                 children: [
                   Container(
-                    height: Get.height * 0.33,
+                    height: Get.height * 0.35,
                     decoration: BoxDecoration(
                       color: AppColors.black,
                       // boxShadow: [
@@ -248,7 +340,7 @@ class DailyTransactions extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(
-                          top: 40, right: 20, left: 20, bottom: 25),
+                          top: 50, right: 20, left: 20, bottom: 25),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

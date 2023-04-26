@@ -1,4 +1,5 @@
 import 'package:expense/app/controllers/profile.dart';
+import 'package:expense/app/ui/screens/onboarding.dart';
 import 'package:expense/app/ui/screens/profile/settings.dart';
 import 'package:expense/app/ui/widget/common_alert.dart';
 import 'package:expense/app/ui/widget/common_snackbar.dart';
@@ -36,7 +37,7 @@ class Profile extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(
-                                  top: 380, left: 20, right: 20),
+                                  top: 360, left: 20, right: 20),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -45,6 +46,7 @@ class Profile extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
+                                      SizedBox(height: 20),
                                       CommonText(
                                           text: "Name",
                                           fontWeight: FontWeight.w500,
@@ -99,7 +101,11 @@ class Profile extends StatelessWidget {
                                 ],
                               ),
                             ),
-
+                            CommonButton(
+                                text: "Onboarding",
+                                onPressed: () {
+                                  Get.to(OnBoarding());
+                                })
                           ],
                         ),
                       ),
@@ -119,7 +125,7 @@ class Profile extends StatelessWidget {
                                 ]),
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  top: 40, right: 20, left: 20, bottom: 25),
+                                  top: 50, right: 20, left: 20, bottom: 25),
                               child: Column(
                                 children: [
                                   Row(
@@ -163,21 +169,23 @@ class Profile extends StatelessWidget {
                                                       shape: BoxShape.circle,
                                                       image: DecorationImage(
                                                           image: NetworkImage(
-                                                              "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"),
+                                                              "https://images.unsplash.com/photo-1532170579297-281918c8ae72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1184&q=80"),
                                                           fit: BoxFit.cover)),
                                                 ),
                                               ),
                                               RotatedBox(
                                                 quarterTurns: -2,
                                                 child: CircularPercentIndicator(
+                                                  animation: true,
+                                                    animationDuration: 300,
                                                     circularStrokeCap:
                                                         CircularStrokeCap.round,
                                                     backgroundColor: AppColors
                                                         .grey
                                                         .withOpacity(0.3),
-                                                    radius: 50.0,
+                                                    radius: 60.0,
                                                     lineWidth: 6.0,
-                                                    percent: 0.53,
+                                                    percent: 0.8,
                                                     progressColor:
                                                         AppColors.primary),
                                               ),

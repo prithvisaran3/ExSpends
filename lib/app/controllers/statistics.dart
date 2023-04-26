@@ -25,7 +25,6 @@ class StatisticsController extends GetxController {
     _statisticsDetails.value = value;
   }
 
-
   var _activeDay = 3.obs;
 
   get activeDay => _activeDay.value;
@@ -50,6 +49,14 @@ class StatisticsController extends GetxController {
     _isSelectMonth.value = value;
   }
 
+  var _totalStatistics = StatisticsRes().obs;
+
+  get totalStatistics => _totalStatistics.value;
+
+  set totalStatistics(value) {
+    _totalStatistics.value = value;
+  }
+
   getStatistics() async {
     statisticsLoading = true;
     try {
@@ -62,10 +69,14 @@ class StatisticsController extends GetxController {
         if (res.data == null) {
           statisticsLoading = false;
 
+
+
           commonPrint(
               status: res.status, msg: "Stats got successfully but no data");
         } else {
           statisticsLoading = false;
+          totalStatistics = res;
+
 
           commonPrint(
               status: res.status, msg: "Stats got successfully with data");

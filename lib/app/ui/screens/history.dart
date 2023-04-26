@@ -28,7 +28,7 @@ class History extends StatelessWidget {
               () => Stack(
                 children: [
                   Container(
-                    height: Get.height * 0.32,
+                    height: Get.height * 0.30,
                     decoration:
                         BoxDecoration(color: AppColors.black, boxShadow: [
                       BoxShadow(
@@ -39,13 +39,14 @@ class History extends StatelessWidget {
                       ),
                     ]),
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 60, bottom: 25),
+                      padding: const EdgeInsets.only(top: 50, bottom: 25),
                       child: Column(
+
                         children: [
                           CommonText(
                             text: "HISTORY",
 
-                              fontSize: 20,
+                            fontSize: 20,
                               fontWeight: FontWeight.bold,
                               fontColor: AppColors.primary,
 
@@ -54,7 +55,7 @@ class History extends StatelessWidget {
                             height: 10,
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: 20),
+                            padding: EdgeInsets.only(top: 10),
                             child: Column(
                               children: [
                                 Row(
