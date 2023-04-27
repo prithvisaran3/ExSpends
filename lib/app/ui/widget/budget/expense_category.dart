@@ -11,11 +11,11 @@ class ExpenseCategoryCard extends StatelessWidget {
       required this.index,
       required this.categoryName,
       required this.onPressed,
-      this.image})
+      required this.image})
       : super(key: key);
   final int index;
   final String categoryName;
-  final String? image;
+  final String image;
   final Function() onPressed;
 
   @override
@@ -60,8 +60,8 @@ class ExpenseCategoryCard extends StatelessWidget {
                           shape: BoxShape.circle,
                           color: AppColors.grey.withOpacity(0.15)),
                       child: Center(
-                        child: Image.network(
-                          image == null ? AppConfig.noImage : image!,
+                        child: Image.asset(
+                          image,
                           width: 30,
                           height: 30,
                           fit: BoxFit.contain,

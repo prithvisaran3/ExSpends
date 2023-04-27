@@ -101,11 +101,6 @@ class Profile extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            CommonButton(
-                                text: "Onboarding",
-                                onPressed: () {
-                                  Get.to(OnBoarding());
-                                })
                           ],
                         ),
                       ),
@@ -176,8 +171,8 @@ class Profile extends StatelessWidget {
                                               RotatedBox(
                                                 quarterTurns: -2,
                                                 child: CircularPercentIndicator(
-                                                  animation: true,
-                                                    animationDuration: 300,
+                                                    animation: true,
+                                                    animationDuration: 2000,
                                                     circularStrokeCap:
                                                         CircularStrokeCap.round,
                                                     backgroundColor: AppColors

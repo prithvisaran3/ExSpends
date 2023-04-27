@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../data/repository/auth.dart';
 import '../ui/screens/home/main.dart';
+import '../ui/screens/initial.dart';
 import '../ui/widget/common_alert.dart';
 import '../ui/widget/common_print.dart';
 import '../ui/widget/common_snackbar.dart';
@@ -74,12 +75,23 @@ class AuthController extends GetxController {
     _loginErrorAnimation.value = value;
   }
 
+
+  checkOnBoarding() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    var token = preferences.getString('on_boarding');
+    if (token == null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   setOnBoardDataAfterScreenCompleted() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString("on_boarding", "onBoarding");
     var onBoard = preferences.getString('on_boarding');
     debugPrint("on boarding data $onBoard");
-    await Get.off(() =>  Profile());
+    await Get.off(() =>  Initial());
     return onBoard;
   }
 

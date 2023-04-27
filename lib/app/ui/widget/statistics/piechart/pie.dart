@@ -56,10 +56,7 @@ class PieChartSample3State extends State {
       final radius = isTouched ? 135.0 : 110.0;
       final widgetSize = isTouched ? 55.0 : 40.0;
       const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
-      print(
-          "MONTHLY INCOME : ${StatisticsController.to.totalStatistics.monthlyIncome}");
-      print(
-          "Check : ${StatisticsController.to.totalStatistics.categoryExpenseAmount.length}");
+
       switch (i) {
         case 0:
           return PieChartSectionData(
@@ -94,15 +91,14 @@ class PieChartSample3State extends State {
         case 1:
           return PieChartSectionData(
             color: AppColors.category2,
-            value:
-            StatisticsController
-                .to.totalStatistics.categoryExpenseAmount.length <=
-                i
+            value: StatisticsController
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
                 ? 0
                 : (StatisticsController
-                .to.totalStatistics.categoryExpenseAmount[i].amount) *
-                100 /
-                (StatisticsController.to.totalStatistics.monthlyExpense),
+                        .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                    100 /
+                    (StatisticsController.to.totalStatistics.monthlyExpense),
             title: StatisticsController
                         .to.totalStatistics.categoryExpenseAmount.length <=
                     i
@@ -125,14 +121,14 @@ class PieChartSample3State extends State {
         case 2:
           return PieChartSectionData(
             color: AppColors.category3,
-            value:StatisticsController
-                .to.totalStatistics.categoryExpenseAmount.length <=
-                i
+            value: StatisticsController
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
                 ? 0
                 : (StatisticsController
-                .to.totalStatistics.categoryExpenseAmount[i].amount) *
-                100 /
-                (StatisticsController.to.totalStatistics.monthlyExpense),
+                        .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                    100 /
+                    (StatisticsController.to.totalStatistics.monthlyExpense),
             title: StatisticsController
                         .to.totalStatistics.categoryExpenseAmount.length <=
                     i
@@ -156,13 +152,13 @@ class PieChartSample3State extends State {
           return PieChartSectionData(
             color: AppColors.category4,
             value: StatisticsController
-                .to.totalStatistics.categoryExpenseAmount.length <=
-                i
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
                 ? 0
                 : (StatisticsController
-                .to.totalStatistics.categoryExpenseAmount[i].amount) *
-                100 /
-                (StatisticsController.to.totalStatistics.monthlyExpense),
+                        .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                    100 /
+                    (StatisticsController.to.totalStatistics.monthlyExpense),
             title: StatisticsController
                         .to.totalStatistics.categoryExpenseAmount.length <=
                     i
@@ -186,13 +182,13 @@ class PieChartSample3State extends State {
           return PieChartSectionData(
             color: AppColors.category5,
             value: StatisticsController
-                .to.totalStatistics.categoryExpenseAmount.length <=
-                i
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
                 ? 0
                 : (StatisticsController
-                .to.totalStatistics.categoryExpenseAmount[i].amount) *
-                100 /
-                (StatisticsController.to.totalStatistics.monthlyExpense),
+                        .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                    100 /
+                    (StatisticsController.to.totalStatistics.monthlyExpense),
             title: StatisticsController
                         .to.totalStatistics.categoryExpenseAmount.length <=
                     i
@@ -216,13 +212,13 @@ class PieChartSample3State extends State {
           return PieChartSectionData(
             color: AppColors.category6,
             value: StatisticsController
-                .to.totalStatistics.categoryExpenseAmount.length <=
-                i
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
                 ? 0
                 : (StatisticsController
-                .to.totalStatistics.categoryExpenseAmount[i].amount) *
-                100 /
-                (StatisticsController.to.totalStatistics.monthlyExpense),
+                        .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                    100 /
+                    (StatisticsController.to.totalStatistics.monthlyExpense),
             title: StatisticsController
                         .to.totalStatistics.categoryExpenseAmount.length <=
                     i
@@ -245,14 +241,14 @@ class PieChartSample3State extends State {
         case 6:
           return PieChartSectionData(
             color: AppColors.category7,
-            value:StatisticsController
-                .to.totalStatistics.categoryExpenseAmount.length <=
-                i
+            value: StatisticsController
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
                 ? 0
                 : (StatisticsController
-                .to.totalStatistics.categoryExpenseAmount[i].amount) *
-                100 /
-                (StatisticsController.to.totalStatistics.monthlyExpense),
+                        .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                    100 /
+                    (StatisticsController.to.totalStatistics.monthlyExpense),
             title: StatisticsController
                         .to.totalStatistics.categoryExpenseAmount.length <=
                     i
@@ -276,13 +272,13 @@ class PieChartSample3State extends State {
           return PieChartSectionData(
             color: AppColors.category8,
             value: StatisticsController
-                .to.totalStatistics.categoryExpenseAmount.length <=
-                i
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
                 ? 0
                 : (StatisticsController
-                .to.totalStatistics.categoryExpenseAmount[i].amount) *
-                100 /
-                (StatisticsController.to.totalStatistics.monthlyExpense),
+                        .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                    100 /
+                    (StatisticsController.to.totalStatistics.monthlyExpense),
             title: StatisticsController
                         .to.totalStatistics.categoryExpenseAmount.length <=
                     i
@@ -306,13 +302,13 @@ class PieChartSample3State extends State {
           return PieChartSectionData(
             color: AppColors.category9,
             value: StatisticsController
-                .to.totalStatistics.categoryExpenseAmount.length <=
-                i
+                        .to.totalStatistics.categoryExpenseAmount.length <=
+                    i
                 ? 0
                 : (StatisticsController
-                .to.totalStatistics.categoryExpenseAmount[i].amount) *
-                100 /
-                (StatisticsController.to.totalStatistics.monthlyExpense),
+                        .to.totalStatistics.categoryExpenseAmount[i].amount) *
+                    100 /
+                    (StatisticsController.to.totalStatistics.monthlyExpense),
             title: StatisticsController
                         .to.totalStatistics.categoryExpenseAmount.length <=
                     i

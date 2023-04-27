@@ -48,10 +48,9 @@ class _OnBoardingScreenState extends State<OnBoarding> {
     var media = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.black,
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 40.0),
+      body: SafeArea(
+        child: AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle.light,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -76,7 +75,7 @@ class _OnBoardingScreenState extends State<OnBoarding> {
                 ),
               ),
               SizedBox(
-                height: media.height * 0.8,
+                height: 450,
                 child: PageView(
                   physics: const ClampingScrollPhysics(),
                   controller: pageController,
@@ -110,45 +109,7 @@ class _OnBoardingScreenState extends State<OnBoarding> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: buildPageIndicator(),
               ),
-              currentPage != numPages - 1
-                  ? Expanded(
-                      child: Align(
-                        alignment: FractionalOffset.bottomRight,
-                        child: InkWell(
-                          onTap: () {
-                            pageController.nextPage(
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.ease,
-                            );
-                          },
-                          child: Container(
-                            height: 40,
-                            // width: media.width * 0.25,
-                            padding: const EdgeInsets.only(
-                                top: 10.0, bottom: 10, right: 25, left: 25),
-                            margin: const EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5.0),
-                                color: AppColors.primary),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: const [
-                                Text(
-                                  'Next',
-                                  style: TextStyle(
-                                    color: AppColors.primary,
-                                    fontSize: 22.0,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  :
-              const SizedBox(),
+
               currentPage == numPages - 1
                   ? GestureDetector(
                 onTap: () => onIntroEnd(),

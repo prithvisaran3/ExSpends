@@ -94,6 +94,7 @@ class AddBudget extends StatelessWidget {
                             itemBuilder: (context, int index) {
                               return ExpenseCategoryCard(
                                 index: index,
+                                image: "assets/images/${BudgetController.to.categoryDetails[index].categoryName}.png",
                                 categoryName:
                                     "${BudgetController.to.categoryDetails[index].categoryName}",
                                 // image:  "${AppConfig.baseUrl}/${BudgetController.to.categoryDetails[index].image}",

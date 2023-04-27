@@ -1,3 +1,4 @@
+import 'package:expense/app/ui/screens/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/auth.dart';
@@ -23,30 +24,27 @@ class _InitialState extends State<Initial> {
           initState: (state) async {
             bool login = await AuthController.to.loginCheck();
             debugPrint("is Login: $login");
-            // bool onBoarding = await AuthController.to.checkOnBoarding();
-            // debugPrint("onBoarding value $onBoarding");
-            //   if (onBoarding == true) {
-            //     setState(() {
-            //       isLogin = 'onBoarding';
-            //     });
-            //   } else if (login == true) {
-            //     setState(() {
-            //       isLogin = "isLogin";
-            //     });
-            //   } else {
-            //     debugPrint("logged in $isLogin");
-            //   }
-            // },
-
-            if (login == true) {
+            bool onBoarding = await AuthController.to.checkOnBoarding();
+            debugPrint("onBoarding value $onBoarding");
+            if (onBoarding == true) {
+              setState(() {
+                isLogin = 'onBoarding';
+              });
+            } else if (login == true) {
               setState(() {
                 isLogin = "isLogin";
               });
+            } else {
+              debugPrint("logged in $isLogin");
             }
           },
           builder: (controller) =>
               // isLogin == "isLogin" ? HomeMain() :  Login()
-              isLogin == "isLogin" ? HomeMain() : Login()),
+              isLogin == "onBoarding"
+                  ? OnBoarding()
+                  : isLogin == "isLogin"
+                      ? HomeMain()
+                      : Login()),
     );
   }
 }
