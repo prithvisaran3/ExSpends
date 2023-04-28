@@ -11,6 +11,9 @@ class ApiService {
   static const getTotal = "${AppConfig.baseUrl}/api/getTotalIncomeAndExpense";
   // static const updateProfile = "${AppConfig.baseUrl}action=updateprofile";
 
+  //settings
+  static const bugReport = "${AppConfig.baseUrl}/api/bug/create";
+
   //forgot password
   static const validateEmail = "${AppConfig.baseUrl}action=validateEmail";
 

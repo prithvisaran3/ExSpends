@@ -1,3 +1,4 @@
+import 'package:expense/app/controllers/settings.dart';
 import 'package:expense/app/ui/theme/colors.dart';
 import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:expense/app/ui/widget/profile/settings_card.dart';
@@ -40,40 +41,40 @@ class Settings extends StatelessWidget {
                     height: 200,
                   )),
                 ),
-                CommonText(
-                  text: "In-app Features",
-                  fontColor: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-                SizedBox(height: 10),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.white.withOpacity(0.3),
-                        spreadRadius: 2,
-                        blurRadius: 3,
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      SettingsMenuCard(
-                          icon: Icons.currency_rupee_rounded,
-                          name: "Currency Change",
-                          onPressed: () {
-                            successAlert(context, content: "Coming soon...",
-                                confirmButtonPressed: () {
-                              Get.back();
-                            });
-                          }),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 20),
+                // CommonText(
+                //   text: "In-app Features",
+                //   fontColor: Colors.white,
+                //   fontWeight: FontWeight.bold,
+                //   fontSize: 18,
+                // ),
+                // SizedBox(height: 10),
+                // Container(
+                //   decoration: BoxDecoration(
+                //     color: Colors.black,
+                //     borderRadius: BorderRadius.circular(12),
+                //     boxShadow: [
+                //       BoxShadow(
+                //         color: AppColors.white.withOpacity(0.3),
+                //         spreadRadius: 2,
+                //         blurRadius: 3,
+                //       ),
+                //     ],
+                //   ),
+                //   child: Column(
+                //     children: [
+                //       SettingsMenuCard(
+                //           icon: Icons.currency_rupee_rounded,
+                //           name: "Currency Change",
+                //           onPressed: () {
+                //             successAlert(context, content: "Coming soon...",
+                //                 confirmButtonPressed: () {
+                //               Get.back();
+                //             });
+                //           }),
+                //     ],
+                //   ),
+                // ),
+
                 CommonText(
                   text: "Feedback",
                   fontColor: Colors.white,
@@ -93,28 +94,34 @@ class Settings extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SettingsMenuCard(
-                          icon: Icons.bug_report,
-                          name: "Report a Bug",
-                          onPressed: () {
-                            successAlert(context, content: "Coming soon...",
-                                confirmButtonPressed: () {
-                              Get.back();
-                            });
-                          }),
-                      SettingsMenuCard(
-                          icon: Icons.thumb_up_sharp,
-                          name: "Send Feedback",
-                          onPressed: () {
-                            successAlert(context, content: "Coming soon...",
-                                confirmButtonPressed: () {
-                              Get.back();
-                            });
-                          }),
-                    ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SettingsMenuCard(
+                            icon: Icons.bug_report,
+                            name: "Report a Bug",
+                            onPressed: () {
+                              bugReport(context, content: "",
+                                  confirmButtonPressed: () {
+                                if (SettingsController.to.bugKey.currentState!
+                                    .validate()) {
+                                  SettingsController.to.sendBug();
+                                  // Get.back();
+                                }
+                              });
+                            }),
+                        SettingsMenuCard(
+                            icon: Icons.thumb_up_sharp,
+                            name: "Send Feedback",
+                            onPressed: () {
+                              successAlert(context, content: "Coming soon...",
+                                  confirmButtonPressed: () {
+                                Get.back();
+                              });
+                            }),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 20),
@@ -146,7 +153,7 @@ class Settings extends StatelessWidget {
                           onPressed: () {
                             openBrowser(
                                 url:
-                                    "https://pub.dev/packages/url_launcher/example");
+                                    "https://limitless360.org/index.php/privacy-policy/");
                           }),
                       SettingsMenuCard(
                           icon: Icons.info_outline,
@@ -154,7 +161,7 @@ class Settings extends StatelessWidget {
                           onPressed: () {
                             openBrowser(
                                 url:
-                                    "https://pub.dev/packages/url_launcher/example");
+                                    "https://limitless360.org/index.php/terms-and-service/");
                           }),
                       SettingsMenuCard(
                           icon: Icons.logout,

@@ -79,7 +79,6 @@ class _LoginState extends State<Login> {
                           onInit: _onInit)),
                   SizedBox(height: 10),
 
-
                   Form(
                     key: AuthController.to.loginKey,
                     child: Column(
@@ -106,11 +105,11 @@ class _LoginState extends State<Login> {
                             }
                           },
                           onComplete: () {
-                            FocusNode().unfocus();
                             setState(() {
                               var typing = _controller.findSMI('hands_up');
                               typing.value = false;
                             });
+                            FocusNode().unfocus();
                           },
                           controller: AuthController.to.lPassword,
                           prefixIcon:
@@ -152,13 +151,13 @@ class _LoginState extends State<Login> {
                               if (AuthController.to.loginKey.currentState!
                                   .validate()) {
                                 AuthController.to.login();
-                                if(AuthController.to.loginErrorAnimation==true)
-                                  {
-                                    setState(() {
-                                      var error=_controller.findSMI('fail');
-                                      error.fire();
-                                    });
-                                  }
+                                if (AuthController.to.loginErrorAnimation ==
+                                    true) {
+                                  setState(() {
+                                    var error = _controller.findSMI('fail');
+                                    error.fire();
+                                  });
+                                }
                               }
                             },
                           ),

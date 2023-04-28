@@ -1,4 +1,7 @@
+import 'package:expense/app/controllers/settings.dart';
+import 'package:expense/app/ui/screens/profile/settings.dart';
 import 'package:expense/app/ui/theme/app_font.dart';
+import 'package:expense/app/ui/widget/common_textform_field.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -96,7 +99,8 @@ commonDeleteDialog(BuildContext context,
       height: 30,
       width: 80,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8), color: AppColors.black.withOpacity(0.8)),
+          borderRadius: BorderRadius.circular(8),
+          color: AppColors.black.withOpacity(0.8)),
       child: const Center(
         child: CommonText(text: "Go back", fontColor: AppColors.white),
       ),
@@ -226,6 +230,106 @@ successAlert(BuildContext context,
               color: AppColors.green,
               size: 35,
             )),
+      ],
+    ),
+    actions: [
+      continueButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+bugReport(BuildContext context,
+    {required String content, required Function() confirmButtonPressed}) {
+  var media = MediaQuery.of(context).size;
+  Widget continueButton = TextButton(
+    onPressed: confirmButtonPressed,
+    child: Container(
+      // height: 30,
+      width: media.width,
+      padding: const EdgeInsets.only(top: 15, bottom: 15),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10), color: AppColors.primary),
+      child: const Center(
+        child: CommonText(
+          text: "Send Message to Developer",
+          fontColor: AppColors.black,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(15.0),
+      ),
+    ),
+    backgroundColor: Colors.black,
+    content: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CommonText(
+              text: content,
+              fontColor: AppColors.secondary,
+            )
+          ],
+        ),
+        SizedBox(
+          height: media.width * 0.02,
+        ),
+        Form(
+          key: SettingsController.to.bugKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CommonText(
+                text: "Bug Title",
+                fontColor: AppColors.white,
+              ),
+              CommonTextFormField(
+                hintText: "Enter bug title",
+                controller: SettingsController.to.bugTitle,
+                validator: (data){
+                  if(data==null||data=="")
+                    {
+                      return 'Please enter bug title';
+                    }
+                  return null;
+                },
+              ),
+              CommonText(
+                text: "Bug Report",
+                fontColor: AppColors.white,
+              ),
+              CommonTextFormField(
+                maxLines: 6,
+                inputType: TextInputType.multiline,
+                hintText: "Enter bug description",
+                controller: SettingsController.to.bugDescription,
+                validator: (data){
+                  if(data==null||data=="")
+                  {
+                    return 'Please enter bug description';
+                  }
+                  return null;
+                },
+              ),
+            ],
+          ),
+        )
       ],
     ),
     actions: [

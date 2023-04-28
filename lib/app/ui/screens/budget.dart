@@ -1,4 +1,3 @@
-
 import 'package:expense/app/ui/widget/common_text.dart';
 
 import 'package:flutter/material.dart';
@@ -20,6 +19,11 @@ class AddBudget extends StatelessWidget {
         init: BudgetController(),
         initState: (_) {
           BudgetController.to.getCategories();
+          BudgetController.to.incomeDate.text =
+              SendIsoToLocalDate(date: DateTime.now().toString());
+
+          BudgetController.to.expenseDate.text =
+              SendIsoToLocalDate(date: DateTime.now().toString());
         },
         builder: (_) {
           return Scaffold(
@@ -288,7 +292,7 @@ class AddBudget extends StatelessWidget {
 
   Padding incomePage(Size size) {
     return Padding(
-      padding: const EdgeInsets.only( left: 20, right: 20),
+      padding: const EdgeInsets.only(left: 20, right: 20),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Form(
@@ -409,43 +413,43 @@ class AddBudget extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.10),
               Obx(
-                    () => BudgetController.to.addIncomeLoading == true
+                () => BudgetController.to.addIncomeLoading == true
                     ? CommonNormalLoading()
                     : Center(
-                  child: GestureDetector(
-                    onTap: () {
-                      if (BudgetController.to.incomeKey.currentState!
-                          .validate()) {
-                        BudgetController.to.addIncome();
-                      }
-                    },
-                    child: Container(
-                      width: 210,
-                      padding: EdgeInsets.all(10),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: AppColors.black,
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.primary,
-                            spreadRadius: 1.3,
-                            blurRadius: 1,
+                        child: GestureDetector(
+                          onTap: () {
+                            if (BudgetController.to.incomeKey.currentState!
+                                .validate()) {
+                              BudgetController.to.addIncome();
+                            }
+                          },
+                          child: Container(
+                            width: 210,
+                            padding: EdgeInsets.all(10),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: AppColors.black,
+                              borderRadius: BorderRadius.circular(8),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.primary,
+                                  spreadRadius: 1.3,
+                                  blurRadius: 1,
+                                ),
+                              ],
+                            ),
+                            child: Shimmer.fromColors(
+                              baseColor: AppColors.black,
+                              highlightColor: AppColors.white,
+                              child: CommonText(
+                                text: "PRESS TO CONFIRM",
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
                           ),
-                        ],
-                      ),
-                      child: Shimmer.fromColors(
-                        baseColor: AppColors.black,
-                        highlightColor: AppColors.white,
-                        child: CommonText(
-                          text: "PRESS TO CONFIRM",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
                         ),
                       ),
-                    ),
-                  ),
-                ),
               ),
               SizedBox(height: 50),
             ],
