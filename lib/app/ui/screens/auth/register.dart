@@ -1,11 +1,11 @@
 import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controllers/auth.dart';
-import '../theme/colors.dart';
-import '../widget/common_button.dart';
-import '../widget/common_loading.dart';
-import '../widget/common_textform_field.dart';
+import '../../../controllers/auth.dart';
+import '../../theme/colors.dart';
+import '../../widget/common_button.dart';
+import '../../widget/common_loading.dart';
+import '../../widget/common_textform_field.dart';
 
 class Register extends StatelessWidget {
   Register({Key? key}) : super(key: key);

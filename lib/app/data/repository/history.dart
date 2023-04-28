@@ -19,5 +19,15 @@ class HistoryRepository{
     var res= GetExpenseRes.fromMap(jsonDecode(response));
     return res;
   }
+  Future<dynamic> deleteExpense({required body})async{
+    var response= await helper.post(url: ApiService.deleteExpense,body:body,auth: true);
+    var res= jsonDecode(response);
+    return res;
+  }
+  Future<dynamic> deleteIncome({required body})async{
+    var response= await helper.post(url: ApiService.deleteIncome,body:body,auth: true);
+    var res= jsonDecode(response);
+    return res;
+  }
 
 }

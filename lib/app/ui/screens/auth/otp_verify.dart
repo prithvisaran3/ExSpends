@@ -1,14 +1,14 @@
-import 'package:expense/app/ui/screens/reset_password.dart';
+import 'package:expense/app/ui/screens/auth/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/auth.dart';
-import '../../controllers/otp.dart';
-import '../theme/app_font.dart';
-import '../theme/colors.dart';
-import '../widget/common_text.dart';
-import '../widget/otp_input.dart';
+import '../../../controllers/auth.dart';
+import '../../../controllers/otp.dart';
+import '../../theme/app_font.dart';
+import '../../theme/colors.dart';
+import '../../widget/common_text.dart';
+import '../../widget/otp_input.dart';
 
 class OtpVerify extends StatelessWidget {
   const OtpVerify({Key? key}) : super(key: key);

@@ -37,7 +37,7 @@ class TotalCard extends StatelessWidget {
                   CommonText(text: "TOTAL INCOME", fontWeight: FontWeight.bold),
                   CommonText(
                       text:
-                          "$rupee ${formatAmount(amount: ProfileController.to.totalDetails.totalIncome)}",
+                          "$rupee ${ProfileController.to.totalDetails.totalIncome}",
                       fontWeight: FontWeight.bold),
                 ],
               ),
@@ -48,7 +48,7 @@ class TotalCard extends StatelessWidget {
                       text: "TOTAL EXPENSE", fontWeight: FontWeight.bold),
                   CommonText(
                       text:
-                          "$rupee ${formatAmount(amount: ProfileController.to.totalDetails.totalExpense)}",
+                          "$rupee ${ProfileController.to.totalDetails.totalExpense}",
                       fontWeight: FontWeight.bold),
                 ],
               ),

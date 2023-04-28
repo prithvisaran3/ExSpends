@@ -11,7 +11,7 @@ commonAlertDialog(BuildContext context,
   Widget cancelButton = TextButton(
     child: Container(
       height: 30,
-      width: 60,
+      width: 80,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8), color: AppColors.red),
       child: const Center(
@@ -29,17 +29,14 @@ commonAlertDialog(BuildContext context,
     onPressed: confirmButtonPressed,
     child: Container(
       height: 30,
-      width: 60,
+      width: 80,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: AppColors.primary.withOpacity(0.7)),
       child: const Center(
-        child: CommonText(
-          text: "Confirm",
-         fontColor: AppColors.white),
-        ),
+        child: CommonText(text: "Confirm", fontColor: AppColors.white),
       ),
-
+    ),
   );
 
   // set up the AlertDialog
@@ -73,9 +70,91 @@ commonAlertDialog(BuildContext context,
     content: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        CommonText(text: content, fontSize: 16, fontColor: AppColors.white),
+      ],
+    ),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+commonDeleteDialog(BuildContext context,
+    {required String content, required Function() confirmButtonPressed}) {
+  // set up the buttons
+  Widget cancelButton = TextButton(
+    child: Container(
+      height: 30,
+      width: 80,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8), color: AppColors.black.withOpacity(0.8)),
+      child: const Center(
+        child: CommonText(text: "Go back", fontColor: AppColors.white),
+      ),
+    ),
+    onPressed: () {
+      if (kDebugMode) {
+        print("print");
+      }
+      Get.back();
+    },
+  );
+  Widget continueButton = TextButton(
+    onPressed: confirmButtonPressed,
+    child: Container(
+      height: 30,
+      width: 80,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: AppColors.secondary,
+      ),
+      child: const Center(
+        child: CommonText(text: "Delete", fontColor: AppColors.white),
+      ),
+    ),
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    actionsAlignment: MainAxisAlignment.center,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(15.0),
+      ),
+    ),
+    backgroundColor: Colors.black54,
+    title: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: const [
+        Icon(
+          Icons.warning_amber_rounded,
+          color: Colors.red,
+          size: 30,
+        ),
+        SizedBox(
+          width: 10,
+        ),
         CommonText(
-          text: content,
-          fontSize: 16, fontColor: AppColors.white),
+          text: "Delete?",
+          fontColor: Colors.white,
+          fontSize: AppFontSize.twentyFour,
+        )
+      ],
+    ),
+    content: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CommonText(text: content, fontSize: 16, fontColor: AppColors.white),
       ],
     ),
     actions: [

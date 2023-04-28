@@ -50,21 +50,21 @@ class ExpenseCategoryCard extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     left: 25, right: 25, top: 20, bottom: 20),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      width: 40,
-                      height: 40,
+                      width: 60,
+                      height: 60,
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: AppColors.grey.withOpacity(0.15)),
                       child: Center(
                         child: Image.asset(
                           image,
-                          width: 30,
-                          height: 30,
-                          fit: BoxFit.contain,
+                          // width: 30,
+                          // height: 30,
+                          fit: BoxFit.fill,
                         ),
                       ),
                     ),

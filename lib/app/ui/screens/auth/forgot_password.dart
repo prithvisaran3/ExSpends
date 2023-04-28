@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/auth.dart';
-import '../theme/app_font.dart';
-import '../theme/colors.dart';
-import '../widget/common_loading.dart';
-import '../widget/common_text.dart';
-import '../widget/common_textform_field.dart';
+import '../../../controllers/auth.dart';
+import '../../theme/app_font.dart';
+import '../../theme/colors.dart';
+import '../../widget/common_loading.dart';
+import '../../widget/common_text.dart';
+import '../../widget/common_textform_field.dart';
 import 'otp_verify.dart';
 
 class ForgotPassword extends StatelessWidget {

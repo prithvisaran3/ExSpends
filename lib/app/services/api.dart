@@ -28,12 +28,15 @@ class ApiService {
   //expense
   static const addExpense = "${AppConfig.baseUrl}/api/expense/add";
   static const getExpense = "${AppConfig.baseUrl}/api/expense/get";
+  static const deleteExpense = "${AppConfig.baseUrl}/api/expense/delete";
+
 
   //profile
 
   //income
   static const addIncome = "${AppConfig.baseUrl}/api/income/add";
   static const getIncome = "${AppConfig.baseUrl}/api/income/get";
+  static const deleteIncome = "${AppConfig.baseUrl}/api/income/delete";
 
   //statistics
   static const getStats = "${AppConfig.baseUrl}/api/getStatistics";

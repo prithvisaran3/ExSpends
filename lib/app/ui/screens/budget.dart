@@ -94,7 +94,8 @@ class AddBudget extends StatelessWidget {
                             itemBuilder: (context, int index) {
                               return ExpenseCategoryCard(
                                 index: index,
-                                image: "assets/images/${BudgetController.to.categoryDetails[index].categoryName}.png",
+                                image:
+                                    "assets/images/${BudgetController.to.categoryDetails[index].categoryName}.png",
                                 categoryName:
                                     "${BudgetController.to.categoryDetails[index].categoryName}",
                                 // image:  "${AppConfig.baseUrl}/${BudgetController.to.categoryDetails[index].image}",
@@ -236,28 +237,11 @@ class AddBudget extends StatelessWidget {
                     return null;
                   },
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 40),
                 Obx(
                   () => BudgetController.to.addExpenseLoading == true
                       ? CommonNormalLoading()
-                      :
-                      // SlideAction(
-                      //         onSubmit: () {
-                      //           if (BudgetController.to.expenseKey.currentState!
-                      //               .validate()) {
-                      //             BudgetController.to.addExpense();
-                      //           }
-                      //         },
-                      //         elevation: 15,
-                      //         sliderButtonIconSize: 22,
-                      //         text: "Swipe to confirm",
-                      //         textStyle: TextStyle(
-                      //             fontSize: 20,
-                      //             color: AppColors.primary.withOpacity(0.8)),
-                      //         outerColor: Colors.black,
-                      //         innerColor: AppColors.primary.withOpacity(0.8),
-                      //       ),
-                      Center(
+                      : Center(
                           child: GestureDetector(
                             onTap: () {
                               if (BudgetController.to.expenseKey.currentState!
@@ -266,12 +250,20 @@ class AddBudget extends StatelessWidget {
                               }
                             },
                             child: Container(
-                              width: 180,
-                              padding: EdgeInsets.all(7),
+                              width: 210,
+                              padding: EdgeInsets.all(10),
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                  color: AppColors.black,
-                                  borderRadius: BorderRadius.circular(15)),
+                                color: AppColors.black,
+                                borderRadius: BorderRadius.circular(8),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.primary,
+                                    spreadRadius: 1.3,
+                                    blurRadius: 1,
+                                  ),
+                                ],
+                              ),
                               child: Shimmer.fromColors(
                                 baseColor: AppColors.black,
                                 highlightColor: AppColors.white,
@@ -296,7 +288,7 @@ class AddBudget extends StatelessWidget {
 
   Padding incomePage(Size size) {
     return Padding(
-      padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
+      padding: const EdgeInsets.only( left: 20, right: 20),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Form(
@@ -417,56 +409,43 @@ class AddBudget extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.10),
               Obx(
-                () => BudgetController.to.addIncomeLoading == true
+                    () => BudgetController.to.addIncomeLoading == true
                     ? CommonNormalLoading()
-                    :
-                    // SlideAction(
-                    //         onSubmit: () {
-                    //           if (BudgetController.to.incomeKey.currentState!
-                    //               .validate()) {
-                    //             BudgetController.to.addIncome();
-                    //           }
-                    //           else{
-                    //
-                    //           }
-                    //         },
-                    //   submittedIcon: Icon(Icons.cancel_outlined),
-                    //         elevation: 15,
-                    //         sliderButtonIconSize: 22,
-                    //         text: "Swipe to confirm",
-                    //         textStyle: TextStyle(
-                    //             fontSize: 20,
-                    //             color: AppColors.primary.withOpacity(0.8)),
-                    //         outerColor: Colors.black,
-                    //         innerColor: AppColors.primary.withOpacity(0.8),
-                    //       ),
-                    Center(
-                        child: GestureDetector(
-                          onTap: () {
-                            if (BudgetController.to.incomeKey.currentState!
-                                .validate()) {
-                              BudgetController.to.addIncome();
-                            }
-                          },
-                          child: Container(
-                            width: 180,
-                            padding: EdgeInsets.all(7),
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                color: AppColors.black,
-                                borderRadius: BorderRadius.circular(15)),
-                            child: Shimmer.fromColors(
-                              baseColor: AppColors.black,
-                              highlightColor: AppColors.white,
-                              child: CommonText(
-                                text: "PRESS TO CONFIRM",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                            ),
+                    : Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      if (BudgetController.to.incomeKey.currentState!
+                          .validate()) {
+                        BudgetController.to.addIncome();
+                      }
+                    },
+                    child: Container(
+                      width: 210,
+                      padding: EdgeInsets.all(10),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: AppColors.black,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.primary,
+                            spreadRadius: 1.3,
+                            blurRadius: 1,
                           ),
+                        ],
+                      ),
+                      child: Shimmer.fromColors(
+                        baseColor: AppColors.black,
+                        highlightColor: AppColors.white,
+                        child: CommonText(
+                          text: "PRESS TO CONFIRM",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
                         ),
                       ),
+                    ),
+                  ),
+                ),
               ),
               SizedBox(height: 50),
             ],
@@ -481,7 +460,7 @@ class AddBudget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: size.height * 0.20,
+          height: size.height * 0.15,
           width: size.width,
           decoration: BoxDecoration(
             color: AppColors.black,
@@ -496,12 +475,12 @@ class AddBudget extends StatelessWidget {
           ),
           child: Padding(
             padding:
-                const EdgeInsets.only(top: 50, right: 20, left: 20, bottom: 25),
+                const EdgeInsets.only(top: 55, right: 20, left: 20, bottom: 25),
             child: Column(
               children: [
                 CommonText(
-                    text: "CREATE BUDGET",
-                    fontSize: 20,
+                    text: "Create Budget",
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                     fontColor: AppColors.primary),
               ],

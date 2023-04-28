@@ -1,5 +1,6 @@
 import 'package:expense/app/data/repository/history.dart';
 import 'package:expense/app/ui/widget/common_print.dart';
+import 'package:expense/app/ui/widget/common_toast.dart';
 import 'package:get/get.dart';
 
 import '../data/models/income/getincome.dart';
@@ -58,6 +59,22 @@ class HistoryController extends GetxController {
     _getExpenseDetails.value = value;
   }
 
+
+  var _expenseDeleteLoading=false.obs;
+
+  get expenseDeleteLoading => _expenseDeleteLoading.value;
+
+  set expenseDeleteLoading(value) {
+    _expenseDeleteLoading.value = value;
+  }
+  var _incomeDeleteLoading=false.obs;
+
+  get incomeDeleteLoading => _incomeDeleteLoading.value;
+
+  set incomeDeleteLoading(value) {
+    _incomeDeleteLoading.value = value;
+  }
+
   getIncome() async {
     try {
       var res = await repository.getIncome();
@@ -98,4 +115,74 @@ class HistoryController extends GetxController {
       commonPrint(status: "500", msg: "Exception hit at get expense");
     }
   }
+  
+  deleteExpense({required id})async{
+    expenseDeleteLoading=true;
+    var body={
+      'id':id
+    };
+    try{
+      var res=await repository.deleteExpense(body: body);
+      if(res['status']==200)
+        {
+          expenseDeleteLoading=false;
+          commonPrint(status: res['status'], msg: res['message']);
+          commonToast(msg: res['message']);
+          getExpense();
+        }
+      else if(res['status']==404)
+      {
+        expenseDeleteLoading=false;
+        commonPrint(status: res['status'], msg: res['message']);
+        commonToast(msg: res['message']);
+      }
+      else if(res['status']==401){
+        expenseDeleteLoading=false;
+        commonPrint(status: res['status'], msg: res['message']);
+        commonToast(msg: res['message']);
+      }
+      else{
+        expenseDeleteLoading=false;
+        commonPrint(status: res['status'], msg: "Server Error");
+      }
+    }catch(e){
+      expenseDeleteLoading=false;
+      commonPrint(status: "500", msg: "Exception hit at deleteExpense\n $e");
+    }
+  }
+  deleteIncome({required id})async{
+    incomeDeleteLoading=true;
+    var body={
+      'id':id
+    };
+    try{
+      var res=await repository.deleteIncome(body: body);
+      if(res['status']==200)
+      {
+        incomeDeleteLoading=false;
+        commonPrint(status: res['status'], msg: res['message']);
+        commonToast(msg: res['message']);
+        getIncome();
+      }
+      else if(res['status']==404)
+      {
+        incomeDeleteLoading=false;
+        commonPrint(status: res['status'], msg: res['message']);
+        commonToast(msg: res['message']);
+      }
+      else if(res['status']==401){
+        incomeDeleteLoading=false;
+        commonPrint(status: res['status'], msg: res['message']);
+        commonToast(msg: res['message']);
+      }
+      else{
+        incomeDeleteLoading=false;
+        commonPrint(status: res['status'], msg: "Server Error");
+      }
+    }catch(e){
+      incomeDeleteLoading=false;
+      commonPrint(status: "500", msg: "Exception hit at deleteIncome\n $e");
+    }
+  }
+
 }

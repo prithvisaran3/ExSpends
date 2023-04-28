@@ -1,16 +1,16 @@
-import 'package:expense/app/ui/screens/forgot_password.dart';
-import 'package:expense/app/ui/screens/otp_verify.dart';
+import 'package:expense/app/ui/screens/auth/forgot_password.dart';
+import 'package:expense/app/ui/screens/auth/otp_verify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart';
-import '../../controllers/auth.dart';
-import '../theme/app_font.dart';
-import '../theme/colors.dart';
-import '../widget/common_button.dart';
-import '../widget/common_loading.dart';
-import '../widget/common_text.dart';
-import '../widget/common_textform_field.dart';
+import '../../../controllers/auth.dart';
+import '../../theme/app_font.dart';
+import '../../theme/colors.dart';
+import '../../widget/common_button.dart';
+import '../../widget/common_loading.dart';
+import '../../widget/common_text.dart';
+import '../../widget/common_textform_field.dart';
 import 'register.dart';
 
 class Login extends StatefulWidget {
@@ -106,6 +106,7 @@ class _LoginState extends State<Login> {
                             }
                           },
                           onComplete: () {
+                            FocusNode().unfocus();
                             setState(() {
                               var typing = _controller.findSMI('hands_up');
                               typing.value = false;

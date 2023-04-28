@@ -5,7 +5,7 @@ import '../theme/colors.dart';
 
 commonSnackBar({required title, dynamic msg}) {
   Get.snackbar(
-    title,
+    "$title",
     msg,
     barBlur: 2,
     snackPosition: SnackPosition.BOTTOM,

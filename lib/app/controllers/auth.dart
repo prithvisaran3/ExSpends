@@ -1,11 +1,11 @@
-import 'package:expense/app/ui/screens/login.dart';
+import 'package:expense/app/ui/screens/auth/login.dart';
 import 'package:expense/app/ui/screens/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../data/repository/auth.dart';
 import '../ui/screens/home/main.dart';
-import '../ui/screens/initial.dart';
+import '../ui/screens/auth/initial.dart';
 import '../ui/widget/common_alert.dart';
 import '../ui/widget/common_print.dart';
 import '../ui/widget/common_snackbar.dart';

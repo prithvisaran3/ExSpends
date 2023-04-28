@@ -1,4 +1,4 @@
-import 'package:expense/app/ui/screens/initial.dart';
+import 'package:expense/app/ui/screens/auth/initial.dart';
 import 'package:expense/app/ui/widget/common_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

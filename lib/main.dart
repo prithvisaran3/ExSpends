@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'app/ui/screens/initial.dart';
-import 'app/ui/screens/login.dart';
+import 'app/ui/screens/auth/initial.dart';
+import 'app/ui/screens/auth/login.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override

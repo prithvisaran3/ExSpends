@@ -40,7 +40,7 @@ class PieChartSample3State extends State {
             borderData: FlBorderData(
               show: false,
             ),
-            sectionsSpace: 0,
+            sectionsSpace: 0.5,
             centerSpaceRadius: 0,
             sections: showingSections(),
           ),
@@ -69,11 +69,12 @@ class PieChartSample3State extends State {
                         .to.totalStatistics.categoryExpenseAmount[i].amount) *
                     100 /
                     (StatisticsController.to.totalStatistics.monthlyExpense),
-            title: StatisticsController
-                        .to.totalStatistics.categoryExpenseAmount.length <=
-                    i
-                ? "0"
-                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
+            title: "",
+            // StatisticsController
+            //             .to.totalStatistics.categoryExpenseAmount.length <=
+            //         i
+            //     ? "0"
+            //     : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -99,11 +100,12 @@ class PieChartSample3State extends State {
                         .to.totalStatistics.categoryExpenseAmount[i].amount) *
                     100 /
                     (StatisticsController.to.totalStatistics.monthlyExpense),
-            title: StatisticsController
-                        .to.totalStatistics.categoryExpenseAmount.length <=
-                    i
-                ? "0"
-                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
+            title: "",
+            // StatisticsController
+            //             .to.totalStatistics.categoryExpenseAmount.length <=
+            //         i
+            //     ? "0"
+            //     : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -129,11 +131,12 @@ class PieChartSample3State extends State {
                         .to.totalStatistics.categoryExpenseAmount[i].amount) *
                     100 /
                     (StatisticsController.to.totalStatistics.monthlyExpense),
-            title: StatisticsController
-                        .to.totalStatistics.categoryExpenseAmount.length <=
-                    i
-                ? "0"
-                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
+            title: "",
+            // StatisticsController
+            //             .to.totalStatistics.categoryExpenseAmount.length <=
+            //         i
+            //     ? "0"
+            //     : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -159,11 +162,12 @@ class PieChartSample3State extends State {
                         .to.totalStatistics.categoryExpenseAmount[i].amount) *
                     100 /
                     (StatisticsController.to.totalStatistics.monthlyExpense),
-            title: StatisticsController
-                        .to.totalStatistics.categoryExpenseAmount.length <=
-                    i
-                ? "0"
-                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
+            title: "",
+            // StatisticsController
+            //             .to.totalStatistics.categoryExpenseAmount.length <=
+            //         i
+            //     ? "0"
+            //     : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -189,11 +193,12 @@ class PieChartSample3State extends State {
                         .to.totalStatistics.categoryExpenseAmount[i].amount) *
                     100 /
                     (StatisticsController.to.totalStatistics.monthlyExpense),
-            title: StatisticsController
-                        .to.totalStatistics.categoryExpenseAmount.length <=
-                    i
-                ? "0"
-                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
+            title: "",
+            // StatisticsController
+            //             .to.totalStatistics.categoryExpenseAmount.length <=
+            //         i
+            //     ? "0"
+            //     : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -219,11 +224,12 @@ class PieChartSample3State extends State {
                         .to.totalStatistics.categoryExpenseAmount[i].amount) *
                     100 /
                     (StatisticsController.to.totalStatistics.monthlyExpense),
-            title: StatisticsController
-                        .to.totalStatistics.categoryExpenseAmount.length <=
-                    i
-                ? "0"
-                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
+            title: "",
+            // StatisticsController
+            //             .to.totalStatistics.categoryExpenseAmount.length <=
+            //         i
+            //     ? "0"
+            //     : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -249,11 +255,12 @@ class PieChartSample3State extends State {
                         .to.totalStatistics.categoryExpenseAmount[i].amount) *
                     100 /
                     (StatisticsController.to.totalStatistics.monthlyExpense),
-            title: StatisticsController
-                        .to.totalStatistics.categoryExpenseAmount.length <=
-                    i
-                ? "0"
-                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
+            title: "",
+            // StatisticsController
+            //             .to.totalStatistics.categoryExpenseAmount.length <=
+            //         i
+            //     ? "0"
+            //     : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -279,11 +286,12 @@ class PieChartSample3State extends State {
                         .to.totalStatistics.categoryExpenseAmount[i].amount) *
                     100 /
                     (StatisticsController.to.totalStatistics.monthlyExpense),
-            title: StatisticsController
-                        .to.totalStatistics.categoryExpenseAmount.length <=
-                    i
-                ? "0"
-                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
+            title: "",
+            // StatisticsController
+            //             .to.totalStatistics.categoryExpenseAmount.length <=
+            //         i
+            //     ? "0"
+            //     : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -309,11 +317,13 @@ class PieChartSample3State extends State {
                         .to.totalStatistics.categoryExpenseAmount[i].amount) *
                     100 /
                     (StatisticsController.to.totalStatistics.monthlyExpense),
-            title: StatisticsController
-                        .to.totalStatistics.categoryExpenseAmount.length <=
-                    i
-                ? "0"
-                : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
+            title:
+            "",
+            // StatisticsController
+            //             .to.totalStatistics.categoryExpenseAmount.length <=
+            //         i
+            //     ? "0"
+            //     : "${StatisticsController.to.totalStatistics.categoryExpenseAmount[i].expenseCategory}",
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,

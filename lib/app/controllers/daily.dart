@@ -83,6 +83,10 @@ class DailyController extends GetxController {
           dailyloading = false;
           commonPrint(
               status: res.status, msg: "Daily Transactions got successfully but no data");
+
+          grandtotaldaily=0;
+          dailytotal.dailyTotalIncome=0;
+          dailytotal.dailyTotalExpense=0;
         } else {
           dailyEmpty=false;
           dailyloading = false;

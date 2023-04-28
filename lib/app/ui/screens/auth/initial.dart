@@ -1,8 +1,8 @@
-import 'package:expense/app/ui/screens/onboarding.dart';
+import 'package:expense/app/ui/screens/auth/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controllers/auth.dart';
-import 'home/main.dart';
+import '../../../controllers/auth.dart';
+import '../home/main.dart';
 import 'login.dart';
 
 class Initial extends StatefulWidget {

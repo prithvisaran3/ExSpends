@@ -17,13 +17,18 @@ class Settings extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                Container(
+                  child: Center(child: Image.asset("assets/logo/L2.png",height: 200,)),
+                ),
+
+
                 CommonText(
                   text: "In-app Features",
                   fontColor: Colors.white,
@@ -86,8 +91,8 @@ class Settings extends StatelessWidget {
                           onPressed: () {
                             successAlert(context, content: "Coming soon...",
                                 confirmButtonPressed: () {
-                                  Get.back();
-                                });
+                              Get.back();
+                            });
                           }),
                       SettingsMenuCard(
                           icon: Icons.thumb_up_sharp,
@@ -95,8 +100,8 @@ class Settings extends StatelessWidget {
                           onPressed: () {
                             successAlert(context, content: "Coming soon...",
                                 confirmButtonPressed: () {
-                                  Get.back();
-                                });
+                              Get.back();
+                            });
                           }),
                     ],
                   ),
@@ -153,6 +158,7 @@ class Settings extends StatelessWidget {
                     ],
                   ),
                 ),
+                SizedBox(height: 40),
               ],
             ),
           ),

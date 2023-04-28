@@ -1,5 +1,5 @@
 import 'package:expense/app/controllers/profile.dart';
-import 'package:expense/app/ui/screens/onboarding.dart';
+import 'package:expense/app/ui/screens/auth/onboarding.dart';
 import 'package:expense/app/ui/screens/profile/settings.dart';
 import 'package:expense/app/ui/widget/common_alert.dart';
 import 'package:expense/app/ui/widget/common_snackbar.dart';
@@ -37,10 +37,11 @@ class Profile extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(
-                                  top: 360, left: 20, right: 20),
+                                  top: 450, left: 20, right: 20),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
+
                                 children: [
                                   Column(
                                     crossAxisAlignment:
@@ -71,6 +72,7 @@ class Profile extends StatelessWidget {
                                     ],
                                   ),
                                   Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       CommonText(
                                           text:
@@ -120,7 +122,7 @@ class Profile extends StatelessWidget {
                                 ]),
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  top: 50, right: 20, left: 20, bottom: 25),
+                                  top: 55, right: 20, left: 20, bottom: 25),
                               child: Column(
                                 children: [
                                   Row(

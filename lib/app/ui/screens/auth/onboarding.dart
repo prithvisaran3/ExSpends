@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../controllers/auth.dart';
-import '../theme/colors.dart';
+import '../../../controllers/auth.dart';
+
+import '../../theme/colors.dart';
+
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({Key? key}) : super(key: key);
