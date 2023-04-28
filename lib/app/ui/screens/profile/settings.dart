@@ -1,9 +1,9 @@
-
 import 'package:expense/app/ui/theme/colors.dart';
 import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:expense/app/ui/widget/profile/settings_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../controllers/profile.dart';
 import '../../../utility/utility.dart';
@@ -24,11 +24,22 @@ class Settings extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Container(
-                  child: Center(child: Image.asset("assets/logo/L2.png",height: 200,)),
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Icon(
+                    Icons.arrow_back_ios_new,
+                    color: AppColors.primary,
+                  ),
                 ),
-
-
+                Container(
+                  child: Center(
+                      child: Image.asset(
+                    "assets/logo/L2.png",
+                    height: 200,
+                  )),
+                ),
                 CommonText(
                   text: "In-app Features",
                   fontColor: Colors.white,

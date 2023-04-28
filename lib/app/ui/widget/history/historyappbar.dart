@@ -23,11 +23,11 @@ class HistoryAppBar extends StatelessWidget {
       ]),
       child: Padding(
         padding: const EdgeInsets.only(
-            top: 55, right: 20, left: 20, bottom: 25),
+            top: 60, right: 20, left: 20, bottom: 25),
         child: Column(
           children: [
             CommonText(
-              text: "HISTORY",
+              text: "History",
               fontSize: 25,
               fontWeight: FontWeight.bold,
               fontColor: AppColors.primary,

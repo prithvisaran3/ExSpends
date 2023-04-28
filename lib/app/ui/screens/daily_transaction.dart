@@ -32,7 +32,7 @@ class DailyTransactions extends StatelessWidget {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsets.only(top: 250, left: 20, right: 20),
+                        const EdgeInsets.only(top: 230, left: 20, right: 20),
                     child: Obx(
                       () => DailyController.to.dailyloading == true
                           ? CommonNormalLoading()

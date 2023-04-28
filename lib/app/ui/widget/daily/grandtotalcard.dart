@@ -78,11 +78,13 @@ class GrandTotalCard extends StatelessWidget {
                         fontSize: 18,
                         fontColor: AppColors.secondary,
                         fontWeight: FontWeight.bold),
-                    Divider(
-                      thickness: 2,
-                      color: AppColors.white,
-                      height: 20,
+                    SizedBox(height: 5),
+                    Container(
+                      height: 2,
+                      width: Get.width/3.5,
+                      color: AppColors.white.withOpacity(0.7),
                     ),
+                    SizedBox(height: 5),
                     CommonText(
                         text: DailyController
                             .to.dailytotal.dailyTotalIncome !=

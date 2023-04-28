@@ -7,7 +7,9 @@ import 'package:expense/app/ui/widget/profile/totalcard.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import '../../../config/app-config.dart';
 import '../../theme/colors.dart';
 
 class Profile extends StatelessWidget {
@@ -33,6 +35,7 @@ class Profile extends StatelessWidget {
                       SingleChildScrollView(
                         child: Column(
                           children: [
+                            SizedBox(height: 20),
                             Padding(
                               padding: const EdgeInsets.only(
                                   top: 450, left: 20, right: 20),
@@ -40,15 +43,15 @@ class Profile extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
+
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      SizedBox(height: 20),
                                       CommonText(
                                           text: "Name",
                                           fontWeight: FontWeight.w500,
-                                          fontSize: 13,
+                                          fontSize: 18,
                                           fontColor: AppColors.white),
                                       SizedBox(
                                         height: 20,
@@ -56,7 +59,7 @@ class Profile extends StatelessWidget {
                                       CommonText(
                                           text: "Phone Number",
                                           fontWeight: FontWeight.w500,
-                                          fontSize: 13,
+                                          fontSize: 18,
                                           fontColor: AppColors.white),
                                       SizedBox(
                                         height: 20,
@@ -64,7 +67,7 @@ class Profile extends StatelessWidget {
                                       CommonText(
                                           text: "Email",
                                           fontWeight: FontWeight.w500,
-                                          fontSize: 13,
+                                          fontSize: 18,
                                           fontColor: AppColors.white),
                                     ],
                                   ),
@@ -76,7 +79,7 @@ class Profile extends StatelessWidget {
                                           text:
                                               "${ProfileController.to.profileDetails.name}",
                                           fontWeight: FontWeight.w500,
-                                          fontSize: 13,
+                                          fontSize: 18,
                                           fontColor: Color(0xff67727d)),
                                       SizedBox(
                                         height: 20,
@@ -85,7 +88,7 @@ class Profile extends StatelessWidget {
                                           text:
                                               "${ProfileController.to.profileDetails.phone}",
                                           fontWeight: FontWeight.w500,
-                                          fontSize: 13,
+                                          fontSize: 18,
                                           fontColor: Color(0xff67727d)),
                                       SizedBox(
                                         height: 20,
@@ -94,7 +97,7 @@ class Profile extends StatelessWidget {
                                           text:
                                               "${ProfileController.to.profileDetails.email}",
                                           fontWeight: FontWeight.w500,
-                                          fontSize: 13,
+                                          fontSize: 18,
                                           fontColor: Color(0xff67727d)),
                                     ],
                                   ),
@@ -120,25 +123,28 @@ class Profile extends StatelessWidget {
                                 ]),
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  top: 55, right: 20, left: 20, bottom: 25),
+                                  top: 60, right: 20, left: 20, bottom: 25),
                               child: Column(
                                 children: [
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      CommonText(
-                                        text: "Profile",
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold,
-                                        fontColor: AppColors.primary,
+                                      Padding(
+                                        padding:  EdgeInsets.only(left: 10.0),
+                                        child: CommonText(
+                                          text: "Profile",
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold,
+                                          fontColor: AppColors.primary,
+                                        ),
                                       ),
                                       GestureDetector(
                                         onTap: () {
                                           Get.to(() => Settings());
                                         },
                                         child: Icon(
-                                          Icons.settings,
+                                          Ionicons.settings,
                                           color: AppColors.primary,
                                         ),
                                       )
@@ -158,14 +164,14 @@ class Profile extends StatelessWidget {
                                                 top: 8,
                                                 left: 8,
                                                 child: Container(
-                                                  width: 85,
-                                                  height: 85,
+                                                  // width: 85,
+                                                  // height: 85,
                                                   decoration: BoxDecoration(
                                                       shape: BoxShape.circle,
                                                       image: DecorationImage(
                                                           image: NetworkImage(
-                                                              "https://images.unsplash.com/photo-1532170579297-281918c8ae72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1184&q=80"),
-                                                          fit: BoxFit.cover)),
+                                                              "${AppConfig.noImage}"),
+                                                          fit: BoxFit.fill)),
                                                 ),
                                               ),
                                               RotatedBox(

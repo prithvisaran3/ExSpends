@@ -2,6 +2,7 @@ import 'package:expense/app/controllers/main.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:get/get.dart';
+import 'package:ionicons/ionicons.dart';
 import '../../theme/colors.dart';
 import '../budget.dart';
 import '../daily_transaction.dart';
@@ -20,10 +21,10 @@ class HomeMain extends StatelessWidget {
   ];
 
   List<IconData> iconItems = [
-    Icons.calendar_month,
-    Icons.start,
-    Icons.wallet,
-    Icons.person,
+    Ionicons.calendar_outline,
+    Icons.auto_graph,
+    Ionicons.document_text,
+    Ionicons.person_outline,
   ];
 
   @override

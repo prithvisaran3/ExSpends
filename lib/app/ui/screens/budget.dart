@@ -460,7 +460,7 @@ class AddBudget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: size.height * 0.15,
+          height: size.height * 0.16,
           width: size.width,
           decoration: BoxDecoration(
             color: AppColors.black,
@@ -475,7 +475,7 @@ class AddBudget extends StatelessWidget {
           ),
           child: Padding(
             padding:
-                const EdgeInsets.only(top: 55, right: 20, left: 20, bottom: 25),
+                const EdgeInsets.only(top: 60, right: 20, left: 20, bottom: 25),
             child: Column(
               children: [
                 CommonText(

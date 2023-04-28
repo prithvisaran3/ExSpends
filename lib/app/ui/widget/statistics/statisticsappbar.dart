@@ -13,7 +13,7 @@ class StatisticsAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     var size=MediaQuery.of(context).size;
     return  Container(
-      height: Get.height * 0.27,
+      height: Get.height * 0.28,
       decoration:
       BoxDecoration(color: AppColors.black, boxShadow: [
         BoxShadow(
@@ -25,7 +25,7 @@ class StatisticsAppBar extends StatelessWidget {
       ]),
       child: Padding(
         padding: const EdgeInsets.only(
-            top: 55, right: 20, left: 20, bottom: 25),
+            top: 60, right: 20, left: 20, bottom: 25),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
