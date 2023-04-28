@@ -18,7 +18,7 @@ class DailyTile extends StatelessWidget {
         commonDeleteDialog(context, content: "Do you want to delete?", confirmButtonPressed: (){});
       },
       child: Container(
-        height: Get.height*0.37,
+        height: Get.height*0.40,
         child: SingleChildScrollView(
           child: Column(
             children: List.generate(

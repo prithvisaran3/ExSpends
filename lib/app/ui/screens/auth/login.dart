@@ -1,11 +1,11 @@
 import 'package:expense/app/ui/screens/auth/forgot_password.dart';
-import 'package:expense/app/ui/screens/auth/otp_verify.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart';
 import '../../../controllers/auth.dart';
-import '../../theme/app_font.dart';
+
 import '../../theme/colors.dart';
 import '../../widget/common_button.dart';
 import '../../widget/common_loading.dart';
@@ -74,7 +74,7 @@ class _LoginState extends State<Login> {
                   // ),
 
                   Container(
-                      height: Get.height * 0.4,
+                      height: Get.height * 0.35,
                       child: RiveAnimation.asset('assets/rive/login_bear.riv',
                           onInit: _onInit)),
                   SizedBox(height: 10),

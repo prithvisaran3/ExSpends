@@ -2,6 +2,7 @@ import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../controllers/auth.dart';
 
@@ -59,8 +60,8 @@ class _OnBoardingScreenState extends State<OnBoarding> {
               InkWell(
                 onTap: () => onIntroEnd(),
                 child: Container(
-                  height: media.width * 0.08,
-                  width: media.width * 0.15,
+                  height: media.width * 0.15,
+                  width: media.width * 0.20,
                   margin: const EdgeInsets.only(right: 10.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
@@ -71,13 +72,13 @@ class _OnBoardingScreenState extends State<OnBoarding> {
                     child: CommonText(
                       text: 'Skip',
                       fontColor: AppColors.primary,
-                      fontSize: 16.0,
+                      fontSize: 20.0,
                     ),
                   ),
                 ),
               ),
               SizedBox(
-                height: 450,
+                height: media.height*0.72,
                 child: PageView(
                   physics: const ClampingScrollPhysics(),
                   controller: pageController,
@@ -89,18 +90,18 @@ class _OnBoardingScreenState extends State<OnBoarding> {
                   children: [
                     buildSlider(
                         title: "Welcome",
-                        content: "Onboard with us get more earnings",
-                        image: "otp"),
+                        content: "Welcome aboard! Let's track your expenses together.",
+                        image: "welcome"),
                     buildSlider(
-                        title: "Get more commission",
+                        title: "Online Expense Tracking",
                         content:
-                            "You will get more commission compare to other providers",
-                        image: "otp"),
+                            "Say goodbye to manual expense tracking",
+                        image: "online"),
                     buildSlider(
-                        title: "Verified & Assured Trips",
+                        title: "High Quality User Experience",
                         content:
-                            "All the trips are verified and confirmed trips for the admin",
-                        image: "otp"),
+                            "Let's get started with your expense management journey",
+                        image: "quality"),
                   ],
                 ),
               ),
@@ -113,28 +114,33 @@ class _OnBoardingScreenState extends State<OnBoarding> {
               ),
 
               currentPage == numPages - 1
-                  ? GestureDetector(
+                  ? Column(
+                    children: [
+                      SizedBox(height: 30),
+                      GestureDetector(
                 onTap: () => onIntroEnd(),
                 child: Container(
-                  height: media.width * 0.10,
-                  margin: const EdgeInsets.all(20),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: AppColors.primary,
-                  ),
-                  child:  Center(
-                    child: Text(
-                      'Get started',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
+                      height: media.width * 0.10,
+                      margin: const EdgeInsets.all(20),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: AppColors.primary,
                       ),
-                    ),
-                  ),
+                      child:  Center(
+                        child: Text(
+                          'Get started',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                 ),
-              )
+              ),
+                    ],
+                  )
                   : const SizedBox(),
             ],
           ),
@@ -152,7 +158,7 @@ class _OnBoardingScreenState extends State<OnBoarding> {
         CommonText(
           text: title,
           textAlign: TextAlign.center,
-          fontSize: 24, fontWeight: FontWeight.bold,fontColor: AppColors.primary,
+          fontSize: 25, fontWeight: FontWeight.bold,fontColor: AppColors.primary.withOpacity(0.8),
         ),
         const SizedBox(height: 15.0),
         Padding(
@@ -160,7 +166,7 @@ class _OnBoardingScreenState extends State<OnBoarding> {
           child: CommonText(
             text: content,
             textAlign: TextAlign.center,
-           fontSize: 18,fontColor: AppColors.primary,
+           fontSize: 18,fontColor: AppColors.white.withOpacity(0.7),
           ),
         )
       ],
@@ -170,7 +176,7 @@ class _OnBoardingScreenState extends State<OnBoarding> {
   SvgPicture buildSvgPicture({required imgSrc}) {
     return SvgPicture.asset(
       "assets/images/$imgSrc.svg",
-      height: 300,
+      height: Get.height*0.55,
     );
   }
 }

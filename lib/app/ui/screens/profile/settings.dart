@@ -1,4 +1,4 @@
-import 'package:expense/app/ui/theme/app_font.dart';
+
 import 'package:expense/app/ui/theme/colors.dart';
 import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:expense/app/ui/widget/profile/settings_card.dart';

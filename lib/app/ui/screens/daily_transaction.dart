@@ -1,14 +1,13 @@
 import 'package:expense/app/controllers/daily.dart';
 import 'package:expense/app/ui/theme/colors.dart';
-import 'package:date_picker_timeline/date_picker_widget.dart';
+
 import 'package:expense/app/ui/widget/common_loading.dart';
 import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:expense/app/ui/widget/daily/daily_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../json/daily_json.dart';
-import '../../utility/utility.dart';
+
 import '../widget/daily/dailyappbar.dart';
 import '../widget/daily/grandtotalcard.dart';
 
@@ -33,7 +32,7 @@ class DailyTransactions extends StatelessWidget {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsets.only(top: 240, left: 20, right: 20),
+                        const EdgeInsets.only(top: 250, left: 20, right: 20),
                     child: Obx(
                       () => DailyController.to.dailyloading == true
                           ? CommonNormalLoading()

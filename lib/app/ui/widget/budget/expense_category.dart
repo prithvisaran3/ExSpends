@@ -1,4 +1,4 @@
-import 'package:expense/app/config/app-config.dart';
+
 import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

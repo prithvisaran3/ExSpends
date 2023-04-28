@@ -1,16 +1,14 @@
 import 'package:expense/app/controllers/profile.dart';
-import 'package:expense/app/ui/screens/auth/onboarding.dart';
+
 import 'package:expense/app/ui/screens/profile/settings.dart';
-import 'package:expense/app/ui/widget/common_alert.dart';
-import 'package:expense/app/ui/widget/common_snackbar.dart';
+
 import 'package:expense/app/ui/widget/common_text.dart';
 import 'package:expense/app/ui/widget/profile/totalcard.dart';
-import 'package:expense/app/utility/utility.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import '../../theme/colors.dart';
-import '../../widget/common_button.dart';
 
 class Profile extends StatelessWidget {
   Profile({Key? key}) : super(key: key);
@@ -41,7 +39,6 @@ class Profile extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
-
                                 children: [
                                   Column(
                                     crossAxisAlignment:
@@ -72,7 +69,8 @@ class Profile extends StatelessWidget {
                                     ],
                                   ),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       CommonText(
                                           text:

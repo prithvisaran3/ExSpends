@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 
-import '../theme/app_font.dart';
 import '../theme/colors.dart';
 import 'common_text.dart';
 
@@ -21,7 +20,7 @@ class CommonButton extends StatelessWidget {
         margin: const EdgeInsets.all(10.0),
 
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50.0),
+          borderRadius: BorderRadius.circular(40.0),
           color: AppColors.primary,
         ),
         child: Center(
@@ -30,7 +29,7 @@ class CommonButton extends StatelessWidget {
             child: CommonText(
               text: text,
               fontColor: AppColors.black,
-              fontSize: 15,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
