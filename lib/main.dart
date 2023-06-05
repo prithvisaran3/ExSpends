@@ -1,8 +1,9 @@
 import 'dart:io';
+import 'package:expense/app/ui/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'app/ui/screens/auth/initial.dart';
-import 'app/ui/screens/auth/login.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -14,6 +15,11 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: AppColors.black,
+    ),
+  );
   HttpOverrides.global = MyHttpOverrides();
   runApp(MyApp());
 }
@@ -23,9 +29,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Initial(),
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+          FocusManager.instance.primaryFocus!.unfocus();
+        }
+      },
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Initial(),
+      ),
     );
   }
 }

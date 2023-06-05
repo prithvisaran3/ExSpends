@@ -30,6 +30,7 @@ class ProfileController extends GetxController {
     _totalDetails.value = value;
   }
 
+
   getProfile() async {
     try {
       var res = await repository.getProfile();

@@ -13,6 +13,14 @@ commonSnackBar({required title, dynamic msg}) {
     overlayBlur: 2,
   );
 }
+loginSnackBar({required title, dynamic msg}) {
+  Get.snackbar(
+    "$title",
+    msg,
+    snackPosition: SnackPosition.BOTTOM,
+    backgroundColor: AppColors.primary,
+  );
+}
 
 alertSnackBar({required msg}) {
   Get.snackbar("Alert", "$msg",

@@ -11,11 +11,10 @@ class StatisticsAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size=MediaQuery.of(context).size;
-    return  Container(
+    var size = MediaQuery.of(context).size;
+    return Container(
       height: Get.height * 0.28,
-      decoration:
-      BoxDecoration(color: AppColors.black, boxShadow: [
+      decoration: BoxDecoration(color: AppColors.black, boxShadow: [
         BoxShadow(
           color: AppColors.grey.withOpacity(0.01),
           spreadRadius: 10,
@@ -24,8 +23,8 @@ class StatisticsAppBar extends StatelessWidget {
         ),
       ]),
       child: Padding(
-        padding: const EdgeInsets.only(
-            top: 60, right: 20, left: 20, bottom: 25),
+        padding:
+            const EdgeInsets.only(top: 60, right: 20, left: 20, bottom: 25),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -49,107 +48,73 @@ class StatisticsAppBar extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, int index) {
                   return Obx(
-                        () => GestureDetector(
+                    () => GestureDetector(
                       onTap: () {
-                        StatisticsController.to.activeDay =
-                            index;
-                        StatisticsController
-                            .to.isSelectMonth =
-                        yearAndMonth[index]['month'];
+                        StatisticsController.to.activeDay = index;
+                        StatisticsController.to.isSelectMonth =
+                            yearAndMonth[index]['month'];
                       },
                       child: Container(
-                        width: (MediaQuery.of(context)
-                            .size
-                            .width -
-                            40) /
-                            6,
+                        width: (MediaQuery.of(context).size.width - 40) / 6,
                         child: Column(
                           children: [
                             GestureDetector(
                               onTap: () {
-                                StatisticsController
-                                    .to.isSelectYear =
-                                yearAndMonth[index]
-                                ['year'];
+                                StatisticsController.to.isSelectYear =
+                                    yearAndMonth[index]['year'];
                                 print(
                                     "Selected Year is : ${StatisticsController.to.isSelectYear} Selected Month is : ${StatisticsController.to.isSelectMonth}");
-                                StatisticsController.to
-                                    .getStatistics();
+                                StatisticsController.to.getStatistics();
                               },
                               child: CommonText(
-                                  text: yearAndMonth[index]
-                                  ['year'],
+                                  text: yearAndMonth[index]['year'],
                                   fontSize: 15,
-                                  fontColor: StatisticsController
-                                      .to
-                                      .isSelectYear ==
-                                      yearAndMonth[index]
-                                      ['year']
-                                      ? AppColors.primary
-                                      : AppColors.white),
+                                  fontWeight: FontWeight.bold,
+                                  fontColor:
+                                      StatisticsController.to.isSelectYear ==
+                                              yearAndMonth[index]['year']
+                                          ? AppColors.primary
+                                          : AppColors.white),
                             ),
                             SizedBox(
                               height: 10,
                             ),
                             GestureDetector(
                               onTap: () {
-                                StatisticsController
-                                    .to.activeDay = index;
+                                StatisticsController.to.activeDay = index;
 
-                                StatisticsController
-                                    .to.isSelectMonth =
-                                yearAndMonth[index]
-                                ['month'];
+                                StatisticsController.to.isSelectMonth =
+                                    yearAndMonth[index]['month'];
                                 print(
                                     "Selected Year is : ${StatisticsController.to.isSelectYear} Selected Month is : ${StatisticsController.to.isSelectMonth}");
-                                StatisticsController.to
-                                    .getStatistics();
+                                StatisticsController.to.getStatistics();
                               },
                               child: Container(
                                 decoration: BoxDecoration(
-                                    color: StatisticsController
-                                        .to
-                                        .activeDay ==
-                                        index
-                                        ? AppColors.primary
-                                        : AppColors.white
-                                        .withOpacity(
-                                        0.05),
-                                    borderRadius:
-                                    BorderRadius.circular(
-                                        5),
-                                    border: Border.all(
-                                        color: StatisticsController
-                                            .to
-                                            .activeDay ==
+                                    color: StatisticsController.to.activeDay ==
                                             index
-                                            ? AppColors
-                                            .primary
-                                            : AppColors.white
-                                            .withOpacity(
-                                            0.3))),
+                                        ? AppColors.primary
+                                        : AppColors.white.withOpacity(0.05),
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(
+                                        color:
+                                            StatisticsController.to.activeDay ==
+                                                    index
+                                                ? AppColors.primary
+                                                : AppColors.white
+                                                    .withOpacity(0.3))),
                                 child: Padding(
-                                  padding:
-                                  const EdgeInsets.only(
-                                      left: 12,
-                                      right: 12,
-                                      top: 7,
-                                      bottom: 7),
+                                  padding: const EdgeInsets.only(
+                                      left: 12, right: 12, top: 7, bottom: 7),
                                   child: CommonText(
-                                      text: yearAndMonth[
-                                      index]['month'],
+                                      text: yearAndMonth[index]['month'],
                                       fontSize: 10,
-                                      fontWeight:
-                                      FontWeight.w600,
+                                      fontWeight: FontWeight.bold,
                                       fontColor:
-                                      StatisticsController
-                                          .to
-                                          .activeDay ==
-                                          index
-                                          ? AppColors
-                                          .black
-                                          : AppColors
-                                          .white),
+                                          StatisticsController.to.activeDay ==
+                                                  index
+                                              ? AppColors.black
+                                              : AppColors.white),
                                 ),
                               ),
                             )

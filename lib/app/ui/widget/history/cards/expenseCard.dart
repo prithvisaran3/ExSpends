@@ -9,7 +9,8 @@ class Ecard extends StatelessWidget {
       {Key? key,
       required this.ename,
       required this.date,
-      required this.eamount, required this.onLongPress})
+      required this.eamount,
+      required this.onLongPress})
       : super(key: key);
   final String date;
   final String ename;
@@ -26,6 +27,7 @@ class Ecard extends StatelessWidget {
             onLongPress: onLongPress,
             child: Container(
               padding: EdgeInsets.all(8),
+              // margin: EdgeInsets.symmetric(vertical: 10),
               height: 50,
               decoration: BoxDecoration(
                 color: Colors.grey.shade800,

@@ -4,8 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../ui/theme/colors.dart';
 
-var rupee="\u20B9";
-
+var rupee = "\u20B9";
 
 String formatAmount({required amount}) {
   var formatter = NumberFormat('#,##,###');
@@ -49,7 +48,6 @@ String monthNameToMonthNumberForAnalytics({required String date}) {
   return outputDate;
 }
 
-
 String dateSeparate({required String date}) {
   var dateTime = DateFormat("dd-MM-yy").parse(date, true);
   // var localTime = dateTime.toLocal();
@@ -81,6 +79,7 @@ String getIsoToLocalTime({required String date}) {
   var outputDate = outputFormat.format(localTime);
   return outputDate;
 }
+
 String SendIsoToLocalDate({required String date}) {
   var dateTime = DateFormat("yyyy-MM-dd HH:mm:ss").parse(date, true);
   // var localTime = dateTime.toLocal();
@@ -96,6 +95,7 @@ String getIsoToLocalDate({required String date}) {
   var outputDate = outputFormat.format(dateTime);
   return outputDate;
 }
+
 String getIsoToLocalDateDaily({required date}) {
   var dateTime = DateFormat("yyyy-MM-dd HH:mm:ss").parse(date, true);
   // var localTime = dateTime.toLocal();
@@ -133,6 +133,7 @@ String months({required month}) {
   }
   return m;
 }
+
 String monthsNameToNumber({required month}) {
   var m = "";
   if (month == "Jan") {
@@ -165,14 +166,16 @@ String monthsNameToNumber({required month}) {
 
 String addSpace({required String text}) {
   var t =
-  text.replaceAllMapped(RegExp(r".{4}"), (match) => "${match.group(0)} ");
+      text.replaceAllMapped(RegExp(r".{4}"), (match) => "${match.group(0)} ");
   return t;
 }
+
 String getCurrentDate() {
   var currentTime = DateTime.now();
   var time = DateFormat('dd-MM-yyyy').format(currentTime);
   return time;
 }
+
 String monthyearSeparate({required String date}) {
   var dateTime = DateFormat("dd-MM-yy").parse(date, true);
   // var localTime = dateTime.toLocal();

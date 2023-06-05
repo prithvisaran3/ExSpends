@@ -63,6 +63,13 @@ class BudgetController extends GetxController {
   set isCategoryEmpty(value) {
     _isCategoryEmpty.value = value;
   }
+  var _isCategorySelect=false.obs;
+
+  get isCategorySelect => _isCategorySelect.value;
+
+  set isCategorySelect(value) {
+    _isCategorySelect.value = value;
+  }
 
   var _selectedCategory = "".obs;
 

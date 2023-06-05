@@ -167,7 +167,7 @@ class Settings extends StatelessWidget {
                           icon: Icons.logout,
                           name: "Logout",
                           onPressed: () {
-                            commonAlertDialog(context, content: "Are you sure?",
+                            commonAlertDialog(context, content: "Logout?",
                                 confirmButtonPressed: () {
                               ProfileController.to.logout();
                               Get.back();

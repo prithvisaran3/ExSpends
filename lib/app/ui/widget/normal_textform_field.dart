@@ -39,7 +39,7 @@ class CommonNormalTextFormField extends StatelessWidget {
         keyboardType: keyboardType,
         validator: validator,
         cursorColor: AppColors.black,
-        style: TextStyle(fontSize: 17, color: AppColors.primary),
+        style: TextStyle(fontSize: 17, color: AppColors.primary,fontWeight: FontWeight.bold),
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: TextStyle(

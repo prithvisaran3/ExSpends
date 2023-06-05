@@ -22,43 +22,47 @@ class IncomeExpenseCard extends StatelessWidget {
       padding: const EdgeInsets.only(
         left: 10,
       ),
-      child: Obx(() => GestureDetector(
-            onTap: onPressed,
-            child: Container(
-              margin: EdgeInsets.only(
-                left: 30,
-              ),
-              width: 130,
-              height: 40,
-              decoration: BoxDecoration(
-                color: AppColors.black,
-                border: Border.all(
-                    width: 2,
-                    color: BudgetController.to.selectedIndex == index
-                        ? AppColors.primary
-                        : Colors.transparent),
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.grey.withOpacity(0.01),
-                    spreadRadius: 10,
-                    blurRadius: 3,
-                    // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Center(
-                child: CommonText(
-                  text: cardName,
-                  fontColor: BudgetController.to.selectedIndex == index
+      child: Obx(
+        () => GestureDetector(
+          onTap: onPressed,
+          child: Container(
+            margin: EdgeInsets.symmetric(
+              horizontal: 30,
+              vertical: 10,
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            // width: 130,
+            // height: 40,
+            decoration: BoxDecoration(
+              color: AppColors.black,
+              border: Border.all(
+                  width: 2,
+                  color: BudgetController.to.selectedIndex == index
                       ? AppColors.primary
-                      : AppColors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                      : Colors.transparent),
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.grey.withOpacity(0.01),
+                  spreadRadius: 10,
+                  blurRadius: 3,
+                  // changes position of shadow
                 ),
+              ],
+            ),
+            child: Center(
+              child: CommonText(
+                text: cardName,
+                fontColor: BudgetController.to.selectedIndex == index
+                    ? AppColors.primary
+                    : AppColors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
               ),
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

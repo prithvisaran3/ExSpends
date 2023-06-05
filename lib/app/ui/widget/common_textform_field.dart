@@ -45,7 +45,7 @@ class _CommonTextFormFieldState extends State<CommonTextFormField> {
           fontWeight: FontWeight.bold,
           fontSize: 14,
         ),
-        textAlign: TextAlign.center,
+        // textAlign: TextAlign.center,
         textAlignVertical: TextAlignVertical.center,
         validator: widget.validator,
         onChanged: widget.onChanged,

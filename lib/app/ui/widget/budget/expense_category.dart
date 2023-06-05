@@ -71,7 +71,7 @@ class ExpenseCategoryCard extends StatelessWidget {
                     CommonText(
                       text: categoryName,
                       fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                      fontSize: categoryName.length>9?13:18,
                       fontColor: AppColors.white,
                     )
                   ],

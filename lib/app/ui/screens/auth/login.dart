@@ -109,7 +109,12 @@ class _LoginState extends State<Login> {
                               var typing = _controller.findSMI('hands_up');
                               typing.value = false;
                             });
-                            FocusNode().unfocus();
+                            FocusScopeNode currentFocus =
+                                FocusScope.of(context);
+                            if (!currentFocus.hasPrimaryFocus) {
+                              currentFocus.unfocus();
+                              FocusManager.instance.primaryFocus!.unfocus();
+                            }
                           },
                           controller: AuthController.to.lPassword,
                           prefixIcon:
@@ -153,10 +158,12 @@ class _LoginState extends State<Login> {
                                 AuthController.to.login();
                                 if (AuthController.to.loginErrorAnimation ==
                                     true) {
-                                  setState(() {
-                                    var error = _controller.findSMI('fail');
-                                    error.fire();
-                                  });
+                                  setState(
+                                    () {
+                                      var error = _controller.findSMI('fail');
+                                      error.fire();
+                                    },
+                                  );
                                 }
                               }
                             },

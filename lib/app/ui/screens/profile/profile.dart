@@ -9,11 +9,32 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:rive/rive.dart';
 import '../../../config/app-config.dart';
 import '../../theme/colors.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   Profile({Key? key}) : super(key: key);
+
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  late StateMachineController _cloudycontroller;
+
+  void _onInit(Artboard art) {
+    var ctrl = StateMachineController.fromArtboard(art, 'Cloudy')
+        as StateMachineController;
+    ctrl.isActive = true;
+    art.addController(ctrl);
+
+    setState(
+      () {
+        _cloudycontroller = ctrl;
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +64,6 @@ class Profile extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -131,7 +151,7 @@ class Profile extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
-                                        padding:  EdgeInsets.only(left: 10.0),
+                                        padding: EdgeInsets.only(left: 10.0),
                                         child: CommonText(
                                           text: "Profile",
                                           fontSize: 25,
@@ -155,60 +175,25 @@ class Profile extends StatelessWidget {
                                   ),
                                   Row(
                                     children: [
+                                      cloudyProfile(size),
                                       Container(
-                                        width: (size.width - 40) * 0.4,
-                                        child: Container(
-                                          child: Stack(
-                                            children: [
-                                              Positioned(
-                                                top: 8,
-                                                left: 8,
-                                                child: Container(
-                                                  // width: 85,
-                                                  // height: 85,
-                                                  decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                      image: DecorationImage(
-                                                          image: NetworkImage(
-                                                              "${AppConfig.noImage}"),
-                                                          fit: BoxFit.fill)),
-                                                ),
-                                              ),
-                                              RotatedBox(
-                                                quarterTurns: -2,
-                                                child: CircularPercentIndicator(
-                                                    animation: true,
-                                                    animationDuration: 2000,
-                                                    circularStrokeCap:
-                                                        CircularStrokeCap.round,
-                                                    backgroundColor: AppColors
-                                                        .grey
-                                                        .withOpacity(0.3),
-                                                    radius: 60.0,
-                                                    lineWidth: 6.0,
-                                                    percent: 0.8,
-                                                    progressColor:
-                                                        AppColors.primary),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
+                                        height:150 ,
                                         width: (size.width - 40) * 0.6,
                                         child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
+                                            SizedBox(
+                                              height: 25,
+                                            ),
                                             CommonText(
                                                 text:
                                                     "${ProfileController.to.profileDetails.name}",
-                                                fontSize: 30,
+                                                fontSize: 35,
                                                 fontWeight: FontWeight.bold,
                                                 fontColor: AppColors.white),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
+
                                           ],
                                         ),
                                       )
@@ -232,5 +217,15 @@ class Profile extends StatelessWidget {
                 ),
               ));
         });
+  }
+
+  Container cloudyProfile(Size size) {
+    return Container(
+      height: 150,
+      width: (size.width - 40) * 0.4,
+      child: Container(
+          child:
+              RiveAnimation.asset('assets/rive/cloudy.riv', onInit: _onInit,fit: BoxFit.cover,)),
+    );
   }
 }

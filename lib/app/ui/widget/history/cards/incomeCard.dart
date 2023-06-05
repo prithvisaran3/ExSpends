@@ -24,6 +24,7 @@ class Icard extends StatelessWidget {
         onLongPress: onLongPress,
         child: Container(
           padding: EdgeInsets.all(8),
+          // margin: EdgeInsets.symmetric(vertical: 10),
           height: 50,
           decoration: BoxDecoration(
             color: Colors.grey.shade800,

@@ -19,6 +19,7 @@ class _InitialState extends State<Initial> {
   Widget build(BuildContext context) {
     debugPrint('initial auth test');
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: GetBuilder<AuthController>(
           init: AuthController(),
           initState: (state) async {

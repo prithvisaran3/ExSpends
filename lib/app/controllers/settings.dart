@@ -1,5 +1,6 @@
 
 import 'package:expense/app/data/repository/settings.dart';
+import 'package:expense/app/ui/widget/common_snackbar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -45,6 +46,7 @@ class SettingsController extends GetxController {
       if (res['status'] == 200) {
         bugLoading = false;
         commonPrint(status: res['status'], msg: res['message']);
+        commonSnackBar(title: "Report a Bug",msg: "${res['message']}");
         Get.back();
         bugFieldsEmpty();
       } else if (res['status'] == 422) {

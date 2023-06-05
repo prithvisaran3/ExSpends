@@ -16,7 +16,6 @@ class ForgotPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
-    bool isVerify = false;
     return Scaffold(
         body: SafeArea(
             maintainBottomViewPadding: true,
@@ -117,7 +116,6 @@ class ForgotPassword extends StatelessWidget {
                                       blurRadius: 1,
                                       offset: const Offset(0.4, 0.6)),
                                 ],
-
                               ),
                               child: const Center(
                                 child: CommonText(

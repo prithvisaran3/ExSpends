@@ -144,23 +144,18 @@ class AuthController extends GetxController {
         loginLoading = false;
         loginErrorAnimation=true;
         commonPrint(status: res['status'], msg: "${res['message']}");
-        errorAlert(Get.context!, content: "${res['message']}",
-            confirmButtonPressed: () {
-          Get.back();
-        });
+        loginSnackBar(title: "Try Again", msg: "${res['message']}");
       } else if (res['status'] == 404) {
         loginLoading = false;
         loginErrorAnimation=true;
         commonPrint(status: res['status'], msg: "${res['message']}");
-        errorAlert(Get.context!, content: "${res['message']}",
-            confirmButtonPressed: () {
-          Get.back();
-        });
+        loginSnackBar(title: "Try Again", msg: "${res['message']}");
       } else {
         loginLoading = false;
         loginErrorAnimation=true;
         commonPrint(
             status: res['status'], msg: "Error from server or No Internet");
+        loginSnackBar(title: "Try Again", msg: "${res['message']}");
       }
     } catch (e) {
       loginLoading = false;
@@ -168,6 +163,7 @@ class AuthController extends GetxController {
       commonPrint(
           status: "$statusCode",
           msg: "Error from login due to data mismatch or format $e");
+      loginSnackBar(title: "Try Again", msg: "Exception Error");
     }
   }
 

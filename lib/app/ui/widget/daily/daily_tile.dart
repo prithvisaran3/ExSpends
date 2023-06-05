@@ -6,6 +6,7 @@ import '../../../controllers/daily.dart';
 import '../../../utility/utility.dart';
 import '../../theme/colors.dart';
 import '../common_text.dart';
+import 'dailytile_alert.dart';
 
 class DailyTile extends StatelessWidget {
   const DailyTile({Key? key}) : super(key: key);
@@ -13,18 +14,18 @@ class DailyTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return GestureDetector(
-      onLongPress: () {
-        // commonDeleteDialog(context, content: "Do you want to delete?", confirmButtonPressed: (){});
-      },
-      child: Container(
-        height: Get.height * 0.40,
-        child: SingleChildScrollView(
-          child: Column(
-            children: List.generate(
-              DailyController.to.dailydetails.length,
-              (index) {
-                return Column(
+    return Container(
+      height: Get.height * 0.40,
+      child: SingleChildScrollView(
+        child: Column(
+          children: List.generate(
+            DailyController.to.dailydetails.length,
+            (index) {
+              return GestureDetector(
+                onTap: () {
+                  commonTransactionDialog(context, index: index);
+                },
+                child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,7 +64,8 @@ class DailyTile extends StatelessWidget {
                                 width: (size.width - 90) * 0.6,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
                                   children: [
                                     Row(
                                       children: [
@@ -117,8 +119,8 @@ class DailyTile extends StatelessWidget {
                                     "$rupee ${DailyController.to.dailydetails[index].amount}",
                                 fontWeight: FontWeight.w600,
                                 fontSize: 15,
-                                fontColor: DailyController
-                                            .to.dailydetails[index].isIncome ==
+                                fontColor: DailyController.to
+                                            .dailydetails[index].isIncome ==
                                         "true"
                                     ? AppColors.primary
                                     : AppColors.secondary,
@@ -135,9 +137,9 @@ class DailyTile extends StatelessWidget {
                       ),
                     )
                   ],
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
         ),
       ),

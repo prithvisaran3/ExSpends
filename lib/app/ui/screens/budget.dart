@@ -1,4 +1,5 @@
 import 'package:expense/app/ui/widget/common_text.dart';
+import 'package:expense/app/ui/widget/common_toast.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,6 +38,7 @@ class AddBudget extends StatelessWidget {
                         children: [
                           SizedBox(height: 60),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               IncomeExpenseCard(
                                 index: 0,
@@ -84,13 +86,14 @@ class AddBudget extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            Obx(() => BudgetController.to.categoryLoading == true
-                ? CommonNormalLoading()
-                : BudgetController.to.isCategoryEmpty == true
-                    ? CommonText(text: "empty")
-                    : Container(
-                        height: 150,
-                        child: ListView.builder(
+            Obx(
+              () => BudgetController.to.categoryLoading == true
+                  ? CommonNormalLoading()
+                  : BudgetController.to.isCategoryEmpty == true
+                      ? CommonText(text: "empty")
+                      : Container(
+                          height: 150,
+                          child: ListView.builder(
                             itemCount:
                                 BudgetController.to.categoryDetails.length,
                             shrinkWrap: true,
@@ -104,6 +107,7 @@ class AddBudget extends StatelessWidget {
                                     "${BudgetController.to.categoryDetails[index].categoryName}",
                                 // image:  "${AppConfig.baseUrl}/${BudgetController.to.categoryDetails[index].image}",
                                 onPressed: () {
+                                  BudgetController.to.isCategorySelect = true;
                                   BudgetController.to.categoryIndex = index;
                                   BudgetController.to.selectedCategory =
                                       "${BudgetController.to.categoryDetails[index].categoryName}";
@@ -111,8 +115,10 @@ class AddBudget extends StatelessWidget {
                                       "Selected category is ${BudgetController.to.selectedCategory}");
                                 },
                               );
-                            }),
-                      )),
+                            },
+                          ),
+                        ),
+            ),
           ],
         ),
         SizedBox(
@@ -164,7 +170,7 @@ class AddBudget extends StatelessWidget {
                     controller: BudgetController.to.expenseDate,
                     validator: (data) {
                       if (data == null || data == "" || data.isEmpty) {
-                        return 'Please enter date';
+                        commonToast(msg: "Please enter date");
                       }
                       return null;
                     },
@@ -184,16 +190,6 @@ class AddBudget extends StatelessWidget {
                         border: InputBorder.none),
                   ),
                 ),
-                // CommonNormalTextFormField(
-                //   hintText: "${SendIsoToLocalDate(date: DateTime.now().toString(),)}",
-                //   controller: BudgetController.to.expenseDate,
-                //   validator: (data) {
-                //     if (data == null || data == "" || data.isEmpty) {
-                //       return 'Please enter date';
-                //     }
-                //     return null;
-                //   },
-                // ),
                 SizedBox(
                   height: 20,
                 ),
@@ -212,7 +208,7 @@ class AddBudget extends StatelessWidget {
                   controller: BudgetController.to.expenseName,
                   validator: (data) {
                     if (data == null || data == "" || data.isEmpty) {
-                      return 'Please enter name';
+                      commonToast(msg: "Please enter name");
                     }
                     return null;
                   },
@@ -236,7 +232,7 @@ class AddBudget extends StatelessWidget {
                   keyboardType: TextInputType.number,
                   validator: (data) {
                     if (data == null || data == "" || data.isEmpty) {
-                      return 'Please enter amount';
+                      commonToast(msg: "Please enter amount");
                     }
                     return null;
                   },
@@ -248,6 +244,9 @@ class AddBudget extends StatelessWidget {
                       : Center(
                           child: GestureDetector(
                             onTap: () {
+                              BudgetController.to.isCategorySelect == false
+                                  ? commonToast(msg: "Please select category")
+                                  : null;
                               if (BudgetController.to.expenseKey.currentState!
                                   .validate()) {
                                 BudgetController.to.addExpense();
@@ -340,7 +339,7 @@ class AddBudget extends StatelessWidget {
                   controller: BudgetController.to.incomeDate,
                   validator: (data) {
                     if (data == null || data == "" || data.isEmpty) {
-                      return 'Please enter date';
+                      commonToast(msg: "Please enter date");
                     }
                     return null;
                   },
@@ -376,7 +375,7 @@ class AddBudget extends StatelessWidget {
                 controller: BudgetController.to.incomeCategory,
                 validator: (data) {
                   if (data == null || data == "" || data.isEmpty) {
-                    return 'Please enter income name';
+                    commonToast(msg: "Please enter income name");
                   }
                   return null;
                 },
@@ -404,7 +403,7 @@ class AddBudget extends StatelessWidget {
                     keyboardType: TextInputType.number,
                     validator: (data) {
                       if (data == null || data == "" || data.isEmpty) {
-                        return 'Please enter amount';
+                        commonToast(msg: "Please enter amount");
                       }
                       return null;
                     },
