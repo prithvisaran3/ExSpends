@@ -33,14 +33,15 @@ dependencies:
   fl_chart: ^0.64.0
   percent_indicator: ^4.2.3
   date_picker_timeline: ^1.2.3
-  http: ^1.1.0
+  http: ^0.13.3
   shared_preferences: ^2.0.18
   fluttertoast: ^8.2.1
   get: ^4.6.5
   url_launcher: ^6.1.10
   flutter_svg: ^2.0.5
   shimmer: ^3.0.0
-  rive: ^0.11.17
+  rive: ^0.11.4
+  flutter_automation:
 
 
 
