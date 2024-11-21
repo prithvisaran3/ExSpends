@@ -1,4 +1,5 @@
 import 'package:expense/app/ui/screens/auth/forgot_password.dart';
+import 'package:expense/app/ui/screens/home/main.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -153,6 +154,7 @@ class _LoginState extends State<Login> {
                         : CommonButton(
                             text: "Login",
                             onPressed: () {
+                              // Get.to(()=>HomeMain());
                               if (AuthController.to.loginKey.currentState!
                                   .validate()) {
                                 AuthController.to.login();
@@ -188,7 +190,7 @@ class _LoginState extends State<Login> {
                         fontColor: AppColors.white.withOpacity(0.8),
                         fontWeight: FontWeight.bold,
                       ),
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           Get.to(() => Register());
                         },
